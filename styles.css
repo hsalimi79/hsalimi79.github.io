@@ -1,13 +1,13 @@
 :root{
-  --ink:#14191F;
-  --ink-soft:#5B6470;
-  --ink-faint:#9AA2AC;
-  --paper:#FAFAF8;
-  --surface:#FFFFFF;
-  --line:#E4E2DC;
-  --accent:#2F3FA6;
-  --accent-soft:#EEF0FB;
-  --accent-tint:#DADEF5;
+  --ink:#ECEDF1;
+  --ink-soft:#9BA1AC;
+  --ink-faint:#666D78;
+  --paper:#14161B;
+  --surface:#1B1E25;
+  --line:#2A2E37;
+  --accent:#8089FF;
+  --accent-soft:rgba(128,137,255,0.12);
+  --accent-tint:rgba(128,137,255,0.38);
 
   --font-display:'Space Grotesk', 'Inter', sans-serif;
   --font-body:'Inter', system-ui, sans-serif;
@@ -20,7 +20,10 @@ html{scroll-behavior:smooth;}
 
 body{
   margin:0;
-  background:var(--paper);
+  background:
+    radial-gradient(circle at 15% -10%, rgba(128,137,255,0.08), transparent 40%),
+    radial-gradient(circle at 100% 20%, rgba(128,137,255,0.05), transparent 35%),
+    var(--paper);
   color:var(--ink);
   font-family:var(--font-body);
   -webkit-font-smoothing:antialiased;
@@ -364,6 +367,7 @@ a{color:inherit;}
   grid-template-columns:180px 1fr;
   gap:24px;
   align-items:start;
+  box-shadow:0 12px 30px -16px rgba(0,0,0,0.5);
 }
 
 .layer-label{
@@ -477,6 +481,17 @@ a{color:inherit;}
 
 /* ============ PRINT ============ */
 @media print{
+  :root{
+    --ink:#14191F;
+    --ink-soft:#5B6470;
+    --ink-faint:#9AA2AC;
+    --paper:#FAFAF8;
+    --surface:#FFFFFF;
+    --line:#E4E2DC;
+    --accent:#2F3FA6;
+    --accent-soft:#EEF0FB;
+    --accent-tint:#DADEF5;
+  }
   body{background:#fff;}
   .page{
     grid-template-columns:240px 1fr;
@@ -496,9 +511,8 @@ a{color:inherit;}
     page-break-inside:avoid;
   }
   .entry{page-break-inside:avoid;}
+  .layer{box-shadow:none;}
   .chip{
-    background:#fff;
     border:1px solid #ccc;
-    color:#1a1a1a;
   }
 }
