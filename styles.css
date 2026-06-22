@@ -250,6 +250,14 @@ a{color:inherit;}
   margin-bottom:36px;
 }
 
+.about-text{
+  margin:0;
+  font-size:16px;
+  line-height:1.75;
+  color:var(--ink-soft);
+  max-width:600px;
+}
+
 /* ---------- TIMELINE ---------- */
 .timeline{
   display:flex;
