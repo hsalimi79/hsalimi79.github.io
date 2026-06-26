@@ -1,17 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Hossein Salimi — Full Stack Developer</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Vazirmatn:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
 <canvas id="bg-canvas"></canvas>
+
+<button class="lang-toggle" id="langToggle">
+  <span class="lang-en">FA</span>
+  <span class="lang-fa">EN</span>
+</button>
 
 <div class="page">
 
@@ -19,79 +24,88 @@
     <div class="identity">
       <div class="monogram">HS</div>
       <h1><span id="typewriter"></span><span class="tw-cursor">|</span></h1>
-      <p class="role">Full&nbsp;Stack&nbsp;Developer</p>
+      <p class="role" data-en="Full Stack Developer" data-fa="توسعه‌دهنده فول‌استک">Full Stack Developer</p>
     </div>
 
     <ul class="contact-list">
-      <li><span class="label">Phone</span><a href="tel:+989911881834">0991 188 1834</a></li>
-      <li><span class="label">Email</span><a href="mailto:hossein.salimi799@gmail.com">hossein.salimi799@gmail.com</a></li>
-      <li><span class="label">Location</span><span>Isfahan, Iran</span></li>
+      <li><span class="label" data-en="Phone" data-fa="تلفن">Phone</span><a href="tel:+989911881834">0991 188 1834</a></li>
+      <li><span class="label" data-en="Email" data-fa="ایمیل">Email</span><a href="mailto:hossein.salimi799@gmail.com">hossein.salimi799@gmail.com</a></li>
+      <li><span class="label" data-en="Location" data-fa="موقعیت">Location</span><span data-en="Isfahan, Iran" data-fa="اصفهان، ایران">Isfahan, Iran</span></li>
       <li><span class="label">GitHub</span><a href="https://github.com/hsalimi79" target="_blank" rel="noopener">hsalimi79</a></li>
       <li><span class="label">LinkedIn</span><a href="https://linkedin.com/in/hossein-salimi79" target="_blank" rel="noopener">hossein-salimi79</a></li>
     </ul>
 
     <nav class="index-nav" id="indexNav">
-      <a href="#about"      data-target="about">     <span class="num">00</span>About</a>
-      <a href="#experience" data-target="experience"> <span class="num">01</span>Experience</a>
-      <a href="#projects"   data-target="projects">   <span class="num">02</span>Projects</a>
-      <a href="#education"  data-target="education">  <span class="num">03</span>Education</a>
-      <a href="#stack"      data-target="stack">      <span class="num">04</span>Stack</a>
+      <a href="#about"      data-target="about">     <span class="num">00</span><span data-en="About"      data-fa="درباره">About</span></a>
+      <a href="#experience" data-target="experience"> <span class="num">01</span><span data-en="Experience" data-fa="تجربه">Experience</span></a>
+      <a href="#projects"   data-target="projects">   <span class="num">02</span><span data-en="Projects"   data-fa="پروژه‌ها">Projects</span></a>
+      <a href="#education"  data-target="education">  <span class="num">03</span><span data-en="Education"  data-fa="تحصیلات">Education</span></a>
+      <a href="#stack"      data-target="stack">      <span class="num">04</span><span data-en="Stack"      data-fa="مهارت‌ها">Stack</span></a>
     </nav>
 
-    <button class="print-btn" id="printBtn">Download PDF <span class="arr">→</span></button>
+    <button class="print-btn" id="printBtn">
+      <span data-en="Download PDF" data-fa="دانلود PDF">Download PDF</span>
+      <span class="arr">→</span>
+    </button>
   </aside>
 
   <main class="content">
 
+    <!-- ABOUT -->
     <section id="about" class="section">
-      <h2 class="section-title"><span class="eyebrow">00</span>About</h2>
-      <p class="about-text">Full Stack Developer with experience building web applications with Django and React — from API design and database architecture to responsive frontends. I enjoy solving real problems through code, care about clean architecture, and am always looking to learn and take on new challenges.</p>
+      <h2 class="section-title"><span class="eyebrow">00</span><span data-en="About" data-fa="درباره">About</span></h2>
+      <p class="about-text"
+        data-en="Full Stack Developer with experience building web applications with Django and React — from API design and database architecture to responsive frontends. I enjoy solving real problems through code, care about clean architecture, and am always looking to learn and take on new challenges."
+        data-fa="توسعه‌دهنده‌ی فول‌استک با تجربه در ساخت اپلیکیشن‌های وب با Django و React — از طراحی API و معماری پایگاه داده تا رابط‌های کاربری ریسپانسیو. حل مسئله از طریق کد برام جذابه، به معماری تمیز اهمیت می‌دم و همیشه دنبال یادگیری و چالش‌های جدیدم.">
+        Full Stack Developer with experience building web applications with Django and React — from API design and database architecture to responsive frontends. I enjoy solving real problems through code, care about clean architecture, and am always looking to learn and take on new challenges.
+      </p>
     </section>
 
+    <!-- EXPERIENCE -->
     <section id="experience" class="section">
-      <h2 class="section-title"><span class="eyebrow">01</span>Experience</h2>
+      <h2 class="section-title"><span class="eyebrow">01</span><span data-en="Experience" data-fa="تجربه کاری">Experience</span></h2>
       <div class="timeline">
 
         <article class="entry">
-          <div class="entry-meta"><span class="year">2023<span class="dash">—</span>Present</span></div>
+          <div class="entry-meta"><span class="year" data-en="2023 — Present" data-fa="۱۴۰۲ — اکنون">2023 — Present</span></div>
           <div class="entry-body">
-            <h3>Backend / Full Stack Developer</h3>
-            <p class="entry-org">APA — Isfahan University of Technology</p>
+            <h3 data-en="Backend / Full Stack Developer" data-fa="توسعه‌دهنده‌ی بک‌اند / فول‌استک">Backend / Full Stack Developer</h3>
+            <p class="entry-org" data-en="APA — Isfahan University of Technology" data-fa="آپا — دانشگاه صنعتی اصفهان">APA — Isfahan University of Technology</p>
             <ul>
-              <li>Developed backend services using Django</li>
-              <li>Designed and built RESTful APIs using Django REST Framework</li>
-              <li>Developed frontend features using React</li>
-              <li>Worked with SQL databases and optimized queries</li>
-              <li>Collaborated on development and maintenance of internal systems</li>
-              <li>Developed and launched multiple web platforms for university events and startup initiatives</li>
+              <li data-en="Developed backend services using Django"                                                            data-fa="توسعه‌ی سرویس‌های بک‌اند با Django">Developed backend services using Django</li>
+              <li data-en="Designed and built RESTful APIs using Django REST Framework"                                        data-fa="طراحی و پیاده‌سازی REST API با Django REST Framework">Designed and built RESTful APIs using Django REST Framework</li>
+              <li data-en="Developed frontend features using React"                                                            data-fa="توسعه‌ی فیچرهای فرانت‌اند با React">Developed frontend features using React</li>
+              <li data-en="Worked with SQL databases and optimized queries"                                                    data-fa="کار با پایگاه داده SQL و بهینه‌سازی کوئری‌ها">Worked with SQL databases and optimized queries</li>
+              <li data-en="Collaborated on development and maintenance of internal systems"                                    data-fa="همکاری در توسعه و نگهداری سیستم‌های داخلی">Collaborated on development and maintenance of internal systems</li>
+              <li data-en="Developed and launched multiple web platforms for university events and startup initiatives"        data-fa="طراحی و راه‌اندازی چندین پلتفرم وب برای رویدادها و استارتاپ‌های دانشگاهی">Developed and launched multiple web platforms for university events and startup initiatives</li>
             </ul>
           </div>
         </article>
 
         <article class="entry">
-          <div class="entry-meta"><span class="year">2022<span class="dash">—</span>Present</span></div>
+          <div class="entry-meta"><span class="year" data-en="2022 — Present" data-fa="۱۴۰۱ — اکنون">2022 — Present</span></div>
           <div class="entry-body">
-            <h3>Freelance / Personal Projects</h3>
-            <p class="entry-org">Independent</p>
+            <h3 data-en="Freelance / Personal Projects" data-fa="فریلنس / پروژه‌های شخصی">Freelance / Personal Projects</h3>
+            <p class="entry-org" data-en="Independent" data-fa="مستقل">Independent</p>
             <ul>
-              <li>Developed backend services using Django</li>
-              <li>Designed and built RESTful APIs using Django REST Framework</li>
-              <li>Developed frontend features using React</li>
-              <li>Worked with SQL databases and optimized queries</li>
-              <li>Collaborated on development and maintenance of internal systems</li>
+              <li data-en="Developed backend services using Django"                              data-fa="توسعه‌ی سرویس‌های بک‌اند با Django">Developed backend services using Django</li>
+              <li data-en="Designed and built RESTful APIs using Django REST Framework"          data-fa="طراحی و پیاده‌سازی REST API با Django REST Framework">Designed and built RESTful APIs using Django REST Framework</li>
+              <li data-en="Developed frontend features using React"                              data-fa="توسعه‌ی فیچرهای فرانت‌اند با React">Developed frontend features using React</li>
+              <li data-en="Worked with SQL databases and optimized queries"                      data-fa="کار با پایگاه داده SQL و بهینه‌سازی کوئری‌ها">Worked with SQL databases and optimized queries</li>
+              <li data-en="Collaborated on development and maintenance of internal systems"      data-fa="همکاری در توسعه و نگهداری سیستم‌های داخلی">Collaborated on development and maintenance of internal systems</li>
             </ul>
           </div>
         </article>
 
         <article class="entry">
-          <div class="entry-meta"><span class="year">2021</span></div>
+          <div class="entry-meta"><span class="year" data-en="2021" data-fa="۱۴۰۰">2021</span></div>
           <div class="entry-body">
-            <h3>Teaching Assistant — C++ Programming</h3>
-            <p class="entry-org">Isfahan University of Technology</p>
+            <h3 data-en="Teaching Assistant — C++ Programming" data-fa="دستیار آموزشی — برنامه‌نویسی ++C">Teaching Assistant — C++ Programming</h3>
+            <p class="entry-org" data-en="Isfahan University of Technology" data-fa="دانشگاه صنعتی اصفهان">Isfahan University of Technology</p>
             <ul>
-              <li>Assisted students in C++ programming fundamentals and lab exercises</li>
-              <li>Helped with debugging and assignment support</li>
-              <li>Evaluated coursework and provided feedback</li>
+              <li data-en="Assisted students in C++ programming fundamentals and lab exercises"  data-fa="کمک به دانشجویان در مبانی ++C و تمرین‌های عملی">Assisted students in C++ programming fundamentals and lab exercises</li>
+              <li data-en="Helped with debugging and assignment support"                         data-fa="پشتیبانی در دیباگ و تکالیف">Helped with debugging and assignment support</li>
+              <li data-en="Evaluated coursework and provided feedback"                           data-fa="ارزیابی تکالیف و ارائه‌ی بازخورد">Evaluated coursework and provided feedback</li>
             </ul>
           </div>
         </article>
@@ -99,43 +113,44 @@
       </div>
     </section>
 
+    <!-- PROJECTS -->
     <section id="projects" class="section">
-      <h2 class="section-title"><span class="eyebrow">02</span>Projects</h2>
+      <h2 class="section-title"><span class="eyebrow">02</span><span data-en="Projects" data-fa="پروژه‌ها">Projects</span></h2>
       <div class="timeline">
 
         <article class="entry">
-          <div class="entry-meta"><span class="year">2024</span></div>
+          <div class="entry-meta"><span class="year" data-en="2024" data-fa="۱۴۰۳">2024</span></div>
           <div class="entry-body">
-            <h3>Daryaazma — Water Quality Control Platform</h3>
+            <h3 data-en="Daryaazma — Water Quality Control Platform" data-fa="دریاآزما — پلتفرم کنترل کیفیت آب">Daryaazma — Water Quality Control Platform</h3>
             <p class="entry-org"><a class="entry-link" href="https://daryaazma.ir" target="_blank" rel="noopener">daryaazma.ir ↗</a></p>
             <ul>
-              <li>Built a corporate presentation site and admin dashboard for a water quality control company</li>
-              <li>Backend developed with Django, frontend built with React</li>
-              <li>Designed an analytics dashboard featuring multiple interactive charts for water quality metrics</li>
+              <li data-en="Built a corporate presentation site and admin dashboard for a water quality control company"             data-fa="ساخت سایت معرفی شرکت و پنل مدیریت برای یک شرکت کنترل کیفیت آب">Built a corporate presentation site and admin dashboard for a water quality control company</li>
+              <li data-en="Backend developed with Django, frontend built with React"                                               data-fa="بک‌اند با Django، فرانت‌اند با React">Backend developed with Django, frontend built with React</li>
+              <li data-en="Designed an analytics dashboard featuring multiple interactive charts for water quality metrics"         data-fa="طراحی داشبورد تحلیلی با نمودارهای تعاملی متنوع برای شاخص‌های کیفیت آب">Designed an analytics dashboard featuring multiple interactive charts for water quality metrics</li>
             </ul>
           </div>
         </article>
 
         <article class="entry">
-          <div class="entry-meta"><span class="year">2023</span></div>
+          <div class="entry-meta"><span class="year" data-en="2023" data-fa="۱۴۰۲">2023</span></div>
           <div class="entry-body">
-            <h3>Telegram Group Management Bot</h3>
+            <h3 data-en="Telegram Group Management Bot" data-fa="ربات مدیریت گروه تلگرام">Telegram Group Management Bot</h3>
             <p class="entry-org"><a class="entry-link" href="https://github.com/hsalimi79/pyrogramTelegramBot" target="_blank" rel="noopener">github.com/hsalimi79 ↗</a></p>
             <ul>
-              <li>Built a Telegram bot for automated group management using Pyrogram</li>
-              <li>Integrated PostgreSQL for persistent data storage</li>
+              <li data-en="Built a Telegram bot for automated group management using Pyrogram"  data-fa="ساخت ربات تلگرام برای مدیریت خودکار گروه با Pyrogram">Built a Telegram bot for automated group management using Pyrogram</li>
+              <li data-en="Integrated PostgreSQL for persistent data storage"                   data-fa="یکپارچه‌سازی PostgreSQL برای ذخیره‌سازی داده">Integrated PostgreSQL for persistent data storage</li>
             </ul>
           </div>
         </article>
 
         <article class="entry">
-          <div class="entry-meta"><span class="year">2020</span></div>
+          <div class="entry-meta"><span class="year" data-en="2020" data-fa="۱۳۹۹">2020</span></div>
           <div class="entry-body">
-            <h3>IUT MAP — University Map &amp; Events App</h3>
-            <p class="entry-org">Isfahan University of Technology</p>
+            <h3 data-en="IUT MAP — University Map &amp; Events App" data-fa="IUT MAP — اپ نقشه و رویدادهای دانشگاه">IUT MAP — University Map &amp; Events App</h3>
+            <p class="entry-org" data-en="Isfahan University of Technology" data-fa="دانشگاه صنعتی اصفهان">Isfahan University of Technology</p>
             <ul>
-              <li>Built a Flutter Android app showing an interactive campus map of Isfahan University of Technology</li>
-              <li>Displayed university events and activities alongside the map</li>
+              <li data-en="Built a Flutter Android app showing an interactive campus map of Isfahan University of Technology"  data-fa="ساخت اپ اندروید با Flutter برای نمایش نقشه‌ی تعاملی دانشگاه صنعتی اصفهان">Built a Flutter Android app showing an interactive campus map of Isfahan University of Technology</li>
+              <li data-en="Displayed university events and activities alongside the map"                                      data-fa="نمایش رویدادها و فعالیت‌های دانشگاه در کنار نقشه">Displayed university events and activities alongside the map</li>
             </ul>
           </div>
         </article>
@@ -143,31 +158,38 @@
       </div>
     </section>
 
+    <!-- EDUCATION -->
     <section id="education" class="section">
-      <h2 class="section-title"><span class="eyebrow">03</span>Education</h2>
+      <h2 class="section-title"><span class="eyebrow">03</span><span data-en="Education" data-fa="تحصیلات">Education</span></h2>
       <div class="timeline">
         <article class="entry">
-          <div class="entry-meta"><span class="year">2018<span class="dash">—</span>2022</span></div>
+          <div class="entry-meta"><span class="year" data-en="2018 — 2022" data-fa="۱۳۹۷ — ۱۴۰۱">2018 — 2022</span></div>
           <div class="entry-body">
-            <h3>B.Sc. Computer Engineering</h3>
-            <p class="entry-org">Isfahan University of Technology <span class="hijri">(1397–1401)</span></p>
+            <h3 data-en="B.Sc. Computer Engineering" data-fa="کارشناسی مهندسی کامپیوتر">B.Sc. Computer Engineering</h3>
+            <p class="entry-org" data-en="Isfahan University of Technology" data-fa="دانشگاه صنعتی اصفهان">Isfahan University of Technology</p>
           </div>
         </article>
       </div>
     </section>
 
+    <!-- STACK -->
     <section id="stack" class="section">
-      <h2 class="section-title"><span class="eyebrow">04</span>Stack</h2>
-      <p class="section-intro">The toolkit, layered the way it ships.</p>
+      <h2 class="section-title"><span class="eyebrow">04</span><span data-en="Stack" data-fa="مهارت‌ها">Stack</span></h2>
+      <p class="section-intro"
+        data-en="The toolkit, layered the way it ships."
+        data-fa="ابزارها، لایه‌به‌لایه همون‌طور که دیپلوی می‌شن.">
+        The toolkit, layered the way it ships.
+      </p>
       <div class="stack-diagram">
 
         <div class="layer" data-tilt>
-          <div class="layer-label"><span class="layer-index">01</span><span class="layer-name">Frontend</span></div>
+          <div class="layer-label">
+            <span class="layer-index">01</span>
+            <span class="layer-name" data-en="Frontend" data-fa="فرانت‌اند">Frontend</span>
+          </div>
           <div class="chips">
-            <span class="chip">React</span>
-            <span class="chip">JavaScript (ES6+)</span>
-            <span class="chip">HTML / CSS</span>
-            <span class="chip">Material UI (MUI)</span>
+            <span class="chip">React</span><span class="chip">JavaScript (ES6+)</span>
+            <span class="chip">HTML / CSS</span><span class="chip">Material UI (MUI)</span>
             <span class="chip">Flutter</span>
           </div>
         </div>
@@ -175,18 +197,16 @@
         <div class="layer-connector"><span></span></div>
 
         <div class="layer" data-tilt>
-          <div class="layer-label"><span class="layer-index">02</span><span class="layer-name">Backend</span></div>
+          <div class="layer-label">
+            <span class="layer-index">02</span>
+            <span class="layer-name" data-en="Backend" data-fa="بک‌اند">Backend</span>
+          </div>
           <div class="chips">
-            <span class="chip">Python</span>
-            <span class="chip">Django</span>
-            <span class="chip">Django REST Framework</span>
-            <span class="chip">Flask</span>
-            <span class="chip">REST APIs</span>
-            <span class="chip">Swagger</span>
-            <span class="chip">JWT Authentication</span>
-            <span class="chip">Celery</span>
-            <span class="chip">Redis</span>
-            <span class="chip">PostgreSQL / SQLite</span>
+            <span class="chip">Python</span><span class="chip">Django</span>
+            <span class="chip">Django REST Framework</span><span class="chip">Flask</span>
+            <span class="chip">REST APIs</span><span class="chip">Swagger</span>
+            <span class="chip">JWT Authentication</span><span class="chip">Celery</span>
+            <span class="chip">Redis</span><span class="chip">PostgreSQL / SQLite</span>
             <span class="chip">Database Design</span>
           </div>
         </div>
@@ -194,14 +214,14 @@
         <div class="layer-connector"><span></span></div>
 
         <div class="layer" data-tilt>
-          <div class="layer-label"><span class="layer-index">03</span><span class="layer-name">Infrastructure &amp; Tools</span></div>
+          <div class="layer-label">
+            <span class="layer-index">03</span>
+            <span class="layer-name" data-en="Infrastructure &amp; Tools" data-fa="زیرساخت و ابزارها">Infrastructure &amp; Tools</span>
+          </div>
           <div class="chips">
-            <span class="chip">Git &amp; GitHub</span>
-            <span class="chip">Linux</span>
-            <span class="chip">Docker</span>
-            <span class="chip">Nginx</span>
-            <span class="chip">Gunicorn</span>
-            <span class="chip">Telegram Bot API</span>
+            <span class="chip">Git &amp; GitHub</span><span class="chip">Linux</span>
+            <span class="chip">Docker</span><span class="chip">Nginx</span>
+            <span class="chip">Gunicorn</span><span class="chip">Telegram Bot API</span>
             <span class="chip">Postman</span>
           </div>
         </div>
@@ -210,11 +230,11 @@
     </section>
 
     <footer class="footer">
-      <span>Hossein Salimi</span>
+      <span data-en="Hossein Salimi" data-fa="حسین سلیمی">Hossein Salimi</span>
       <span class="footer-dot">·</span>
-      <span>Full Stack Developer</span>
+      <span data-en="Full Stack Developer" data-fa="توسعه‌دهنده فول‌استک">Full Stack Developer</span>
       <span class="footer-dot">·</span>
-      <span>Isfahan, Iran</span>
+      <span data-en="Isfahan, Iran" data-fa="اصفهان، ایران">Isfahan, Iran</span>
     </footer>
 
   </main>
