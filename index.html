@@ -6,78 +6,54 @@
 <title>Hossein Salimi — Full Stack Developer</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
+<canvas id="bg-canvas"></canvas>
+
 <div class="page">
 
-  <!-- ============ SIDEBAR ============ -->
   <aside class="sidebar">
-
     <div class="identity">
       <div class="monogram">HS</div>
-      <h1>Hossein Salimi</h1>
+      <h1><span id="typewriter"></span><span class="tw-cursor">|</span></h1>
       <p class="role">Full&nbsp;Stack&nbsp;Developer</p>
     </div>
 
     <ul class="contact-list">
-      <li>
-        <span class="label">Phone</span>
-        <a href="tel:+989911881834">0991&nbsp;188&nbsp;1834</a>
-      </li>
-      <li>
-        <span class="label">Email</span>
-        <a href="mailto:hossein.salimi799@gmail.com">hossein.salimi799@gmail.com</a>
-      </li>
-      <li>
-        <span class="label">Location</span>
-        <span>Isfahan, Iran</span>
-      </li>
-      <li>
-        <span class="label">GitHub</span>
-        <a href="https://github.com/hsalimi79" target="_blank" rel="noopener">hsalimi79</a>
-      </li>
-      <li>
-        <span class="label">LinkedIn</span>
-        <a href="https://linkedin.com/in/hossein-salimi79" target="_blank" rel="noopener">hossein-salimi79</a>
-      </li>
+      <li><span class="label">Phone</span><a href="tel:+989911881834">0991 188 1834</a></li>
+      <li><span class="label">Email</span><a href="mailto:hossein.salimi799@gmail.com">hossein.salimi799@gmail.com</a></li>
+      <li><span class="label">Location</span><span>Isfahan, Iran</span></li>
+      <li><span class="label">GitHub</span><a href="https://github.com/hsalimi79" target="_blank" rel="noopener">hsalimi79</a></li>
+      <li><span class="label">LinkedIn</span><a href="https://linkedin.com/in/hossein-salimi79" target="_blank" rel="noopener">hossein-salimi79</a></li>
     </ul>
 
     <nav class="index-nav" id="indexNav">
-      <a href="#about" data-target="about"><span class="num">00</span>About</a>
-      <a href="#experience" data-target="experience"><span class="num">01</span>Experience</a>
-      <a href="#projects" data-target="projects"><span class="num">02</span>Projects</a>
-      <a href="#education" data-target="education"><span class="num">03</span>Education</a>
-      <a href="#stack" data-target="stack"><span class="num">04</span>Stack</a>
+      <a href="#about"      data-target="about">     <span class="num">00</span>About</a>
+      <a href="#experience" data-target="experience"> <span class="num">01</span>Experience</a>
+      <a href="#projects"   data-target="projects">   <span class="num">02</span>Projects</a>
+      <a href="#education"  data-target="education">  <span class="num">03</span>Education</a>
+      <a href="#stack"      data-target="stack">      <span class="num">04</span>Stack</a>
     </nav>
 
-    <button class="print-btn" id="printBtn">
-      Download PDF
-      <span class="print-arrow">→</span>
-    </button>
+    <button class="print-btn" id="printBtn">Download PDF <span class="arr">→</span></button>
   </aside>
 
-  <!-- ============ MAIN CONTENT ============ -->
   <main class="content">
 
-    <!-- ABOUT -->
     <section id="about" class="section">
       <h2 class="section-title"><span class="eyebrow">00</span>About</h2>
       <p class="about-text">Full Stack Developer with experience building web applications with Django and React — from API design and database architecture to responsive frontends. I enjoy solving real problems through code, care about clean architecture, and am always looking to learn and take on new challenges.</p>
     </section>
 
-    <!-- EXPERIENCE -->
     <section id="experience" class="section">
       <h2 class="section-title"><span class="eyebrow">01</span>Experience</h2>
-
       <div class="timeline">
 
         <article class="entry">
-          <div class="entry-meta">
-            <span class="year">2023<span class="dash">—</span>Present</span>
-          </div>
+          <div class="entry-meta"><span class="year">2023<span class="dash">—</span>Present</span></div>
           <div class="entry-body">
             <h3>Backend / Full Stack Developer</h3>
             <p class="entry-org">APA — Isfahan University of Technology</p>
@@ -89,6 +65,11 @@
               <li>Collaborated on development and maintenance of internal systems</li>
               <li>Developed and launched multiple web platforms for university events and startup initiatives</li>
             </ul>
+          </div>
+        </article>
+
+        <article class="entry">
+          <div class="entry-meta"><span class="year">2022<span class="dash">—</span>Present</span></div>
           <div class="entry-body">
             <h3>Freelance / Personal Projects</h3>
             <p class="entry-org">Independent</p>
@@ -103,9 +84,7 @@
         </article>
 
         <article class="entry">
-          <div class="entry-meta">
-            <span class="year">2021</span>
-          </div>
+          <div class="entry-meta"><span class="year">2021</span></div>
           <div class="entry-body">
             <h3>Teaching Assistant — C++ Programming</h3>
             <p class="entry-org">Isfahan University of Technology</p>
@@ -120,21 +99,15 @@
       </div>
     </section>
 
-    <!-- PROJECTS -->
     <section id="projects" class="section">
       <h2 class="section-title"><span class="eyebrow">02</span>Projects</h2>
-
       <div class="timeline">
 
         <article class="entry">
-          <div class="entry-meta">
-            <span class="year">2024</span>
-          </div>
+          <div class="entry-meta"><span class="year">2024</span></div>
           <div class="entry-body">
             <h3>Daryaazma — Water Quality Control Platform</h3>
-            <p class="entry-org">
-              <a class="entry-link" href="https://daryaazma.ir" target="_blank" rel="noopener">daryaazma.ir</a>
-            </p>
+            <p class="entry-org"><a class="entry-link" href="https://daryaazma.ir" target="_blank" rel="noopener">daryaazma.ir ↗</a></p>
             <ul>
               <li>Built a corporate presentation site and admin dashboard for a water quality control company</li>
               <li>Backend developed with Django, frontend built with React</li>
@@ -144,14 +117,10 @@
         </article>
 
         <article class="entry">
-          <div class="entry-meta">
-            <span class="year">2023</span>
-          </div>
+          <div class="entry-meta"><span class="year">2023</span></div>
           <div class="entry-body">
             <h3>Telegram Group Management Bot</h3>
-            <p class="entry-org">
-              <a class="entry-link" href="https://github.com/hsalimi79/pyrogramTelegramBot" target="_blank" rel="noopener">github.com/hsalimi79/pyrogramTelegramBot</a>
-            </p>
+            <p class="entry-org"><a class="entry-link" href="https://github.com/hsalimi79/pyrogramTelegramBot" target="_blank" rel="noopener">github.com/hsalimi79 ↗</a></p>
             <ul>
               <li>Built a Telegram bot for automated group management using Pyrogram</li>
               <li>Integrated PostgreSQL for persistent data storage</li>
@@ -160,9 +129,7 @@
         </article>
 
         <article class="entry">
-          <div class="entry-meta">
-            <span class="year">2020</span>
-          </div>
+          <div class="entry-meta"><span class="year">2020</span></div>
           <div class="entry-body">
             <h3>IUT MAP — University Map &amp; Events App</h3>
             <p class="entry-org">Isfahan University of Technology</p>
@@ -176,15 +143,11 @@
       </div>
     </section>
 
-    <!-- EDUCATION -->
     <section id="education" class="section">
       <h2 class="section-title"><span class="eyebrow">03</span>Education</h2>
-
       <div class="timeline">
         <article class="entry">
-          <div class="entry-meta">
-            <span class="year">2018<span class="dash">—</span>2022</span>
-          </div>
+          <div class="entry-meta"><span class="year">2018<span class="dash">—</span>2022</span></div>
           <div class="entry-body">
             <h3>B.Sc. Computer Engineering</h3>
             <p class="entry-org">Isfahan University of Technology <span class="hijri">(1397–1401)</span></p>
@@ -193,18 +156,13 @@
       </div>
     </section>
 
-    <!-- STACK -->
     <section id="stack" class="section">
       <h2 class="section-title"><span class="eyebrow">04</span>Stack</h2>
       <p class="section-intro">The toolkit, layered the way it ships.</p>
-
       <div class="stack-diagram">
 
-        <div class="layer">
-          <div class="layer-label">
-            <span class="layer-index">01</span>
-            <span class="layer-name">Frontend</span>
-          </div>
+        <div class="layer" data-tilt>
+          <div class="layer-label"><span class="layer-index">01</span><span class="layer-name">Frontend</span></div>
           <div class="chips">
             <span class="chip">React</span>
             <span class="chip">JavaScript (ES6+)</span>
@@ -216,11 +174,8 @@
 
         <div class="layer-connector"><span></span></div>
 
-        <div class="layer">
-          <div class="layer-label">
-            <span class="layer-index">02</span>
-            <span class="layer-name">Backend</span>
-          </div>
+        <div class="layer" data-tilt>
+          <div class="layer-label"><span class="layer-index">02</span><span class="layer-name">Backend</span></div>
           <div class="chips">
             <span class="chip">Python</span>
             <span class="chip">Django</span>
@@ -238,11 +193,8 @@
 
         <div class="layer-connector"><span></span></div>
 
-        <div class="layer">
-          <div class="layer-label">
-            <span class="layer-index">03</span>
-            <span class="layer-name">Infrastructure &amp; Tools</span>
-          </div>
+        <div class="layer" data-tilt>
+          <div class="layer-label"><span class="layer-index">03</span><span class="layer-name">Infrastructure &amp; Tools</span></div>
           <div class="chips">
             <span class="chip">Git &amp; GitHub</span>
             <span class="chip">Linux</span>
