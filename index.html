@@ -4,283 +4,330 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Hossein Salimi — Full Stack Developer</title>
+<meta name="description" content="Hossein Salimi — Full Stack Developer, Django, React, Android and DevOps.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Vazirmatn:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&family=Vazirmatn:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#07070a;--panel:#101116;--panel2:#15161d;--text:#f5f5f7;--muted:#9b9da8;
+  --line:rgba(255,255,255,.09);--accent:#9b7cff;--accent2:#58e6c0;--max:1240px;
+  --shadow:0 25px 80px rgba(0,0,0,.35);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:Inter,Vazirmatn,sans-serif;line-height:1.7;overflow-x:hidden}
+body.fa{font-family:Vazirmatn,Inter,sans-serif;direction:rtl}
+a{color:inherit;text-decoration:none}
+button{font:inherit}
+::selection{background:var(--accent);color:#fff}
+#bg{position:fixed;inset:0;z-index:-3}
+.noise{position:fixed;inset:0;pointer-events:none;z-index:20;opacity:.035;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.8'/%3E%3C/svg%3E")}
+.container{width:min(var(--max),calc(100% - 48px));margin:auto}
+.topbar{position:fixed;top:0;left:0;right:0;height:76px;z-index:10;display:flex;align-items:center;backdrop-filter:blur(18px);background:rgba(7,7,10,.65);border-bottom:1px solid transparent;transition:.3s}
+.topbar.scrolled{border-color:var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;width:100%}
+.logo{font-family:"Space Grotesk";font-weight:700;font-size:20px;letter-spacing:-.05em}
+.logo span{color:var(--accent)}
+.navlinks{display:flex;gap:28px;color:var(--muted);font-size:13px}
+.navlinks a:hover{color:#fff}
+.actions{display:flex;gap:8px}
+.iconbtn,.langbtn{width:40px;height:40px;border:1px solid var(--line);background:#111218;color:#ddd;border-radius:12px;cursor:pointer}
+.langbtn{width:auto;padding:0 13px;font-size:12px}
+.hero{min-height:100vh;padding:150px 0 80px;display:grid;grid-template-columns:1.2fr .8fr;align-items:center;gap:60px}
+.kicker{display:inline-flex;align-items:center;gap:9px;color:var(--accent2);font-size:12px;letter-spacing:.13em;text-transform:uppercase;margin-bottom:22px}
+.kicker i{width:7px;height:7px;border-radius:50%;background:var(--accent2);box-shadow:0 0 20px var(--accent2)}
+.hero h1{font-family:"Space Grotesk",Vazirmatn,sans-serif;font-size:clamp(58px,9vw,118px);line-height:.88;letter-spacing:-.075em;max-width:850px}
+.fa .hero h1{font-family:Vazirmatn,sans-serif;letter-spacing:-.06em;line-height:1.05}
+.gradient{background:linear-gradient(100deg,#fff 10%,#9b7cff 48%,#58e6c0);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero-copy{max-width:690px;color:var(--muted);font-size:18px;margin-top:30px}
+.hero-copy strong{color:#fff}
+.ctas{display:flex;gap:12px;margin-top:34px;flex-wrap:wrap}
+.btn{padding:13px 18px;border-radius:13px;border:1px solid var(--line);background:#111218;transition:.25s;display:inline-flex;gap:9px;align-items:center;font-size:13px}
+.btn.primary{background:#fff;color:#09090b;border-color:#fff;font-weight:700}
+.btn:hover{transform:translateY(-3px);border-color:rgba(155,124,255,.55);box-shadow:0 12px 35px rgba(0,0,0,.3)}
+.hero-card{position:relative;min-height:430px;border:1px solid var(--line);background:linear-gradient(145deg,rgba(155,124,255,.14),rgba(88,230,192,.04) 45%,rgba(255,255,255,.025));border-radius:28px;box-shadow:var(--shadow);overflow:hidden;transform:rotate(2deg)}
+.hero-card:before{content:"";position:absolute;width:270px;height:270px;background:var(--accent);filter:blur(100px);opacity:.22;right:-80px;top:-80px}
+.hero-card:after{content:"";position:absolute;width:210px;height:210px;background:var(--accent2);filter:blur(110px);opacity:.13;left:-80px;bottom:-80px}
+.profile{position:absolute;inset:28px;display:flex;flex-direction:column;justify-content:space-between;z-index:1}
+.card-top{display:flex;justify-content:space-between;align-items:center;color:var(--muted);font-size:11px}
+.status{display:flex;gap:7px;align-items:center}.status i{width:7px;height:7px;background:var(--accent2);border-radius:50%}
+.avatar{width:105px;height:105px;border-radius:50%;border:1px solid rgba(255,255,255,.15);display:grid;place-items:center;background:linear-gradient(145deg,#252331,#111218);font-family:"Space Grotesk";font-size:34px;font-weight:700;box-shadow:0 20px 50px rgba(0,0,0,.4)}
+.card-name{font-family:"Space Grotesk";font-size:32px;letter-spacing:-.05em;margin-top:18px}
+.card-role{color:var(--accent2);font-size:13px}
+.mini-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:25px}
+.mini{padding:14px;border:1px solid var(--line);border-radius:14px;background:rgba(0,0,0,.2)}
+.mini b{display:block;font-family:"Space Grotesk";font-size:19px}.mini span{font-size:10px;color:var(--muted)}
+.marquee{border-top:1px solid var(--line);border-bottom:1px solid var(--line);overflow:hidden;white-space:nowrap;color:#696b76;font-family:"Space Grotesk";font-size:13px;padding:14px 0}
+.marquee-track{display:inline-block;animation:move 28s linear infinite}.marquee span{margin:0 22px}.marquee b{color:var(--accent)}
+@keyframes move{to{transform:translateX(-50%)}}
+.section{padding:125px 0;border-bottom:1px solid var(--line)}
+.section-head{display:flex;align-items:flex-end;justify-content:space-between;gap:30px;margin-bottom:45px}
+.eyebrow{color:var(--accent);font-family:"Space Grotesk";font-size:12px;letter-spacing:.12em}
+.section-title{font-family:"Space Grotesk",Vazirmatn;font-size:clamp(34px,5vw,64px);letter-spacing:-.065em;line-height:1}
+.fa .section-title{font-family:Vazirmatn;letter-spacing:-.045em}
+.section-note{color:var(--muted);max-width:420px;font-size:13px}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:70px}
+.about-big{font-size:clamp(24px,3vw,40px);line-height:1.25;letter-spacing:-.035em}
+.about-big em{color:var(--accent);font-style:normal}
+.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.stat{border:1px solid var(--line);padding:24px;border-radius:18px;background:linear-gradient(145deg,#111218,#0d0e12)}
+.stat strong{display:block;font-family:"Space Grotesk";font-size:38px;letter-spacing:-.06em}.stat span{color:var(--muted);font-size:12px}
+.timeline{position:relative}.timeline:before{content:"";position:absolute;left:20%;top:0;bottom:0;width:1px;background:var(--line)}
+.fa .timeline:before{left:auto;right:20%}
+.entry{display:grid;grid-template-columns:20% 1fr;gap:45px;padding:0 0 60px;position:relative}
+.entry:before{content:"";position:absolute;left:calc(20% - 4px);top:7px;width:8px;height:8px;background:var(--accent);border-radius:50%;box-shadow:0 0 18px var(--accent)}
+.fa .entry:before{left:auto;right:calc(20% - 4px)}
+.year{color:var(--muted);font-size:12px;font-family:"Space Grotesk"}
+.entry h3{font-family:"Space Grotesk",Vazirmatn;font-size:25px;letter-spacing:-.035em;margin-bottom:5px}
+.fa .entry h3{font-family:Vazirmatn}
+.org{color:var(--accent2);font-size:12px;margin-bottom:16px}
+.entry ul{padding-left:18px;color:var(--muted);font-size:13px;max-width:720px}.fa .entry ul{padding-left:0;padding-right:18px}
+.entry li{margin:5px 0}.link{color:#ddd;border-bottom:1px dashed #666}.link:hover{color:var(--accent2)}
+.projects{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.project{min-height:285px;padding:27px;border:1px solid var(--line);border-radius:22px;background:linear-gradient(145deg,#111218,#0c0d10);position:relative;overflow:hidden;transition:.3s}
+.project:hover{transform:translateY(-6px);border-color:rgba(155,124,255,.35);box-shadow:0 25px 55px rgba(0,0,0,.28)}
+.project:after{content:"";position:absolute;width:180px;height:180px;border-radius:50%;background:var(--accent);filter:blur(90px);opacity:.1;right:-80px;top:-70px}
+.project:nth-child(2):after{background:var(--accent2)}.project:nth-child(3):after{background:#ff8f70}
+.project-top{display:flex;justify-content:space-between;color:var(--muted);font-size:11px}.project-num{font-family:"Space Grotesk";color:var(--accent)}
+.project h3{font-family:"Space Grotesk",Vazirmatn;font-size:29px;letter-spacing:-.05em;margin:55px 0 8px}.fa .project h3{font-family:Vazirmatn}
+.project p{color:var(--muted);font-size:13px;max-width:520px}
+.tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:20px}.tag{border:1px solid var(--line);padding:5px 9px;border-radius:99px;color:#bbb;font-size:10px}
+.stack{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.stack-card{border:1px solid var(--line);padding:24px;border-radius:20px;background:#0f1015;min-height:230px;transition:.25s}.stack-card:hover{transform:translateY(-5px);border-color:rgba(88,230,192,.3)}
+.stack-num{font-family:"Space Grotesk";color:var(--accent);font-size:11px}.stack-card h3{margin:30px 0 17px;font-size:21px}.chips{display:flex;flex-wrap:wrap;gap:7px}.chip{font-size:11px;color:#aaa;background:#171820;border:1px solid var(--line);padding:6px 9px;border-radius:8px}
+.contact{display:grid;grid-template-columns:1fr .8fr;gap:60px;align-items:end}.contact h2{font-family:"Space Grotesk";font-size:clamp(45px,7vw,90px);line-height:.95;letter-spacing:-.07em}.fa .contact h2{font-family:Vazirmatn;line-height:1.1;letter-spacing:-.05em}
+.contact p{color:var(--muted);margin-top:25px;max-width:580px}.contact-links{display:grid;gap:8px}.contact-links a{padding:15px 17px;border:1px solid var(--line);border-radius:13px;background:#0f1014;color:#ddd;font-size:13px;display:flex;justify-content:space-between;transition:.2s}.contact-links a:hover{border-color:var(--accent);transform:translateX(-4px)}
+.footer{padding:35px 0 45px;display:flex;justify-content:space-between;color:#656773;font-size:11px}.footer b{color:#aaa}
+.reveal{opacity:0;transform:translateY(25px);transition:.7s ease}.reveal.show{opacity:1;transform:none}
+.mobile-menu{display:none}
+@media(max-width:900px){
+ .navlinks{display:none}.hero{grid-template-columns:1fr;padding-top:125px}.hero-card{max-width:520px;width:100%;margin:auto}
+ .about-grid,.contact{grid-template-columns:1fr;gap:35px}.projects{grid-template-columns:1fr}.stack{grid-template-columns:1fr}
+ .timeline:before{left:8px}.fa .timeline:before{right:8px}
+ .entry{grid-template-columns:1fr;gap:10px;padding-left:28px}.fa .entry{padding-left:0;padding-right:28px}
+ .entry:before{left:4px}.fa .entry:before{right:4px}
+ .entry-meta{margin-bottom:4px}.section{padding:90px 0}
+}
+@media(max-width:560px){
+ .container{width:min(100% - 28px,var(--max))}.topbar{height:66px}.hero{padding-top:105px}
+ .hero h1{font-size:54px}.hero-copy{font-size:15px}.hero-card{min-height:370px}.avatar{width:82px;height:82px;font-size:27px}
+ .section-head{display:block}.section-note{margin-top:15px}.stats{grid-template-columns:1fr 1fr}.stat{padding:17px}.stat strong{font-size:29px}
+ .project{min-height:260px}.project h3{margin-top:42px}.footer{display:block}.footer span{display:block;margin:4px 0}.footer-dot{display:none!important}
+}
+@media print{
+ body{background:#fff;color:#111}.topbar,#bg,.noise,.marquee,.hero-card,.ctas{display:none!important}.hero{min-height:auto;padding:40px 0}.section{padding:30px 0;border-color:#ddd}.muted,.section-note,.hero-copy,.entry ul,.project p{color:#444!important}.project,.stack-card,.stat{background:#fff;border-color:#ddd;box-shadow:none}.gradient{color:#111;background:none}.container{width:90%}
+}
+
+/* ===== PREMIUM V3 OVERRIDES ===== */
+:root{
+ --bg:#050507;--panel:#0d0e12;--panel2:#111218;--text:#f7f7f4;--muted:#8e909c;
+ --line:rgba(255,255,255,.085);--accent:#a98cff;--accent2:#bdf45a;
+ --cyan:#62e7d0;--max:1280px;
+}
+body{background:#050507}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-2;background:
+ radial-gradient(circle at 8% 8%,rgba(169,140,255,.14),transparent 25%),
+ radial-gradient(circle at 90% 20%,rgba(98,231,208,.08),transparent 23%),
+ radial-gradient(circle at 55% 92%,rgba(189,244,90,.045),transparent 30%)}
+.topbar{height:80px;background:linear-gradient(to bottom,rgba(5,5,7,.92),rgba(5,5,7,.58))}
+.navlinks a{transition:.25s}.navlinks a:after{content:"";position:absolute;left:0;right:0;bottom:-7px;height:1px;background:var(--accent);transform:scaleX(0);transition:.25s}.navlinks a:hover:after{transform:scaleX(1)}
+.hero{min-height:100vh;padding-top:155px;grid-template-columns:1.15fr .85fr;gap:80px}
+.kicker{letter-spacing:.18em}
+.hero h1{font-size:clamp(66px,10vw,145px);text-shadow:0 0 70px rgba(169,140,255,.08)}
+.hero-copy{font-size:19px;line-height:1.9;max-width:640px}
+.hero-card{min-height:540px;border-radius:36px;transform:rotate(2.5deg);background:
+ linear-gradient(135deg,rgba(169,140,255,.16),rgba(255,255,255,.025) 42%,rgba(98,231,208,.08));
+ transition:transform .5s cubic-bezier(.2,.8,.2,1),box-shadow .5s}
+.hero-card:hover{transform:rotate(0deg) translateY(-8px);box-shadow:0 35px 100px rgba(0,0,0,.5)}
+.hero-card:before{width:340px;height:340px;filter:blur(110px)}
+.profile{inset:34px}
+.avatar{width:125px;height:125px;font-size:40px;background:
+ linear-gradient(145deg,#2b2640,#101117);border:1px solid rgba(255,255,255,.2);
+ box-shadow:0 0 0 12px rgba(169,140,255,.035),0 25px 70px rgba(0,0,0,.5)}
+.card-name{font-size:38px}
+.card-role{letter-spacing:.15em}
+.mini{background:rgba(0,0,0,.25);backdrop-filter:blur(10px);border-color:rgba(255,255,255,.08)}
+.mini b{font-size:16px}
+.marquee{padding:18px 0;background:rgba(255,255,255,.012)}
+.section{padding:145px 0}
+.section-title{font-size:clamp(40px,6vw,76px)}
+.section-head{margin-bottom:58px}
+.about-grid{gap:110px}
+.about-big{font-size:clamp(27px,3.4vw,46px);line-height:1.3}
+.stat{min-height:145px;display:flex;flex-direction:column;justify-content:space-between;background:
+ linear-gradient(145deg,rgba(255,255,255,.035),rgba(255,255,255,.012));transition:.3s}
+.stat:hover{transform:translateY(-5px);border-color:rgba(169,140,255,.3)}
+.stat strong{font-size:47px}
+.timeline:before{background:linear-gradient(var(--accent),transparent)}
+.entry{padding-bottom:80px}
+.entry:before{width:10px;height:10px;box-shadow:0 0 25px var(--accent)}
+.entry h3{font-size:28px}
+.project{min-height:350px;padding:31px;border-radius:28px;background:
+ radial-gradient(circle at 90% 0%,rgba(169,140,255,.07),transparent 35%),
+ linear-gradient(145deg,#111217,#0a0b0e)}
+.project h3{font-size:38px;margin-top:75px}
+.project p{font-size:14px;line-height:1.8}
+.project .link{position:absolute;bottom:29px;right:31px;border:0;color:var(--text)}
+.fa .project .link{right:auto;left:31px}
+.project:hover{transform:translateY(-10px) scale(1.01);border-color:rgba(169,140,255,.4)}
+.project:nth-child(2){grid-column:span 1}
+.project:nth-child(3),.project:nth-child(4){min-height:300px}
+.stack-card{min-height:260px;border-radius:24px;background:linear-gradient(145deg,#111217,#0b0c0f);transition:.3s}
+.stack-card:hover{border-color:rgba(189,244,90,.25);transform:translateY(-7px)}
+.chip{transition:.2s}.chip:hover{background:#202229;color:#fff;border-color:rgba(255,255,255,.16)}
+.contact{min-height:570px}
+.contact h2{font-size:clamp(55px,8vw,112px)}
+.contact-links a{padding:19px;border-radius:16px;background:rgba(255,255,255,.025);transition:.3s}
+.contact-links a:hover{transform:translateX(-8px);background:rgba(169,140,255,.07);border-color:rgba(169,140,255,.45)}
+.fa .contact-links a:hover{transform:translateX(8px)}
+.btn.primary{background:var(--lime);border-color:var(--lime);box-shadow:0 0 35px rgba(189,244,90,.12)}
+.btn.primary:hover{box-shadow:0 15px 45px rgba(189,244,90,.18)}
+.cursor-glow{position:fixed;width:280px;height:280px;border-radius:50%;pointer-events:none;z-index:-1;background:radial-gradient(circle,rgba(169,140,255,.09),transparent 68%);transform:translate(-50%,-50%);mix-blend-mode:screen}
+@media(max-width:900px){.hero{grid-template-columns:1fr;gap:55px}.hero-card{min-height:470px}.about-grid{gap:45px}.project h3{font-size:31px}}
+@media(max-width:560px){.hero{padding-top:115px}.hero h1{font-size:61px}.hero-card{min-height:410px}.card-name{font-size:29px}.section{padding:105px 0}.contact{min-height:auto}.project{min-height:310px}.project h3{margin-top:55px}}
+</style>
 </head>
 <body>
+<canvas id="bg"></canvas><div class="noise"></div><div class="cursor-glow" id="cursorGlow"></div>
 
-<canvas id="bg-canvas"></canvas>
-
-<button class="lang-toggle" id="langToggle">
-  <span class="lang-en">FA</span>
-  <span class="lang-fa">EN</span>
-</button>
-
-<div class="page">
-
-  <aside class="sidebar">
-    <div class="identity">
-      <div class="monogram">HS</div>
-      <h1><span id="typewriter"></span><span class="tw-cursor">|</span></h1>
-      <p class="role" data-en="Full Stack Developer" data-fa="توسعه‌دهنده فول‌استک">Full Stack Developer</p>
-    </div>
-
-    <ul class="contact-list">
-      <li><span class="label" data-en="Phone" data-fa="تلفن">Phone</span><a href="tel:+989911881834">0991 188 1834</a></li>
-      <li><span class="label" data-en="Email" data-fa="ایمیل">Email</span><a href="mailto:hossein.salimi799@gmail.com">hossein.salimi799@gmail.com</a></li>
-      <li><span class="label" data-en="Location" data-fa="موقعیت">Location</span><span data-en="Isfahan, Iran" data-fa="اصفهان، ایران">Isfahan, Iran</span></li>
-      <li><span class="label">GitHub</span><a href="https://github.com/hsalimi79" target="_blank" rel="noopener">hsalimi79</a></li>
-      <li><span class="label">LinkedIn</span><a href="https://linkedin.com/in/hossein-salimi79" target="_blank" rel="noopener">hossein-salimi79</a></li>
-    </ul>
-
-    <nav class="index-nav" id="indexNav">
-      <a href="#about"      data-target="about">     <span class="num">00</span><span data-en="About"      data-fa="درباره">About</span></a>
-      <a href="#experience" data-target="experience"> <span class="num">01</span><span data-en="Experience" data-fa="تجربه">Experience</span></a>
-      <a href="#projects"   data-target="projects">   <span class="num">02</span><span data-en="Projects"   data-fa="پروژه‌ها">Projects</span></a>
-      <a href="#education"  data-target="education">  <span class="num">03</span><span data-en="Education"  data-fa="تحصیلات">Education</span></a>
-      <a href="#stack"      data-target="stack">      <span class="num">04</span><span data-en="Stack"      data-fa="مهارت‌ها">Stack</span></a>
+<header class="topbar" id="topbar">
+  <div class="container nav">
+    <a class="logo" href="#">HS<span>.</span></a>
+    <nav class="navlinks">
+      <a href="#about" data-en="About" data-fa="درباره">About</a>
+      <a href="#experience" data-en="Experience" data-fa="تجربه">Experience</a>
+      <a href="#projects" data-en="Projects" data-fa="پروژه‌ها">Projects</a>
+      <a href="#stack" data-en="Stack" data-fa="مهارت‌ها">Stack</a>
+      <a href="#contact" data-en="Contact" data-fa="تماس">Contact</a>
     </nav>
+    <div class="actions"><button class="langbtn" id="lang">FA</button><button class="iconbtn" onclick="window.print()" title="Print / PDF">↗</button></div>
+  </div>
+</header>
 
-    <button class="print-btn" id="printBtn">
-      <span data-en="Download PDF" data-fa="دانلود PDF">Download PDF</span>
-      <span class="arr">→</span>
-    </button>
-  </aside>
-
-  <main class="content">
-
-    <!-- ABOUT -->
-    <section id="about" class="section">
-      <h2 class="section-title"><span class="eyebrow">00</span><span data-en="About" data-fa="درباره">About</span></h2>
-      <p class="about-text"
-        data-en="Full Stack Developer with experience building web applications with Django and React — from API design and database architecture to responsive frontends. I enjoy solving real problems through code, care about clean architecture, and am always looking to learn and take on new challenges."
-        data-fa="توسعه‌دهنده‌ی فول‌استک با تجربه در ساخت اپلیکیشن‌های وب با Django و React — از طراحی API و معماری پایگاه داده تا رابط‌های کاربری ریسپانسیو. حل مسئله از طریق کد برام جذابه، به معماری تمیز اهمیت می‌دم و همیشه دنبال یادگیری و چالش‌های جدیدم.">
-        Full Stack Developer with experience building web applications with Django and React — from API design and database architecture to responsive frontends. I enjoy solving real problems through code, care about clean architecture, and am always looking to learn and take on new challenges.
-      </p>
-    </section>
-
-    <!-- EXPERIENCE -->
-    <section id="experience" class="section">
-      <h2 class="section-title"><span class="eyebrow">01</span><span data-en="Experience" data-fa="تجربه کاری">Experience</span></h2>
-      <div class="timeline">
-
-        <article class="entry">
-          <div class="entry-meta"><span class="year" data-en="2023 — Present" data-fa="۱۴۰۲ — اکنون">2023 — Present</span></div>
-          <div class="entry-body">
-            <h3 data-en="Backend / Full Stack Developer" data-fa="توسعه‌دهنده‌ی بک‌اند / فول‌استک">Backend / Full Stack Developer</h3>
-            <p class="entry-org" data-en="APA — Isfahan University of Technology" data-fa="آپا — دانشگاه صنعتی اصفهان">APA — Isfahan University of Technology</p>
-            <ul>
-              <li data-en="Developed backend services using Django"                                                            data-fa="توسعه‌ی سرویس‌های بک‌اند با Django">Developed backend services using Django</li>
-              <li data-en="Designed and built RESTful APIs using Django REST Framework"                                        data-fa="طراحی و پیاده‌سازی REST API با Django REST Framework">Designed and built RESTful APIs using Django REST Framework</li>
-              <li data-en="Developed frontend features using React"                                                            data-fa="توسعه‌ی فیچرهای فرانت‌اند با React">Developed frontend features using React</li>
-              <li data-en="Worked with SQL databases and optimized queries"                                                    data-fa="کار با پایگاه داده SQL و بهینه‌سازی کوئری‌ها">Worked with SQL databases and optimized queries</li>
-              <li data-en="Collaborated on development and maintenance of internal systems"                                    data-fa="همکاری در توسعه و نگهداری سیستم‌های داخلی">Collaborated on development and maintenance of internal systems</li>
-              <li data-en="Developed and launched multiple web platforms for university events and startup initiatives"        data-fa="طراحی و راه‌اندازی چندین پلتفرم وب برای رویدادها و استارتاپ‌های دانشگاهی">Developed and launched multiple web platforms for university events and startup initiatives</li>
-            </ul>
-          </div>
-        </article>
-
-        <article class="entry">
-          <div class="entry-meta"><span class="year" data-en="2022 — Present" data-fa="۱۴۰۱ — اکنون">2022 — Present</span></div>
-          <div class="entry-body">
-            <h3 data-en="Freelance / Personal Projects" data-fa="فریلنس / پروژه‌های شخصی">Freelance / Personal Projects</h3>
-            <p class="entry-org" data-en="Independent" data-fa="مستقل">Independent</p>
-            <ul>
-              <li data-en="Developed backend services using Django"                              data-fa="توسعه‌ی سرویس‌های بک‌اند با Django">Developed backend services using Django</li>
-              <li data-en="Designed and built RESTful APIs using Django REST Framework"          data-fa="طراحی و پیاده‌سازی REST API با Django REST Framework">Designed and built RESTful APIs using Django REST Framework</li>
-              <li data-en="Developed frontend features using React"                              data-fa="توسعه‌ی فیچرهای فرانت‌اند با React">Developed frontend features using React</li>
-              <li data-en="Worked with SQL databases and optimized queries"                      data-fa="کار با پایگاه داده SQL و بهینه‌سازی کوئری‌ها">Worked with SQL databases and optimized queries</li>
-              <li data-en="Collaborated on development and maintenance of internal systems"      data-fa="همکاری در توسعه و نگهداری سیستم‌های داخلی">Collaborated on development and maintenance of internal systems</li>
-            </ul>
-          </div>
-        </article>
-
-        <article class="entry">
-          <div class="entry-meta"><span class="year" data-en="2021" data-fa="۱۴۰۰">2021</span></div>
-          <div class="entry-body">
-            <h3 data-en="Teaching Assistant — C++ Programming" data-fa="دستیار آموزشی — برنامه‌نویسی ++C">Teaching Assistant — C++ Programming</h3>
-            <p class="entry-org" data-en="Isfahan University of Technology" data-fa="دانشگاه صنعتی اصفهان">Isfahan University of Technology</p>
-            <ul>
-              <li data-en="Assisted students in C++ programming fundamentals and lab exercises"  data-fa="کمک به دانشجویان در مبانی ++C و تمرین‌های عملی">Assisted students in C++ programming fundamentals and lab exercises</li>
-              <li data-en="Helped with debugging and assignment support"                         data-fa="پشتیبانی در دیباگ و تکالیف">Helped with debugging and assignment support</li>
-              <li data-en="Evaluated coursework and provided feedback"                           data-fa="ارزیابی تکالیف و ارائه‌ی بازخورد">Evaluated coursework and provided feedback</li>
-            </ul>
-          </div>
-        </article>
-
+<main>
+<section class="hero container">
+  <div class="reveal">
+    <div class="kicker"><i></i><span data-en="Available for selected projects" data-fa="آماده همکاری روی پروژه‌های منتخب">Available for selected projects</span></div>
+    <h1>Hossein<br><span class="gradient">Salimi.</span></h1>
+    <p class="hero-copy" data-en="Full Stack Developer building <strong>useful, scalable digital products</strong> with Django, React, Python and modern infrastructure." data-fa="توسعه‌دهنده فول‌استک؛ سازنده‌ی <strong>محصولات دیجیتال کاربردی و مقیاس‌پذیر</strong> با Django، React، Python و زیرساخت‌های مدرن.">Full Stack Developer building <strong>useful, scalable digital products</strong> with Django, React, Python and modern infrastructure.</p>
+    <div class="ctas">
+      <a class="btn primary" href="#projects" data-en="Explore my work →" data-fa="مشاهده پروژه‌ها ←">Explore my work →</a>
+      <a class="btn" href="mailto:hossein.salimi799@gmail.com" data-en="Let's talk ↗" data-fa="ارتباط با من ↗">Let's talk ↗</a>
+      <a class="btn" href="https://github.com/hsalimi79" target="_blank">GitHub ↗</a>
+    </div>
+  </div>
+  <div class="hero-card reveal">
+    <div class="profile">
+      <div class="card-top"><span>HS / 2026</span><span class="status"><i></i><span data-en="ONLINE" data-fa="آنلاین">ONLINE</span></span></div>
+      <div><div class="avatar">HS</div><div class="card-name">Hossein Salimi</div><div class="card-role">FULL STACK DEVELOPER</div></div>
+      <div class="mini-grid">
+        <div class="mini"><b>DJANGO</b><span>Backend & APIs</span></div>
+        <div class="mini"><b>REACT</b><span>Frontend</span></div>
+        <div class="mini"><b>DEVOPS</b><span>Docker / Linux</span></div>
+        <div class="mini"><b>PYTHON</b><span>Automation & Bots</span></div>
       </div>
-    </section>
+    </div>
+  </div>
+</section>
 
-    <!-- PROJECTS -->
-    <section id="projects" class="section">
-      <h2 class="section-title"><span class="eyebrow">02</span><span data-en="Projects" data-fa="پروژه‌ها">Projects</span></h2>
-      <div class="timeline">
+<div class="marquee"><div class="marquee-track">PYTHON <b>✦</b> DJANGO <b>✦</b> REACT <b>✦</b> POSTGRESQL <b>✦</b> DOCKER <b>✦</b> LINUX <b>✦</b> REST API <b>✦</b> TELEGRAM BOTS <b>✦</b> FLUTTER <b>✦</b> PYTHON <b>✦</b> DJANGO <b>✦</b> REACT <b>✦</b> POSTGRESQL <b>✦</b> DOCKER <b>✦</b> LINUX <b>✦</b> REST API <b>✦</b></div></div>
 
-        <article class="entry">
-          <div class="entry-meta"><span class="year" data-en="2025 — Present" data-fa="۱۴۰۴ — اکنون">2025 — Present</span></div>
-          <div class="entry-body">
-            <h3 data-en="ShieldUp" data-fa="ShieldUp">ShieldUp</h3>
-            <p class="entry-org"><a class="entry-link" href="https://shieldup.ir" target="_blank" rel="noopener">shieldup.ir ↗</a>&nbsp;·&nbsp;<span data-en="APA — Isfahan University of Technology" data-fa="آپا — دانشگاه صنعتی اصفهان">APA — Isfahan University of Technology</span></p>
-            <ul>
-              <li data-en="Part of the development team building ShieldUp, a web platform developed at APA"  data-fa="عضو تیم توسعه‌ی پلتفرم وب ShieldUp، توسعه‌یافته در مرکز آپا">Part of the development team building ShieldUp, a web platform developed at APA</li>
-            </ul>
-          </div>
-        </article>
-
-        <article class="entry">
-          <div class="entry-meta"><span class="year" data-en="2025" data-fa="۱۴۰۴">2025</span></div>
-          <div class="entry-body">
-            <h3 data-en="Kharjino — Android App" data-fa="خرجینو — اپلیکیشن اندروید">Kharjino — Android App</h3>
-            <p class="entry-org"><a class="entry-link" href="https://cafebazaar.ir/app/ir.kharjino.app" target="_blank" rel="noopener">cafebazaar.ir ↗</a></p>
-            <ul>
-              <li data-en="Developed the Kharjino Android app, published on Cafe Bazaar"  data-fa="توسعه‌ی اپلیکیشن اندروید خرجینو، منتشرشده در کافه‌بازار">Developed the Kharjino Android app, published on Cafe Bazaar</li>
-            </ul>
-          </div>
-        </article>
-
-        <article class="entry">
-          <div class="entry-meta"><span class="year" data-en="2024 — 2025" data-fa="۱۴۰۳ — ۱۴۰۴">2024 — 2025</span></div>
-          <div class="entry-body">
-            <h3 data-en="Personal Resume Websites — Client Projects" data-fa="سایت‌های رزومه شخصی — پروژه‌های مشتری">Personal Resume Websites — Client Projects</h3>
-            <p class="entry-org" data-en="Freelance" data-fa="فریلنس">Freelance</p>
-            <ul>
-              <li data-en="Designed and developed bilingual personal resume websites for clients" data-fa="طراحی و توسعه‌ی سایت‌های رزومه شخصی دوزبانه برای مشتریان">Designed and developed bilingual personal resume websites for clients</li>
-              <li data-en="Built with HTML, CSS, and JavaScript — fully responsive" data-fa="ساخته‌شده با HTML، CSS و JavaScript — کاملاً ریسپانسیو">Built with HTML, CSS, and JavaScript — fully responsive</li>
-              <li>
-                <a class="entry-link" href="https://alirezamehraban.ir" target="_blank" rel="noopener">alirezamehraban.ir ↗</a>
-                &nbsp;·&nbsp;
-                <a class="entry-link" href="https://sara-moslemi.resumio.ir" target="_blank" rel="noopener">sara-moslemi.resumio.ir ↗</a>
-                &nbsp;·&nbsp;
-                <a class="entry-link" href="https://aghasi.resumio.ir" target="_blank" rel="noopener">aghasi.resumio.ir ↗</a>
-              </li>
-            </ul>
-          </div>
-        </article>
-
-        <article class="entry">
-          <div class="entry-meta"><span class="year" data-en="2024" data-fa="۱۴۰۳">2024</span></div>
-          <div class="entry-body">
-            <h3 data-en="Daryaazma — Water Quality Control Platform" data-fa="دریاآزما — پلتفرم کنترل کیفیت آب">Daryaazma — Water Quality Control Platform</h3>
-            <p class="entry-org"><a class="entry-link" href="https://daryaazma.ir" target="_blank" rel="noopener">daryaazma.ir ↗</a></p>
-            <ul>
-              <li data-en="Built a corporate presentation site and admin dashboard for a water quality control company"             data-fa="ساخت سایت معرفی شرکت و پنل مدیریت برای یک شرکت کنترل کیفیت آب">Built a corporate presentation site and admin dashboard for a water quality control company</li>
-              <li data-en="Backend developed with Django, frontend built with React"                                               data-fa="بک‌اند با Django، فرانت‌اند با React">Backend developed with Django, frontend built with React</li>
-              <li data-en="Designed an analytics dashboard featuring multiple interactive charts for water quality metrics"         data-fa="طراحی داشبورد تحلیلی با نمودارهای تعاملی متنوع برای شاخص‌های کیفیت آب">Designed an analytics dashboard featuring multiple interactive charts for water quality metrics</li>
-            </ul>
-          </div>
-        </article>
-
-        <article class="entry">
-          <div class="entry-meta"><span class="year" data-en="2023" data-fa="۱۴۰۲">2023</span></div>
-          <div class="entry-body">
-            <h3 data-en="Telegram Group Management Bot" data-fa="ربات مدیریت گروه تلگرام">Telegram Group Management Bot</h3>
-            <p class="entry-org"><a class="entry-link" href="https://github.com/hsalimi79/pyrogramTelegramBot" target="_blank" rel="noopener">github.com/hsalimi79 ↗</a></p>
-            <ul>
-              <li data-en="Built a Telegram bot for automated group management using Pyrogram"  data-fa="ساخت ربات تلگرام برای مدیریت خودکار گروه با Pyrogram">Built a Telegram bot for automated group management using Pyrogram</li>
-              <li data-en="Integrated PostgreSQL for persistent data storage"                   data-fa="یکپارچه‌سازی PostgreSQL برای ذخیره‌سازی داده">Integrated PostgreSQL for persistent data storage</li>
-            </ul>
-          </div>
-        </article>
-
-        <article class="entry">
-          <div class="entry-meta"><span class="year" data-en="2020" data-fa="۱۳۹۹">2020</span></div>
-          <div class="entry-body">
-            <h3 data-en="IUT MAP — University Map &amp; Events App" data-fa="IUT MAP — اپ نقشه و رویدادهای دانشگاه">IUT MAP — University Map &amp; Events App</h3>
-            <p class="entry-org" data-en="Isfahan University of Technology" data-fa="دانشگاه صنعتی اصفهان">Isfahan University of Technology</p>
-            <ul>
-              <li data-en="Built a Flutter Android app showing an interactive campus map of Isfahan University of Technology"  data-fa="ساخت اپ اندروید با Flutter برای نمایش نقشه‌ی تعاملی دانشگاه صنعتی اصفهان">Built a Flutter Android app showing an interactive campus map of Isfahan University of Technology</li>
-              <li data-en="Displayed university events and activities alongside the map"                                      data-fa="نمایش رویدادها و فعالیت‌های دانشگاه در کنار نقشه">Displayed university events and activities alongside the map</li>
-            </ul>
-          </div>
-        </article>
-
-      </div>
-    </section>
-
-    <!-- EDUCATION -->
-    <section id="education" class="section">
-      <h2 class="section-title"><span class="eyebrow">03</span><span data-en="Education" data-fa="تحصیلات">Education</span></h2>
-      <div class="timeline">
-        <article class="entry">
-          <div class="entry-meta"><span class="year" data-en="2018 — 2022" data-fa="۱۳۹۷ — ۱۴۰۱">2018 — 2022</span></div>
-          <div class="entry-body">
-            <h3 data-en="B.Sc. Computer Engineering" data-fa="کارشناسی مهندسی کامپیوتر">B.Sc. Computer Engineering</h3>
-            <p class="entry-org" data-en="Isfahan University of Technology" data-fa="دانشگاه صنعتی اصفهان">Isfahan University of Technology</p>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <!-- STACK -->
-    <section id="stack" class="section">
-      <h2 class="section-title"><span class="eyebrow">04</span><span data-en="Stack" data-fa="مهارت‌ها">Stack</span></h2>
-      <p class="section-intro"
-        data-en="The toolkit, layered the way it ships."
-        data-fa="ابزارها، لایه‌به‌لایه همون‌طور که دیپلوی می‌شن.">
-        The toolkit, layered the way it ships.
-      </p>
-      <div class="stack-diagram">
-
-        <div class="layer" data-tilt>
-          <div class="layer-label">
-            <span class="layer-index">01</span>
-            <span class="layer-name" data-en="Frontend" data-fa="فرانت‌اند">Frontend</span>
-          </div>
-          <div class="chips">
-            <span class="chip">React</span><span class="chip">JavaScript (ES6+)</span>
-            <span class="chip">HTML / CSS</span><span class="chip">Material UI (MUI)</span>
-            <span class="chip">Flutter</span>
-          </div>
-        </div>
-
-        <div class="layer-connector"><span></span></div>
-
-        <div class="layer" data-tilt>
-          <div class="layer-label">
-            <span class="layer-index">02</span>
-            <span class="layer-name" data-en="Backend" data-fa="بک‌اند">Backend</span>
-          </div>
-          <div class="chips">
-            <span class="chip">Python</span><span class="chip">Django</span>
-            <span class="chip">Django REST Framework</span><span class="chip">Flask</span>
-            <span class="chip">REST APIs</span><span class="chip">Swagger</span>
-            <span class="chip">JWT Authentication</span><span class="chip">Celery</span>
-            <span class="chip">Redis</span><span class="chip">PostgreSQL / SQLite</span>
-            <span class="chip">Database Design</span>
-          </div>
-        </div>
-
-        <div class="layer-connector"><span></span></div>
-
-        <div class="layer" data-tilt>
-          <div class="layer-label">
-            <span class="layer-index">03</span>
-            <span class="layer-name" data-en="Infrastructure &amp; Tools" data-fa="زیرساخت و ابزارها">Infrastructure &amp; Tools</span>
-          </div>
-          <div class="chips">
-            <span class="chip">Git &amp; GitHub</span><span class="chip">Linux</span>
-            <span class="chip">Docker</span><span class="chip">Nginx</span>
-            <span class="chip">Gunicorn</span><span class="chip">Telegram Bot API</span>
-            <span class="chip">Postman</span>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <footer class="footer">
-      <span data-en="Hossein Salimi" data-fa="حسین سلیمی">Hossein Salimi</span>
-      <span class="footer-dot">·</span>
-      <span data-en="Full Stack Developer" data-fa="توسعه‌دهنده فول‌استک">Full Stack Developer</span>
-      <span class="footer-dot">·</span>
-      <span data-en="Isfahan, Iran" data-fa="اصفهان، ایران">Isfahan, Iran</span>
-    </footer>
-
-  </main>
+<section id="about" class="section">
+<div class="container reveal">
+  <div class="section-head"><div><span class="eyebrow">00 /</span><h2 class="section-title" data-en="About me" data-fa="درباره من">About me</h2></div><p class="section-note" data-en="I like turning messy requirements into clean, maintainable products." data-fa="دوست دارم نیازمندی‌های پیچیده را به محصولاتی تمیز، قابل نگهداری و کاربردی تبدیل کنم.">I like turning messy requirements into clean, maintainable products.</p></div>
+  <div class="about-grid">
+    <p class="about-big" data-en="I’m a <em>Full Stack Developer</em> focused on building web platforms, APIs, dashboards and automation tools. I care about architecture as much as the final interface." data-fa="من یک <em>توسعه‌دهنده فول‌استک</em> هستم و روی ساخت پلتفرم‌های وب، API، داشبورد و ابزارهای اتوماسیون کار می‌کنم. برای معماری به اندازه‌ی نتیجه نهایی محصول اهمیت قائلم.">I’m a <em>Full Stack Developer</em> focused on building web platforms, APIs, dashboards and automation tools. I care about architecture as much as the final interface.</p>
+    <div class="stats"><div class="stat"><strong>4+</strong><span data-en="Years building software" data-fa="سال تجربه ساخت نرم‌افزار">Years building software</span></div><div class="stat"><strong>10+</strong><span data-en="Projects & products" data-fa="پروژه و محصول">Projects & products</span></div><div class="stat"><strong>2</strong><span data-en="Main stacks: Web + Android" data-fa="استک‌های اصلی: وب + اندروید">Main stacks: Web + Android</span></div><div class="stat"><strong>∞</strong><span data-en="Curiosity for new tech" data-fa="کنجکاوی برای تکنولوژی‌های جدید">Curiosity for new tech</span></div></div>
+  </div>
 </div>
+</section>
 
-<script src="scripts.js"></script>
+<section id="experience" class="section">
+<div class="container reveal">
+<div class="section-head"><div><span class="eyebrow">01 /</span><h2 class="section-title" data-en="Experience" data-fa="تجربه کاری">Experience</h2></div></div>
+<div class="timeline">
+<article class="entry"><div class="entry-meta"><span class="year" data-en="2023 — Present" data-fa="۱۴۰۲ — اکنون">2023 — Present</span></div><div class="entry-body"><h3 data-en="Backend / Full Stack Developer" data-fa="توسعه‌دهنده بک‌اند / فول‌استک">Backend / Full Stack Developer</h3><div class="org" data-en="APA — Isfahan University of Technology" data-fa="آپا — دانشگاه صنعتی اصفهان">APA — Isfahan University of Technology</div><ul><li data-en="Developed backend services using Django and Django REST Framework." data-fa="توسعه سرویس‌های بک‌اند با Django و Django REST Framework.">Developed backend services using Django and Django REST Framework.</li><li data-en="Built React frontend features and worked with SQL databases." data-fa="توسعه فیچرهای React و کار با پایگاه داده‌های SQL.">Built React frontend features and worked with SQL databases.</li><li data-en="Developed and launched web platforms for university events and startup initiatives." data-fa="توسعه و راه‌اندازی پلتفرم‌های وب برای رویدادها و استارتاپ‌های دانشگاهی.">Developed and launched web platforms for university events and startup initiatives.</li></ul></div></article>
+<article class="entry"><div class="entry-meta"><span class="year" data-en="2022 — Present" data-fa="۱۴۰۱ — اکنون">2022 — Present</span></div><div class="entry-body"><h3 data-en="Freelance / Personal Projects" data-fa="فریلنس / پروژه‌های شخصی">Freelance / Personal Projects</h3><div class="org" data-en="Independent" data-fa="مستقل">Independent</div><ul><li data-en="Designed and built web products, REST APIs, dashboards and personal websites." data-fa="طراحی و توسعه محصولات وب، REST API، داشبورد و سایت‌های شخصی.">Designed and built web products, REST APIs, dashboards and personal websites.</li><li data-en="Worked across frontend, backend, databases and deployment." data-fa="فعالیت در بخش‌های فرانت‌اند، بک‌اند، دیتابیس و استقرار.">Worked across frontend, backend, databases and deployment.</li></ul></div></article>
+<article class="entry"><div class="entry-meta"><span class="year" data-en="2021" data-fa="۱۴۰۰">2021</span></div><div class="entry-body"><h3 data-en="Teaching Assistant — C++ Programming" data-fa="دستیار آموزشی — برنامه‌نویسی ++C">Teaching Assistant — C++ Programming</h3><div class="org">Isfahan University of Technology</div><ul><li data-en="Helped students with C++ fundamentals, debugging and practical exercises." data-fa="کمک به دانشجویان در مبانی ++C، دیباگ و تمرین‌های عملی.">Helped students with C++ fundamentals, debugging and practical exercises.</li></ul></div></article>
+</div></div>
+</section>
+
+<section id="projects" class="section">
+<div class="container reveal">
+<div class="section-head"><div><span class="eyebrow">02 /</span><h2 class="section-title" data-en="Selected work" data-fa="پروژه‌های منتخب">Selected work</h2></div><p class="section-note" data-en="A few products, platforms and experiments I’ve built." data-fa="چند محصول، پلتفرم و پروژه‌ای که ساخته‌ام.">A few products, platforms and experiments I’ve built.</p></div>
+<div class="projects">
+<article class="project"><div class="project-top"><span class="project-num">01</span><span>2025 — NOW</span></div><h3>ShieldUp</h3><p data-en="Web platform developed at APA — Isfahan University of Technology." data-fa="پلتفرم وب توسعه‌یافته در مرکز آپا دانشگاه صنعتی اصفهان.">Web platform developed at APA — Isfahan University of Technology.</p><div class="tags"><span class="tag">Django</span><span class="tag">React</span><span class="tag">Docker</span></div><a class="link" href="https://shieldup.ir" target="_blank">shieldup.ir ↗</a></article>
+<article class="project"><div class="project-top"><span class="project-num">02</span><span>2025</span></div><h3>Kharjino</h3><p data-en="Persian daily expense tracker for Android, published on Cafe Bazaar." data-fa="اپلیکیشن ثبت هزینه روزانه فارسی برای اندروید، منتشرشده در کافه‌بازار.">Persian daily expense tracker for Android, published on Cafe Bazaar.</p><div class="tags"><span class="tag">Kotlin</span><span class="tag">Compose</span><span class="tag">Room</span></div><a class="link" href="https://cafebazaar.ir/app/ir.kharjino.app" target="_blank">Cafe Bazaar ↗</a></article>
+<article class="project"><div class="project-top"><span class="project-num">03</span><span>2024 — 2025</span></div><h3>Resume Websites</h3><p data-en="Bilingual personal resume and portfolio websites for freelance clients." data-fa="سایت‌های رزومه و پورتفولیو شخصی دوزبانه برای مشتریان فریلنس.">Bilingual personal resume and portfolio websites for freelance clients.</p><div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span></div><a class="link" href="https://alirezamehraban.ir" target="_blank">View sample ↗</a></article>
+<article class="project"><div class="project-top"><span class="project-num">04</span><span>2024</span></div><h3>Daryaazma</h3><p data-en="Corporate website and analytics dashboard for water quality monitoring." data-fa="سایت شرکتی و داشبورد تحلیلی برای پایش کیفیت آب.">Corporate website and analytics dashboard for water quality monitoring.</p><div class="tags"><span class="tag">Django</span><span class="tag">React</span><span class="tag">IoT</span></div><a class="link" href="https://daryaazma.ir" target="_blank">daryaazma.ir ↗</a></article>
+<article class="project"><div class="project-top"><span class="project-num">05</span><span>2023</span></div><h3>Telegram Bot</h3><p data-en="Automated Telegram group management bot with persistent PostgreSQL storage." data-fa="ربات مدیریت خودکار گروه تلگرام با ذخیره‌سازی پایدار PostgreSQL.">Automated Telegram group management bot with persistent PostgreSQL storage.</p><div class="tags"><span class="tag">Python</span><span class="tag">Pyrogram</span><span class="tag">PostgreSQL</span></div><a class="link" href="https://github.com/hsalimi79/pyrogramTelegramBot" target="_blank">GitHub ↗</a></article>
+<article class="project"><div class="project-top"><span class="project-num">06</span><span>2020</span></div><h3>IUT MAP</h3><p data-en="Flutter Android app featuring an interactive university map and campus events." data-fa="اپ اندروید Flutter با نقشه تعاملی دانشگاه و رویدادهای دانشگاهی.">Flutter Android app featuring an interactive university map and campus events.</p><div class="tags"><span class="tag">Flutter</span><span class="tag">Android</span></div></article>
+</div></div>
+</section>
+
+<section id="stack" class="section">
+<div class="container reveal">
+<div class="section-head"><div><span class="eyebrow">03 /</span><h2 class="section-title" data-en="Tech stack" data-fa="مهارت‌ها">Tech stack</h2></div><p class="section-note" data-en="The tools I use to move from idea to production." data-fa="ابزارهایی که برای رساندن ایده از مرحله توسعه تا محصول نهایی استفاده می‌کنم.">The tools I use to move from idea to production.</p></div>
+<div class="stack">
+<div class="stack-card"><span class="stack-num">01 / FRONTEND</span><h3 data-en="Interfaces" data-fa="رابط کاربری">Interfaces</h3><div class="chips"><span class="chip">React</span><span class="chip">JavaScript</span><span class="chip">HTML/CSS</span><span class="chip">MUI</span><span class="chip">Flutter</span></div></div>
+<div class="stack-card"><span class="stack-num">02 / BACKEND</span><h3 data-en="Systems & APIs" data-fa="سیستم و API">Systems & APIs</h3><div class="chips"><span class="chip">Python</span><span class="chip">Django</span><span class="chip">DRF</span><span class="chip">Flask</span><span class="chip">REST</span><span class="chip">Celery</span><span class="chip">Redis</span><span class="chip">JWT</span></div></div>
+<div class="stack-card"><span class="stack-num">03 / INFRASTRUCTURE</span><h3 data-en="Ship & operate" data-fa="استقرار و زیرساخت">Ship & operate</h3><div class="chips"><span class="chip">Docker</span><span class="chip">Linux</span><span class="chip">Nginx</span><span class="chip">Gunicorn</span><span class="chip">Git</span><span class="chip">PostgreSQL</span><span class="chip">Postman</span><span class="chip">Telegram Bot API</span></div></div>
+</div>
+</div>
+</section>
+
+<section id="contact" class="section">
+<div class="container reveal contact">
+<div><span class="eyebrow">04 / CONTACT</span><h2 data-en="Let’s build<br><span class='gradient'>something useful.</span>" data-fa="بیایید یک<br><span class='gradient'>چیز کاربردی بسازیم.</span>">Let’s build<br><span class="gradient">something useful.</span></h2><p data-en="Have a product idea, a web platform to build, or a problem worth solving? Send me a message." data-fa="ایده محصول، پروژه وب یا مسئله‌ای برای حل کردن دارید؟ برایم پیام بفرستید.">Have a product idea, a web platform to build, or a problem worth solving? Send me a message.</p></div>
+<div class="contact-links"><a href="mailto:hossein.salimi799@gmail.com"><span>Email</span><b>↗</b></a><a href="https://github.com/hsalimi79" target="_blank"><span>GitHub / hsalimi79</span><b>↗</b></a><a href="https://linkedin.com/in/hossein-salimi79" target="_blank"><span>LinkedIn</span><b>↗</b></a><a href="tel:+989911881834"><span>0991 188 1834</span><b>↗</b></a></div>
+</div>
+</section>
+</main>
+
+<footer class="container footer"><span>© 2026 <b>Hossein Salimi</b></span><span data-en="Full Stack Developer · Isfahan, Iran" data-fa="توسعه‌دهنده فول‌استک · اصفهان، ایران">Full Stack Developer · Isfahan, Iran</span></footer>
+
+<script>
+const $=s=>document.querySelector(s), $$=s=>document.querySelectorAll(s);
+let fa=false;
+function applyLang(){
+  document.body.classList.toggle('fa',fa);
+  document.documentElement.lang=fa?'fa':'en';
+  document.documentElement.dir=fa?'rtl':'ltr';
+  $('#lang').textContent=fa?'EN':'FA';
+  $$('[data-en]').forEach(el=>{
+    const v=fa?el.dataset.fa:el.dataset.en;
+    if(v!==undefined) el.innerHTML=v;
+  });
+  localStorage.setItem('portfolio-lang',fa?'fa':'en');
+}
+$('#lang').onclick=()=>{fa=!fa;applyLang()};
+if(localStorage.getItem('portfolio-lang')==='fa')fa=true;
+applyLang();
+
+const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('show')}),{threshold:.12});
+$$('.reveal').forEach(x=>obs.observe(x));
+window.addEventListener('scroll',()=>$('#topbar').classList.toggle('scrolled',scrollY>20));
+
+const c=$('#bg'),ctx=c.getContext('2d');let W,H,pts=[];
+function resize(){W=c.width=innerWidth*devicePixelRatio;H=c.height=innerHeight*devicePixelRatio;c.style.width=innerWidth+'px';c.style.height=innerHeight+'px';pts=Array.from({length:45},()=>({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.18*devicePixelRatio,vy:(Math.random()-.5)*.18*devicePixelRatio,r:(Math.random()*1.4+.4)*devicePixelRatio}))}
+resize();addEventListener('resize',resize);
+function draw(){ctx.clearRect(0,0,W,H);for(const p of pts){p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>W)p.vx*=-1;if(p.y<0||p.y>H)p.vy*=-1;ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,7);ctx.fillStyle='rgba(155,124,255,.35)';ctx.fill()}requestAnimationFrame(draw)}draw();
+
+// Premium pointer light + subtle 3D card response
+const glow=document.getElementById('cursorGlow');
+if(matchMedia('(pointer:fine)').matches){
+  addEventListener('pointermove',e=>{
+    glow.style.left=e.clientX+'px'; glow.style.top=e.clientY+'px';
+  });
+  document.querySelectorAll('.project,.stack-card,.stat').forEach(card=>{
+    card.addEventListener('pointermove',e=>{
+      const r=card.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;
+      card.style.transform=`perspective(900px) rotateX(${y*-2.2}deg) rotateY(${x*2.2}deg) translateY(-7px)`;
+    });
+    card.addEventListener('pointerleave',()=>card.style.transform='');
+  });
+}
+</script>
 </body>
 </html>
