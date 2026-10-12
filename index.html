@@ -3,296 +3,352 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#050507">
 <title>Hossein Salimi — Full Stack Developer</title>
 <meta name="description" content="Hossein Salimi — Full Stack Developer, Django, React, Android and DevOps.">
+<meta property="og:title" content="Hossein Salimi — Full Stack Developer">
+<meta property="og:description" content="Building useful, scalable digital products with Django, React, Python and modern infrastructure.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&family=Vazirmatn:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500&family=Vazirmatn:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script type="importmap">
+{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"}}
+</script>
 <style>
 :root{
-  --bg:#07070a;--panel:#101116;--panel2:#15161d;--text:#f5f5f7;--muted:#9b9da8;
-  --line:rgba(255,255,255,.09);--accent:#9b7cff;--accent2:#58e6c0;--max:1240px;
-  --shadow:0 25px 80px rgba(0,0,0,.35);
+  --bg:#050507;--text:#f4f4f1;--muted:#8f91a0;--line:rgba(255,255,255,.085);
+  --accent:#a98cff;--accent2:#bdf45a;--cyan:#62e7d0;--max:1240px;
+  --glass:rgba(255,255,255,.035);--glass-b:rgba(255,255,255,.1);
+  --display:"Space Grotesk",Vazirmatn,sans-serif;--mono:"JetBrains Mono",ui-monospace,monospace;
+  --ease:cubic-bezier(.2,.8,.2,1);
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--text);font-family:Inter,Vazirmatn,sans-serif;line-height:1.7;overflow-x:hidden}
-body.fa{font-family:Vazirmatn,Inter,sans-serif;direction:rtl}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{background:var(--bg);color:var(--text);font-family:Inter,Vazirmatn,sans-serif;line-height:1.7;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+body.fa{font-family:Vazirmatn,Inter,sans-serif}
 a{color:inherit;text-decoration:none}
-button{font:inherit}
-::selection{background:var(--accent);color:#fff}
-#bg{position:fixed;inset:0;z-index:-3}
-.noise{position:fixed;inset:0;pointer-events:none;z-index:20;opacity:.035;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.8'/%3E%3C/svg%3E")}
-.container{width:min(var(--max),calc(100% - 48px));margin:auto}
-.topbar{position:fixed;top:0;left:0;right:0;height:76px;z-index:10;display:flex;align-items:center;backdrop-filter:blur(18px);background:rgba(7,7,10,.65);border-bottom:1px solid transparent;transition:.3s}
+button{font:inherit;color:inherit}
+::selection{background:var(--accent);color:#08080b}
+:focus-visible{outline:2px solid var(--accent2);outline-offset:3px;border-radius:6px}
+
+/* background layers */
+#bg{position:fixed;inset:0;width:100%;height:100%;z-index:-3;pointer-events:none}
+.aurora{position:fixed;inset:0;z-index:-4;pointer-events:none;background:
+ radial-gradient(circle at 8% 6%,rgba(169,140,255,.16),transparent 28%),
+ radial-gradient(circle at 92% 18%,rgba(98,231,208,.09),transparent 25%),
+ radial-gradient(circle at 55% 96%,rgba(189,244,90,.05),transparent 32%)}
+.grid-floor{position:fixed;inset:0;z-index:-2;pointer-events:none;opacity:.5;
+ background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);
+ background-size:72px 72px;mask-image:radial-gradient(ellipse at 50% 30%,#000 0,transparent 68%);-webkit-mask-image:radial-gradient(ellipse at 50% 30%,#000 0,transparent 68%)}
+.noise{position:fixed;inset:0;pointer-events:none;z-index:30;opacity:.04;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.8'/%3E%3C/svg%3E")}
+.cursor-glow{position:fixed;width:360px;height:360px;border-radius:50%;pointer-events:none;z-index:-1;background:radial-gradient(circle,rgba(169,140,255,.1),transparent 68%);transform:translate(-50%,-50%);mix-blend-mode:screen}
+.progress{position:fixed;top:0;left:0;height:2px;width:100%;z-index:40;transform-origin:0 50%;transform:scaleX(0);background:linear-gradient(90deg,var(--accent),var(--cyan),var(--accent2))}
+
+.container{width:min(var(--max),calc(100% - 48px));margin-inline:auto}
+
+/* nav */
+.topbar{position:fixed;top:0;inset-inline:0;height:76px;z-index:20;display:flex;align-items:center;backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);background:linear-gradient(to bottom,rgba(5,5,7,.88),rgba(5,5,7,.4));border-bottom:1px solid transparent;transition:border-color .3s}
 .topbar.scrolled{border-color:var(--line)}
 .nav{display:flex;align-items:center;justify-content:space-between;width:100%}
-.logo{font-family:"Space Grotesk";font-weight:700;font-size:20px;letter-spacing:-.05em}
-.logo span{color:var(--accent)}
-.navlinks{display:flex;gap:28px;color:var(--muted);font-size:13px}
+.logo{font-family:var(--display);font-weight:700;font-size:21px;letter-spacing:-.05em}
+.logo span{color:var(--accent2)}
+.navlinks{display:flex;gap:6px;font-size:13px;color:var(--muted)}
+.navlinks a{position:relative;padding:8px 14px;border-radius:99px;transition:color .25s,background .25s}
 .navlinks a:hover{color:#fff}
+.navlinks a.active{color:#fff;background:var(--glass);box-shadow:inset 0 0 0 1px var(--glass-b)}
 .actions{display:flex;gap:8px}
-.iconbtn,.langbtn{width:40px;height:40px;border:1px solid var(--line);background:#111218;color:#ddd;border-radius:12px;cursor:pointer}
-.langbtn{width:auto;padding:0 13px;font-size:12px}
-.hero{min-height:100vh;padding:150px 0 80px;display:grid;grid-template-columns:1.2fr .8fr;align-items:center;gap:60px}
-.kicker{display:inline-flex;align-items:center;gap:9px;color:var(--accent2);font-size:12px;letter-spacing:.13em;text-transform:uppercase;margin-bottom:22px}
-.kicker i{width:7px;height:7px;border-radius:50%;background:var(--accent2);box-shadow:0 0 20px var(--accent2)}
-.hero h1{font-family:"Space Grotesk",Vazirmatn,sans-serif;font-size:clamp(58px,9vw,118px);line-height:.88;letter-spacing:-.075em;max-width:850px}
-.fa .hero h1{font-family:Vazirmatn,sans-serif;letter-spacing:-.06em;line-height:1.05}
-.gradient{background:linear-gradient(100deg,#fff 10%,#9b7cff 48%,#58e6c0);-webkit-background-clip:text;background-clip:text;color:transparent}
-.hero-copy{max-width:690px;color:var(--muted);font-size:18px;margin-top:30px}
-.hero-copy strong{color:#fff}
-.ctas{display:flex;gap:12px;margin-top:34px;flex-wrap:wrap}
-.btn{padding:13px 18px;border-radius:13px;border:1px solid var(--line);background:#111218;transition:.25s;display:inline-flex;gap:9px;align-items:center;font-size:13px}
-.btn.primary{background:#fff;color:#09090b;border-color:#fff;font-weight:700}
-.btn:hover{transform:translateY(-3px);border-color:rgba(155,124,255,.55);box-shadow:0 12px 35px rgba(0,0,0,.3)}
-.hero-card{position:relative;min-height:430px;border:1px solid var(--line);background:linear-gradient(145deg,rgba(155,124,255,.14),rgba(88,230,192,.04) 45%,rgba(255,255,255,.025));border-radius:28px;box-shadow:var(--shadow);overflow:hidden;transform:rotate(2deg)}
-.hero-card:before{content:"";position:absolute;width:270px;height:270px;background:var(--accent);filter:blur(100px);opacity:.22;right:-80px;top:-80px}
-.hero-card:after{content:"";position:absolute;width:210px;height:210px;background:var(--accent2);filter:blur(110px);opacity:.13;left:-80px;bottom:-80px}
-.profile{position:absolute;inset:28px;display:flex;flex-direction:column;justify-content:space-between;z-index:1}
-.card-top{display:flex;justify-content:space-between;align-items:center;color:var(--muted);font-size:11px}
-.status{display:flex;gap:7px;align-items:center}.status i{width:7px;height:7px;background:var(--accent2);border-radius:50%}
-.avatar{width:105px;height:105px;border-radius:50%;border:1px solid rgba(255,255,255,.15);display:grid;place-items:center;background:linear-gradient(145deg,#252331,#111218);font-family:"Space Grotesk";font-size:34px;font-weight:700;box-shadow:0 20px 50px rgba(0,0,0,.4)}
-.card-name{font-family:"Space Grotesk";font-size:32px;letter-spacing:-.05em;margin-top:18px}
-.card-role{color:var(--accent2);font-size:13px}
-.mini-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:25px}
-.mini{padding:14px;border:1px solid var(--line);border-radius:14px;background:rgba(0,0,0,.2)}
-.mini b{display:block;font-family:"Space Grotesk";font-size:19px}.mini span{font-size:10px;color:var(--muted)}
-.marquee{border-top:1px solid var(--line);border-bottom:1px solid var(--line);overflow:hidden;white-space:nowrap;color:#696b76;font-family:"Space Grotesk";font-size:13px;padding:14px 0}
-.marquee-track{display:inline-block;animation:move 28s linear infinite}.marquee span{margin:0 22px}.marquee b{color:var(--accent)}
+.iconbtn,.langbtn{height:40px;min-width:44px;border:1px solid var(--line);background:var(--glass);color:#ddd;border-radius:12px;cursor:pointer;transition:.25s}
+.langbtn{padding:0 14px;font-size:12px;font-weight:600}
+.iconbtn:hover,.langbtn:hover{border-color:rgba(169,140,255,.5);background:rgba(169,140,255,.08)}
+
+/* hero */
+.hero{position:relative;min-height:100vh;min-height:100svh;padding:140px 0 90px;display:grid;grid-template-columns:1.1fr .9fr;align-items:center;gap:40px}
+.kicker{display:inline-flex;align-items:center;gap:10px;padding:7px 14px 7px 12px;border:1px solid var(--glass-b);background:var(--glass);border-radius:99px;color:var(--accent2);font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;margin-bottom:26px;backdrop-filter:blur(10px)}
+.kicker i{width:7px;height:7px;border-radius:50%;background:var(--accent2);box-shadow:0 0 0 0 var(--accent2);animation:ping 2s infinite}
+@keyframes ping{70%{box-shadow:0 0 0 9px rgba(189,244,90,0)}100%{box-shadow:0 0 0 0 rgba(189,244,90,0)}}
+.hero h1{font-family:var(--display);font-size:clamp(60px,9.4vw,138px);line-height:.88;letter-spacing:-.07em;font-weight:700}
+.fa .hero h1{letter-spacing:-.04em;line-height:1.08}
+.gradient{background:linear-gradient(100deg,#fff 5%,var(--accent) 45%,var(--cyan) 75%,var(--accent2));background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shimmer 7s ease-in-out infinite alternate}
+@keyframes shimmer{to{background-position:100% 0}}
+.hero-copy{max-width:600px;color:var(--muted);font-size:18.5px;line-height:1.85;margin-top:30px}
+.hero-copy strong{color:#fff;font-weight:600}
+.ctas{display:flex;gap:12px;margin-top:36px;flex-wrap:wrap}
+.btn{padding:14px 20px;min-height:48px;border-radius:14px;border:1px solid var(--glass-b);background:var(--glass);transition:transform .3s var(--ease),border-color .25s,box-shadow .3s,background .25s;display:inline-flex;gap:9px;align-items:center;font-size:13.5px;font-weight:500;backdrop-filter:blur(10px)}
+.btn:hover{border-color:rgba(169,140,255,.6);background:rgba(169,140,255,.08)}
+.btn.primary{background:var(--accent2);color:#0a0b06;border-color:var(--accent2);font-weight:700;box-shadow:0 0 40px rgba(189,244,90,.16)}
+.btn.primary:hover{box-shadow:0 14px 50px rgba(189,244,90,.28)}
+.scroll-cue{position:absolute;bottom:32px;inset-inline-start:0;display:flex;align-items:center;gap:12px;color:var(--muted);font-family:var(--mono);font-size:11px;letter-spacing:.1em}
+.scroll-cue i{width:1px;height:42px;background:linear-gradient(var(--accent),transparent);animation:drip 2.2s infinite}
+@keyframes drip{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+
+/* floating glass stage next to the 3D object */
+.stage{position:relative;height:560px;perspective:1100px;pointer-events:none}
+.fl{position:absolute;display:flex;align-items:center;gap:10px;padding:11px 16px;border-radius:16px;border:1px solid var(--glass-b);background:rgba(18,18,26,.55);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 20px 60px rgba(0,0,0,.45),inset 0 1px 0 rgba(255,255,255,.08);font-family:var(--mono);font-size:12px;white-space:nowrap;will-change:transform}
+.fl b{font-family:var(--display);font-size:15px;letter-spacing:-.02em}
+.fl small{color:var(--muted);font-size:10.5px;display:block;line-height:1.3}
+.fl .dot{width:30px;height:30px;border-radius:9px;display:grid;place-items:center;font-weight:700;font-size:12px;color:#08080b}
+.fl-1{top:2%;inset-inline-start:2%}
+.fl-2{top:30%;inset-inline-end:-2%}
+.fl-3{bottom:26%;inset-inline-start:-6%}
+.fl-4{bottom:6%;inset-inline-end:6%}
+.fl-code{top:56%;inset-inline-end:-4%;display:block;padding:14px 18px;line-height:1.7;color:#aab}
+.fl-code span{color:var(--accent)}.fl-code em{color:var(--accent2);font-style:normal}
+.bob{animation:bob 6s ease-in-out infinite}
+.bob.d2{animation-delay:-2s}.bob.d3{animation-delay:-4s}
+@keyframes bob{50%{translate:0 -14px}}
+
+/* marquee */
+.marquee{border-block:1px solid var(--line);overflow:hidden;white-space:nowrap;color:#6c6e7b;font-family:var(--mono);font-size:13px;padding:18px 0;background:rgba(5,5,7,.6);backdrop-filter:blur(8px);direction:ltr}
+.marquee-track{display:inline-block;animation:move 36s linear infinite}
+.marquee span{margin:0 24px}.marquee b{color:var(--accent)}
 @keyframes move{to{transform:translateX(-50%)}}
-.section{padding:125px 0;border-bottom:1px solid var(--line)}
-.section-head{display:flex;align-items:flex-end;justify-content:space-between;gap:30px;margin-bottom:45px}
-.eyebrow{color:var(--accent);font-family:"Space Grotesk";font-size:12px;letter-spacing:.12em}
-.section-title{font-family:"Space Grotesk",Vazirmatn;font-size:clamp(34px,5vw,64px);letter-spacing:-.065em;line-height:1}
-.fa .section-title{font-family:Vazirmatn;letter-spacing:-.045em}
-.section-note{color:var(--muted);max-width:420px;font-size:13px}
-.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:70px}
-.about-big{font-size:clamp(24px,3vw,40px);line-height:1.25;letter-spacing:-.035em}
+
+/* sections */
+.section{padding:140px 0;position:relative}
+.section-head{display:flex;align-items:flex-end;justify-content:space-between;gap:30px;margin-bottom:60px}
+.eyebrow{display:block;color:var(--accent);font-family:var(--mono);font-size:12px;letter-spacing:.12em;margin-bottom:14px}
+.section-title{font-family:var(--display);font-size:clamp(42px,6vw,80px);letter-spacing:-.06em;line-height:1;font-weight:700}
+.fa .section-title{letter-spacing:-.03em;line-height:1.15}
+.section-note{color:var(--muted);max-width:380px;font-size:14px}
+
+/* reveal: uses individual transform props so 3D tilt can own `transform` */
+.rv{opacity:0;translate:0 36px;transition:opacity .9s var(--ease),translate .9s var(--ease);transition-delay:var(--d,0s)}
+.rv.show{opacity:1;translate:0 0}
+
+/* glass card base with spotlight border */
+.card{position:relative;border:1px solid var(--line);border-radius:26px;background:linear-gradient(145deg,rgba(255,255,255,.04),rgba(255,255,255,.012));transform-style:preserve-3d;transform:perspective(1100px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transition:transform .5s var(--ease),border-color .3s,box-shadow .4s;will-change:transform}
+.card.tilting{transition:transform .08s linear,border-color .3s,box-shadow .4s}
+.card:before{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;transition:opacity .35s;background:radial-gradient(420px circle at var(--mx,50%) var(--my,50%),rgba(169,140,255,.16),transparent 55%)}
+.card:after{content:"";position:absolute;inset:-1px;border-radius:inherit;pointer-events:none;opacity:0;transition:opacity .35s;padding:1px;background:radial-gradient(260px circle at var(--mx,50%) var(--my,50%),rgba(189,244,90,.7),rgba(169,140,255,.5) 40%,transparent 70%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0)}
+.card:hover:before,.card:hover:after{opacity:1}
+.card:hover{box-shadow:0 40px 90px rgba(0,0,0,.5)}
+
+/* about bento */
+.about-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.about-big{grid-column:span 4;padding:44px 48px;font-size:clamp(26px,3.3vw,46px);line-height:1.28;letter-spacing:-.035em}
 .about-big em{color:var(--accent);font-style:normal}
-.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
-.stat{border:1px solid var(--line);padding:24px;border-radius:18px;background:linear-gradient(145deg,#111218,#0d0e12)}
-.stat strong{display:block;font-family:"Space Grotesk";font-size:38px;letter-spacing:-.06em}.stat span{color:var(--muted);font-size:12px}
-.timeline{position:relative}.timeline:before{content:"";position:absolute;left:20%;top:0;bottom:0;width:1px;background:var(--line)}
-.fa .timeline:before{left:auto;right:20%}
-.entry{display:grid;grid-template-columns:20% 1fr;gap:45px;padding:0 0 60px;position:relative}
-.entry:before{content:"";position:absolute;left:calc(20% - 4px);top:7px;width:8px;height:8px;background:var(--accent);border-radius:50%;box-shadow:0 0 18px var(--accent)}
-.fa .entry:before{left:auto;right:calc(20% - 4px)}
-.year{color:var(--muted);font-size:12px;font-family:"Space Grotesk"}
-.entry h3{font-family:"Space Grotesk",Vazirmatn;font-size:25px;letter-spacing:-.035em;margin-bottom:5px}
-.fa .entry h3{font-family:Vazirmatn}
-.org{color:var(--accent2);font-size:12px;margin-bottom:16px}
-.entry ul{padding-left:18px;color:var(--muted);font-size:13px;max-width:720px}.fa .entry ul{padding-left:0;padding-right:18px}
-.entry li{margin:5px 0}.link{color:#ddd;border-bottom:1px dashed #666}.link:hover{color:var(--accent2)}
-.projects{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
-.project{min-height:285px;padding:27px;border:1px solid var(--line);border-radius:22px;background:linear-gradient(145deg,#111218,#0c0d10);position:relative;overflow:hidden;transition:.3s}
-.project .shot{display:block;width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:14px;border:1px solid var(--line);margin-top:18px}
-.project .shot+h3,.project .shots+h3{margin-top:22px}
-.project .shots{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:18px}
-.project .shots .shot{margin-top:0;aspect-ratio:4/3}
-.project:has(.shot){padding-bottom:82px}
-.project:has(.links){padding-bottom:122px}
-.project .shots.phones .shot{aspect-ratio:9/14;object-position:top}
-.project:hover{transform:translateY(-6px);border-color:rgba(155,124,255,.35);box-shadow:0 25px 55px rgba(0,0,0,.28)}
-.project:after{content:"";position:absolute;width:180px;height:180px;border-radius:50%;background:var(--accent);filter:blur(90px);opacity:.1;right:-80px;top:-70px}
-.project:nth-child(2):after{background:var(--accent2)}.project:nth-child(3):after{background:#ff8f70}
-.project-top{display:flex;justify-content:space-between;color:var(--muted);font-size:11px}.project-num{font-family:"Space Grotesk";color:var(--accent)}
-.project h3{font-family:"Space Grotesk",Vazirmatn;font-size:29px;letter-spacing:-.05em;margin:55px 0 8px}.fa .project h3{font-family:Vazirmatn}
-.project p{color:var(--muted);font-size:13px;max-width:520px}
-.tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:20px}.tag{border:1px solid var(--line);padding:5px 9px;border-radius:99px;color:#bbb;font-size:10px}
-.stack{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-.stack-card{border:1px solid var(--line);padding:24px;border-radius:20px;background:#0f1015;min-height:230px;transition:.25s}.stack-card:hover{transform:translateY(-5px);border-color:rgba(88,230,192,.3)}
-.stack-num{font-family:"Space Grotesk";color:var(--accent);font-size:11px}.stack-card h3{margin:30px 0 17px;font-size:21px}.chips{display:flex;flex-wrap:wrap;gap:7px}.chip{font-size:11px;color:#aaa;background:#171820;border:1px solid var(--line);padding:6px 9px;border-radius:8px}
-.contact{display:grid;grid-template-columns:1fr .8fr;gap:60px;align-items:end}.contact h2{font-family:"Space Grotesk";font-size:clamp(45px,7vw,90px);line-height:.95;letter-spacing:-.07em}.fa .contact h2{font-family:Vazirmatn;line-height:1.1;letter-spacing:-.05em}
-.contact p{color:var(--muted);margin-top:25px;max-width:580px}.contact-links{display:grid;gap:8px}.contact-links a{padding:15px 17px;border:1px solid var(--line);border-radius:13px;background:#0f1014;color:#ddd;font-size:13px;display:flex;justify-content:space-between;transition:.2s}.contact-links a:hover{border-color:var(--accent);transform:translateX(-4px)}
-.footer{padding:35px 0 45px;display:flex;justify-content:space-between;color:#656773;font-size:11px}.footer b{color:#aaa}
-.reveal{opacity:0;transform:translateY(25px);transition:.7s ease}.reveal.show{opacity:1;transform:none}
-.mobile-menu{display:none}
-@media(max-width:900px){
- .navlinks{display:none}.hero{grid-template-columns:1fr;padding-top:125px}.hero-card{max-width:520px;width:100%;margin:auto}
- .about-grid,.contact{grid-template-columns:1fr;gap:35px}.projects{grid-template-columns:1fr}.stack{grid-template-columns:1fr}
- .timeline:before{left:8px}.fa .timeline:before{right:8px}
- .entry{grid-template-columns:1fr;gap:10px;padding-left:28px}.fa .entry{padding-left:0;padding-right:28px}
- .entry:before{left:4px}.fa .entry:before{right:4px}
- .entry-meta{margin-bottom:4px}.section{padding:90px 0}
+.stat{padding:26px;min-height:170px;display:flex;flex-direction:column;justify-content:space-between}
+.stat strong{font-family:var(--display);font-size:clamp(44px,5vw,64px);letter-spacing:-.06em;line-height:1;transform:translateZ(30px)}
+.stat span{color:var(--muted);font-size:12.5px}
+.stat:nth-child(2) strong{color:var(--accent)}.stat:nth-child(3) strong{color:var(--cyan)}.stat:nth-child(4) strong{color:var(--accent2)}
+
+/* timeline */
+.timeline{position:relative}
+.timeline:before{content:"";position:absolute;inset-inline-start:20%;top:0;bottom:0;width:1px;background:var(--line)}
+.timeline .fill{position:absolute;inset-inline-start:20%;top:0;width:1px;height:100%;background:linear-gradient(var(--accent),var(--cyan));transform-origin:top;transform:scaleY(var(--p,0));box-shadow:0 0 14px var(--accent)}
+.entry{display:grid;grid-template-columns:20% 1fr;gap:56px;padding-bottom:70px;position:relative}
+.entry:before{content:"";position:absolute;inset-inline-start:calc(20% - 5px);top:8px;width:11px;height:11px;background:var(--bg);border:2px solid var(--accent);border-radius:50%;box-shadow:0 0 22px var(--accent)}
+[dir=rtl] .entry:before{transform:translateX(0)}
+.year{color:var(--muted);font-size:12px;font-family:var(--mono)}
+.entry-body{padding:30px 34px;margin-top:-14px}
+.entry h3{font-family:var(--display);font-size:27px;letter-spacing:-.035em;margin-bottom:6px;line-height:1.25}
+.org{color:var(--accent2);font-size:12.5px;margin-bottom:16px;font-family:var(--mono)}
+.entry ul{padding-inline-start:18px;color:var(--muted);font-size:14px;max-width:720px}
+.entry li{margin:6px 0}
+.entry li::marker{color:var(--accent)}
+.link{color:#e8e8ee;border-bottom:1px dashed #666;transition:color .2s,border-color .2s;width:fit-content}
+.link:hover{color:var(--accent2);border-color:var(--accent2)}
+
+/* projects bento */
+.projects{display:grid;grid-template-columns:repeat(12,1fr);gap:16px}
+.project{padding:22px 22px 28px;display:flex;flex-direction:column;grid-column:span 6;min-height:340px}
+.project:nth-child(1){grid-column:span 7}.project:nth-child(2){grid-column:span 5}
+.project:nth-child(3){grid-column:span 5}.project:nth-child(4){grid-column:span 7}
+.project:nth-child(5){grid-column:span 7}.project:nth-child(6){grid-column:span 5}
+.project-top{display:flex;justify-content:space-between;color:var(--muted);font-family:var(--mono);font-size:11px;padding:2px 6px 14px}
+.project-num{color:var(--accent)}
+.media{border-radius:16px;overflow:hidden;border:1px solid var(--line);background:#0b0b10;transform:translateZ(36px);box-shadow:0 24px 50px rgba(0,0,0,.45)}
+.shot{display:block;width:100%;height:260px;object-fit:cover;transition:transform .8s var(--ease)}
+.project:hover .shot{transform:scale(1.05)}
+.shots{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;transform:translateZ(36px)}
+.shots .media{transform:none}
+.shots .shot{height:260px}
+.shots.phones .shot{height:340px;object-position:top}
+.project-body{padding:24px 8px 0;display:flex;flex-direction:column;flex:1;transform:translateZ(18px)}
+.project h3{font-family:var(--display);font-size:clamp(28px,3vw,38px);letter-spacing:-.05em;line-height:1.1;margin-bottom:10px}
+.project p{color:var(--muted);font-size:14px;line-height:1.8;max-width:560px}
+.tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:20px}
+.tag{border:1px solid var(--line);background:rgba(255,255,255,.02);padding:5px 11px;border-radius:99px;color:#bcbcc6;font-family:var(--mono);font-size:10.5px}
+.links{display:flex;flex-direction:column;gap:6px;margin-top:auto;padding-top:22px}
+
+/* stack: orbit sphere + cards */
+.stack-wrap{display:grid;grid-template-columns:1fr 1.05fr;gap:40px;align-items:center}
+.sphere{position:relative;aspect-ratio:1;width:100%;max-width:560px;margin-inline:auto;cursor:grab;touch-action:pan-y;user-select:none;-webkit-user-select:none}
+.sphere:active{cursor:grabbing}
+.sphere:before{content:"";position:absolute;inset:14%;border-radius:50%;background:radial-gradient(circle at 35% 30%,rgba(169,140,255,.25),rgba(98,231,208,.05) 55%,transparent 72%);box-shadow:inset 0 0 80px rgba(169,140,255,.12);border:1px solid var(--line)}
+.sphere span{position:absolute;left:50%;top:50%;font-family:var(--display);font-weight:600;font-size:17px;letter-spacing:-.02em;white-space:nowrap;will-change:transform,opacity;color:#fff;text-shadow:0 0 18px rgba(169,140,255,.6)}
+.stack{display:grid;gap:12px}
+.stack-card{padding:24px 26px}
+.stack-num{font-family:var(--mono);color:var(--accent);font-size:11px;letter-spacing:.08em}
+.stack-card h3{margin:10px 0 16px;font-family:var(--display);font-size:22px;letter-spacing:-.03em}
+.chips{display:flex;flex-wrap:wrap;gap:7px}
+.chip{font-size:12px;color:#b4b4bf;background:rgba(255,255,255,.035);border:1px solid var(--line);padding:6px 11px;border-radius:9px;transition:.25s}
+.chip:hover{background:rgba(169,140,255,.12);color:#fff;border-color:rgba(169,140,255,.5);transform:translateY(-2px)}
+
+/* contact */
+.contact{display:grid;grid-template-columns:1.1fr .9fr;gap:60px;align-items:end;min-height:520px}
+.contact h2{font-family:var(--display);font-size:clamp(52px,8vw,112px);line-height:.95;letter-spacing:-.07em}
+.fa .contact h2{line-height:1.15;letter-spacing:-.04em}
+.contact p{color:var(--muted);margin-top:26px;max-width:540px;font-size:16px}
+.contact-links{display:grid;gap:10px}
+.contact-links a{padding:20px 22px;border:1px solid var(--line);border-radius:18px;background:var(--glass);font-size:14px;display:flex;justify-content:space-between;align-items:center;transition:transform .35s var(--ease),border-color .3s,background .3s;backdrop-filter:blur(10px)}
+.contact-links a b{display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.06);transition:.3s}
+.contact-links a:hover{border-color:rgba(169,140,255,.55);background:rgba(169,140,255,.08);transform:translateX(8px)}
+[dir=rtl] .contact-links a:hover{transform:translateX(-8px)}
+.contact-links a:hover b{background:var(--accent2);color:#08080b;transform:rotate(45deg)}
+.footer{padding:36px 0 50px;display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;color:#666877;font-size:12px;border-top:1px solid var(--line)}
+.footer b{color:#aaa}
+
+/* responsive */
+@media(max-width:1000px){
+  .hero{grid-template-columns:1fr;padding-top:120px;gap:20px}
+  .stage{display:none}
+  .hero-copy{background:radial-gradient(closest-side,rgba(5,5,7,.55),transparent);}
+  .scroll-cue{display:none}
+  .about-grid{grid-template-columns:1fr 1fr}.about-big{grid-column:span 2;padding:32px 28px}
+  .projects{grid-template-columns:1fr}
+  .project,.project:nth-child(n){grid-column:auto}
+  .stack-wrap{grid-template-columns:1fr}
+  .contact{grid-template-columns:1fr;gap:36px;min-height:auto}
+  .section{padding:96px 0}
+  .timeline:before,.timeline .fill{inset-inline-start:8px}
+  .entry{grid-template-columns:1fr;gap:10px;padding-inline-start:34px}
+  .entry:before{inset-inline-start:3px}
+  .entry-body{margin-top:0;padding:24px}
+  /* mobile dock nav */
+  .navlinks{position:fixed;bottom:max(14px,env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);z-index:25;gap:2px;padding:6px;border-radius:99px;background:rgba(14,14,20,.78);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid var(--glass-b);box-shadow:0 20px 50px rgba(0,0,0,.6)}
+  .navlinks a{padding:11px 12px;font-size:12px;min-height:44px;display:flex;align-items:center}
+  .footer{padding-bottom:110px}
+  .topbar{height:66px;backdrop-filter:none;-webkit-backdrop-filter:none;background:linear-gradient(to bottom,rgba(5,5,7,.92),rgba(5,5,7,0))}
+  .hero{align-content:end;padding-bottom:70px}
 }
 @media(max-width:560px){
- .container{width:min(100% - 28px,var(--max))}.topbar{height:66px}.hero{padding-top:105px}
- .hero h1{font-size:54px}.hero-copy{font-size:15px}.hero-card{min-height:370px}.avatar{width:82px;height:82px;font-size:27px}
- .section-head{display:block}.section-note{margin-top:15px}.stats{grid-template-columns:1fr 1fr}.stat{padding:17px}.stat strong{font-size:29px}
- .project{min-height:260px}.project h3{margin-top:42px}.footer{display:block}.footer span{display:block;margin:4px 0}.footer-dot{display:none!important}
+  .container{width:calc(100% - 32px)}
+  .hero h1{font-size:clamp(54px,17vw,76px)}
+  .hero-copy{font-size:16px}
+  .section-head{display:block}.section-note{margin-top:16px}
+  .shot,.shots .shot{height:200px}.shots.phones .shot{height:250px}
+  .shots{gap:6px}
+  .about-big{font-size:24px}
+  .stat{min-height:140px;padding:20px}
+  .navlinks a{padding:11px 9px;font-size:11.5px}
+}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*:before,*:after{animation:none!important;transition-duration:.01ms!important}
+  .rv{opacity:1;translate:none}
 }
 @media print{
- body{background:#fff;color:#111}.topbar,#bg,.noise,.marquee,.hero-card,.ctas{display:none!important}.hero{min-height:auto;padding:40px 0}.section{padding:30px 0;border-color:#ddd}.muted,.section-note,.hero-copy,.entry ul,.project p{color:#444!important}.project,.stack-card,.stat{background:#fff;border-color:#ddd;box-shadow:none}.gradient{color:#111;background:none}.container{width:90%}
+  body{background:#fff;color:#111}
+  #bg,.aurora,.grid-floor,.noise,.cursor-glow,.progress,.topbar,.stage,.marquee,.ctas,.scroll-cue,.sphere{display:none!important}
+  .rv{opacity:1;translate:none}
+  .hero{min-height:auto;padding:30px 0}.section{padding:28px 0}
+  .card{background:#fff;border-color:#ccc;box-shadow:none;transform:none}
+  .muted,.section-note,.hero-copy,.entry ul,.project p{color:#444!important}
+  .gradient{color:#111;background:none}.container{width:92%}
 }
-
-/* ===== PREMIUM V3 OVERRIDES ===== */
-:root{
- --bg:#050507;--panel:#0d0e12;--panel2:#111218;--text:#f7f7f4;--muted:#8e909c;
- --line:rgba(255,255,255,.085);--accent:#a98cff;--accent2:#bdf45a;
- --cyan:#62e7d0;--max:1280px;
-}
-body{background:#050507}
-body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-2;background:
- radial-gradient(circle at 8% 8%,rgba(169,140,255,.14),transparent 25%),
- radial-gradient(circle at 90% 20%,rgba(98,231,208,.08),transparent 23%),
- radial-gradient(circle at 55% 92%,rgba(189,244,90,.045),transparent 30%)}
-.topbar{height:80px;background:linear-gradient(to bottom,rgba(5,5,7,.92),rgba(5,5,7,.58))}
-.navlinks a{transition:.25s}.navlinks a:after{content:"";position:absolute;left:0;right:0;bottom:-7px;height:1px;background:var(--accent);transform:scaleX(0);transition:.25s}.navlinks a:hover:after{transform:scaleX(1)}
-.hero{min-height:100vh;padding-top:155px;grid-template-columns:1.15fr .85fr;gap:80px}
-.kicker{letter-spacing:.18em}
-.hero h1{font-size:clamp(66px,10vw,145px);text-shadow:0 0 70px rgba(169,140,255,.08)}
-.hero-copy{font-size:19px;line-height:1.9;max-width:640px}
-.hero-card{min-height:540px;border-radius:36px;transform:rotate(2.5deg);background:
- linear-gradient(135deg,rgba(169,140,255,.16),rgba(255,255,255,.025) 42%,rgba(98,231,208,.08));
- transition:transform .5s cubic-bezier(.2,.8,.2,1),box-shadow .5s}
-.hero-card:hover{transform:rotate(0deg) translateY(-8px);box-shadow:0 35px 100px rgba(0,0,0,.5)}
-.hero-card:before{width:340px;height:340px;filter:blur(110px)}
-.profile{inset:34px}
-.avatar{width:125px;height:125px;font-size:40px;background:
- linear-gradient(145deg,#2b2640,#101117);border:1px solid rgba(255,255,255,.2);
- box-shadow:0 0 0 12px rgba(169,140,255,.035),0 25px 70px rgba(0,0,0,.5)}
-.card-name{font-size:38px}
-.card-role{letter-spacing:.15em}
-.mini{background:rgba(0,0,0,.25);backdrop-filter:blur(10px);border-color:rgba(255,255,255,.08)}
-.mini b{font-size:16px}
-.marquee{padding:18px 0;background:rgba(255,255,255,.012)}
-.section{padding:145px 0}
-.section-title{font-size:clamp(40px,6vw,76px)}
-.section-head{margin-bottom:58px}
-.about-grid{gap:110px}
-.about-big{font-size:clamp(27px,3.4vw,46px);line-height:1.3}
-.stat{min-height:145px;display:flex;flex-direction:column;justify-content:space-between;background:
- linear-gradient(145deg,rgba(255,255,255,.035),rgba(255,255,255,.012));transition:.3s}
-.stat:hover{transform:translateY(-5px);border-color:rgba(169,140,255,.3)}
-.stat strong{font-size:47px}
-.timeline:before{background:linear-gradient(var(--accent),transparent)}
-.entry{padding-bottom:80px}
-.entry:before{width:10px;height:10px;box-shadow:0 0 25px var(--accent)}
-.entry h3{font-size:28px}
-.project{min-height:350px;padding:31px;border-radius:28px;background:
- radial-gradient(circle at 90% 0%,rgba(169,140,255,.07),transparent 35%),
- linear-gradient(145deg,#111217,#0a0b0e)}
-.project h3{font-size:38px;margin-top:75px}
-.project p{font-size:14px;line-height:1.8}
-.project .link{position:absolute;bottom:29px;right:31px;border:0;color:var(--text)}
-.fa .project .link{right:auto;left:31px}
-.project .links{position:absolute;bottom:29px;right:31px;display:flex;flex-direction:column;align-items:flex-end;gap:6px}
-.fa .project .links{right:auto;left:31px;align-items:flex-start}
-.project .links .link{position:static}
-.project:hover{transform:translateY(-10px) scale(1.01);border-color:rgba(169,140,255,.4)}
-.project:nth-child(2){grid-column:span 1}
-.project:nth-child(3),.project:nth-child(4){min-height:300px}
-.stack-card{min-height:260px;border-radius:24px;background:linear-gradient(145deg,#111217,#0b0c0f);transition:.3s}
-.stack-card:hover{border-color:rgba(189,244,90,.25);transform:translateY(-7px)}
-.chip{transition:.2s}.chip:hover{background:#202229;color:#fff;border-color:rgba(255,255,255,.16)}
-.contact{min-height:570px}
-.contact h2{font-size:clamp(55px,8vw,112px)}
-.contact-links a{padding:19px;border-radius:16px;background:rgba(255,255,255,.025);transition:.3s}
-.contact-links a:hover{transform:translateX(-8px);background:rgba(169,140,255,.07);border-color:rgba(169,140,255,.45)}
-.fa .contact-links a:hover{transform:translateX(8px)}
-.btn.primary{background:var(--accent2);border-color:var(--accent2);box-shadow:0 0 35px rgba(189,244,90,.12)}
-.btn.primary:hover{box-shadow:0 15px 45px rgba(189,244,90,.18)}
-.cursor-glow{position:fixed;width:280px;height:280px;border-radius:50%;pointer-events:none;z-index:-1;background:radial-gradient(circle,rgba(169,140,255,.09),transparent 68%);transform:translate(-50%,-50%);mix-blend-mode:screen}
-@media(max-width:900px){.hero{grid-template-columns:1fr;gap:55px}.hero-card{min-height:470px}.about-grid{gap:45px}.project h3{font-size:31px}}
-@media(max-width:560px){.hero{padding-top:115px}.hero h1{font-size:61px}.hero-card{min-height:410px}.card-name{font-size:29px}.section{padding:105px 0}.contact{min-height:auto}.project{min-height:310px}.project h3{margin-top:55px}}
 </style>
 </head>
 <body>
-<canvas id="bg"></canvas><div class="noise"></div><div class="cursor-glow" id="cursorGlow"></div>
+<div class="aurora"></div><div class="grid-floor"></div>
+<canvas id="bg" aria-hidden="true"></canvas>
+<div class="noise"></div><div class="cursor-glow" id="cursorGlow"></div>
+<div class="progress" id="progress"></div>
 
 <header class="topbar" id="topbar">
   <div class="container nav">
-    <a class="logo" href="#">HS<span>.</span></a>
-    <nav class="navlinks">
+    <a class="logo" href="#top" aria-label="Home">HS<span>.</span></a>
+    <nav class="navlinks" aria-label="Sections">
       <a href="#about" data-en="About" data-fa="درباره">About</a>
       <a href="#experience" data-en="Experience" data-fa="تجربه">Experience</a>
       <a href="#projects" data-en="Projects" data-fa="پروژه‌ها">Projects</a>
       <a href="#stack" data-en="Stack" data-fa="مهارت‌ها">Stack</a>
       <a href="#contact" data-en="Contact" data-fa="تماس">Contact</a>
     </nav>
-    <div class="actions"><button class="langbtn" id="lang">FA</button><button class="iconbtn" onclick="window.print()" title="Print / PDF">↗</button></div>
+    <div class="actions"><button class="langbtn" id="lang" aria-label="Switch language">FA</button><button class="iconbtn" onclick="window.print()" title="Print / PDF" aria-label="Print or save as PDF">↗</button></div>
   </div>
 </header>
 
-<main>
+<main id="top">
 <section class="hero container">
-  <div class="reveal">
-    <div class="kicker"><i></i><span data-en="Available for selected projects" data-fa="آماده همکاری روی پروژه‌های منتخب">Available for selected projects</span></div>
-    <h1>Hossein<br><span class="gradient">Salimi.</span></h1>
-    <p class="hero-copy" data-en="Full Stack Developer building <strong>useful, scalable digital products</strong> with Django, React, Python and modern infrastructure." data-fa="توسعه‌دهنده فول‌استک؛ سازنده‌ی <strong>محصولات دیجیتال کاربردی و مقیاس‌پذیر</strong> با Django، React، Python و زیرساخت‌های مدرن.">Full Stack Developer building <strong>useful, scalable digital products</strong> with Django, React, Python and modern infrastructure.</p>
-    <div class="ctas">
-      <a class="btn primary" href="#projects" data-en="Explore my work →" data-fa="مشاهده پروژه‌ها ←">Explore my work →</a>
-      <a class="btn" href="mailto:hossein.salimi799@gmail.com" data-en="Let's talk ↗" data-fa="ارتباط با من ↗">Let's talk ↗</a>
-      <a class="btn" href="https://github.com/hsalimi79" target="_blank">GitHub ↗</a>
+  <div>
+    <div class="kicker rv"><i></i><span data-en="Available for selected projects" data-fa="آماده همکاری روی پروژه‌های منتخب">Available for selected projects</span></div>
+    <h1 class="rv" style="--d:.08s">Hossein<br><span class="gradient">Salimi.</span></h1>
+    <p class="hero-copy rv" style="--d:.18s" data-en="Full Stack Developer building <strong>useful, scalable digital products</strong> with Django, React, Python and modern infrastructure." data-fa="توسعه‌دهنده فول‌استک؛ سازنده‌ی <strong>محصولات دیجیتال کاربردی و مقیاس‌پذیر</strong> با Django، React، Python و زیرساخت‌های مدرن.">Full Stack Developer building <strong>useful, scalable digital products</strong> with Django, React, Python and modern infrastructure.</p>
+    <div class="ctas rv" style="--d:.28s">
+      <a class="btn primary magnetic" href="#projects" data-en="Explore my work →" data-fa="مشاهده پروژه‌ها ←">Explore my work →</a>
+      <a class="btn magnetic" href="mailto:hossein.salimi799@gmail.com" data-en="Let's talk ↗" data-fa="ارتباط با من ↗">Let's talk ↗</a>
+      <a class="btn magnetic" href="https://github.com/hsalimi79" target="_blank" rel="noopener">GitHub ↗</a>
     </div>
   </div>
-  <div class="hero-card reveal">
-    <div class="profile">
-      <div class="card-top"><span>HS / 2026</span><span class="status"><i></i><span data-en="ONLINE" data-fa="آنلاین">ONLINE</span></span></div>
-      <div><div class="avatar">HS</div><div class="card-name">Hossein Salimi</div><div class="card-role">FULL STACK DEVELOPER</div></div>
-      <div class="mini-grid">
-        <div class="mini"><b>DJANGO</b><span>Backend & APIs</span></div>
-        <div class="mini"><b>REACT</b><span>Frontend</span></div>
-        <div class="mini"><b>DEVOPS</b><span>Docker / Linux</span></div>
-        <div class="mini"><b>PYTHON</b><span>Automation & Bots</span></div>
-      </div>
-    </div>
+  <div class="stage" id="stage" aria-hidden="true">
+    <div class="fl fl-1 bob" data-depth="26"><span class="dot" style="background:var(--accent)">HS</span><div><b>Hossein Salimi</b><small data-en="Full Stack · Isfahan" data-fa="فول‌استک · اصفهان">Full Stack · Isfahan</small></div></div>
+    <div class="fl fl-2 bob d2" data-depth="48"><span class="dot" style="background:var(--accent2)">Dj</span><div><b>Django</b><small>Backend & APIs</small></div></div>
+    <div class="fl fl-3 bob d3" data-depth="38"><span class="dot" style="background:var(--cyan)">Re</span><div><b>React</b><small>Frontend</small></div></div>
+    <div class="fl fl-code bob d2" data-depth="60"><span>const</span> dev = {<br>&nbsp;&nbsp;stack: <em>"Django + React"</em>,<br>&nbsp;&nbsp;ships: <em>true</em><br>}</div>
+    <div class="fl fl-4 bob" data-depth="70"><span class="dot" style="background:#ff9a7a">Dk</span><div><b>Docker</b><small>DevOps</small></div></div>
   </div>
+  <div class="scroll-cue"><i></i><span data-en="SCROLL" data-fa="اسکرول">SCROLL</span></div>
 </section>
 
-<div class="marquee"><div class="marquee-track">PYTHON <b>✦</b> DJANGO <b>✦</b> REACT <b>✦</b> POSTGRESQL <b>✦</b> DOCKER <b>✦</b> LINUX <b>✦</b> REST API <b>✦</b> TELEGRAM BOTS <b>✦</b> FLUTTER <b>✦</b> PYTHON <b>✦</b> DJANGO <b>✦</b> REACT <b>✦</b> POSTGRESQL <b>✦</b> DOCKER <b>✦</b> LINUX <b>✦</b> REST API <b>✦</b></div></div>
+<div class="marquee" aria-hidden="true"><div class="marquee-track">PYTHON <b>✦</b> DJANGO <b>✦</b> REACT <b>✦</b> POSTGRESQL <b>✦</b> DOCKER <b>✦</b> LINUX <b>✦</b> REST API <b>✦</b> TELEGRAM BOTS <b>✦</b> FLUTTER <b>✦</b> KOTLIN <b>✦</b> PYTHON <b>✦</b> DJANGO <b>✦</b> REACT <b>✦</b> POSTGRESQL <b>✦</b> DOCKER <b>✦</b> LINUX <b>✦</b> REST API <b>✦</b> TELEGRAM BOTS <b>✦</b> FLUTTER <b>✦</b> KOTLIN <b>✦</b></div></div>
 
 <section id="about" class="section">
-<div class="container reveal">
-  <div class="section-head"><div><span class="eyebrow">00 /</span><h2 class="section-title" data-en="About me" data-fa="درباره من">About me</h2></div><p class="section-note" data-en="I like turning messy requirements into clean, maintainable products." data-fa="دوست دارم نیازمندی‌های پیچیده را به محصولاتی تمیز، قابل نگهداری و کاربردی تبدیل کنم.">I like turning messy requirements into clean, maintainable products.</p></div>
+<div class="container">
+  <div class="section-head rv"><div><span class="eyebrow">00 / ABOUT</span><h2 class="section-title" data-en="About me" data-fa="درباره من">About me</h2></div><p class="section-note" data-en="I like turning messy requirements into clean, maintainable products." data-fa="دوست دارم نیازمندی‌های پیچیده را به محصولاتی تمیز، قابل نگهداری و کاربردی تبدیل کنم.">I like turning messy requirements into clean, maintainable products.</p></div>
   <div class="about-grid">
-    <p class="about-big" data-en="I’m a <em>Full Stack Developer</em> focused on building web platforms, APIs, dashboards and automation tools. I care about architecture as much as the final interface." data-fa="من یک <em>توسعه‌دهنده فول‌استک</em> هستم و روی ساخت پلتفرم‌های وب، API، داشبورد و ابزارهای اتوماسیون کار می‌کنم. برای معماری به اندازه‌ی نتیجه نهایی محصول اهمیت قائلم.">I’m a <em>Full Stack Developer</em> focused on building web platforms, APIs, dashboards and automation tools. I care about architecture as much as the final interface.</p>
-    <div class="stats"><div class="stat"><strong>4+</strong><span data-en="Years building software" data-fa="سال تجربه ساخت نرم‌افزار">Years building software</span></div><div class="stat"><strong>10+</strong><span data-en="Projects & products" data-fa="پروژه و محصول">Projects & products</span></div><div class="stat"><strong>2</strong><span data-en="Main stacks: Web + Android" data-fa="استک‌های اصلی: وب + اندروید">Main stacks: Web + Android</span></div><div class="stat"><strong>∞</strong><span data-en="Curiosity for new tech" data-fa="کنجکاوی برای تکنولوژی‌های جدید">Curiosity for new tech</span></div></div>
+    <p class="about-big card tilt rv" data-en="I’m a <em>Full Stack Developer</em> focused on building web platforms, APIs, dashboards and automation tools. I care about architecture as much as the final interface." data-fa="من یک <em>توسعه‌دهنده فول‌استک</em> هستم و روی ساخت پلتفرم‌های وب، API، داشبورد و ابزارهای اتوماسیون کار می‌کنم. برای معماری به اندازه‌ی نتیجه نهایی محصول اهمیت قائلم.">I’m a <em>Full Stack Developer</em> focused on building web platforms, APIs, dashboards and automation tools. I care about architecture as much as the final interface.</p>
+    <div class="stat card tilt rv" style="--d:.05s"><strong data-count="4" data-suffix="+">4+</strong><span data-en="Years building software" data-fa="سال تجربه ساخت نرم‌افزار">Years building software</span></div>
+    <div class="stat card tilt rv" style="--d:.12s"><strong data-count="10" data-suffix="+">10+</strong><span data-en="Projects & products" data-fa="پروژه و محصول">Projects & products</span></div>
+    <div class="stat card tilt rv" style="--d:.19s"><strong data-count="2">2</strong><span data-en="Main stacks: Web + Android" data-fa="استک‌های اصلی: وب + اندروید">Main stacks: Web + Android</span></div>
+    <div class="stat card tilt rv" style="--d:.26s"><strong>∞</strong><span data-en="Curiosity for new tech" data-fa="کنجکاوی برای تکنولوژی‌های جدید">Curiosity for new tech</span></div>
   </div>
 </div>
 </section>
 
 <section id="experience" class="section">
-<div class="container reveal">
-<div class="section-head"><div><span class="eyebrow">01 /</span><h2 class="section-title" data-en="Experience" data-fa="تجربه کاری">Experience</h2></div></div>
-<div class="timeline">
-<article class="entry"><div class="entry-meta"><span class="year" data-en="2023 — Present" data-fa="۱۴۰۲ — اکنون">2023 — Present</span></div><div class="entry-body"><h3 data-en="Backend / Full Stack Developer" data-fa="توسعه‌دهنده بک‌اند / فول‌استک">Backend / Full Stack Developer</h3><div class="org" data-en="APA — Isfahan University of Technology" data-fa="آپا — دانشگاه صنعتی اصفهان">APA — Isfahan University of Technology</div><ul><li data-en="Developed backend services using Django and Django REST Framework." data-fa="توسعه سرویس‌های بک‌اند با Django و Django REST Framework.">Developed backend services using Django and Django REST Framework.</li><li data-en="Built React frontend features and worked with SQL databases." data-fa="توسعه فیچرهای React و کار با پایگاه داده‌های SQL.">Built React frontend features and worked with SQL databases.</li><li data-en="Developed and launched web platforms for university events and startup initiatives." data-fa="توسعه و راه‌اندازی پلتفرم‌های وب برای رویدادها و استارتاپ‌های دانشگاهی.">Developed and launched web platforms for university events and startup initiatives.</li></ul></div></article>
-<article class="entry"><div class="entry-meta"><span class="year" data-en="2022 — Present" data-fa="۱۴۰۱ — اکنون">2022 — Present</span></div><div class="entry-body"><h3 data-en="Freelance / Personal Projects" data-fa="فریلنس / پروژه‌های شخصی">Freelance / Personal Projects</h3><div class="org" data-en="Independent" data-fa="مستقل">Independent</div><ul><li data-en="Designed and built web products, REST APIs, dashboards and personal websites." data-fa="طراحی و توسعه محصولات وب، REST API، داشبورد و سایت‌های شخصی.">Designed and built web products, REST APIs, dashboards and personal websites.</li><li data-en="Worked across frontend, backend, databases and deployment." data-fa="فعالیت در بخش‌های فرانت‌اند، بک‌اند، دیتابیس و استقرار.">Worked across frontend, backend, databases and deployment.</li></ul></div></article>
-<article class="entry"><div class="entry-meta"><span class="year" data-en="2021" data-fa="۱۴۰۰">2021</span></div><div class="entry-body"><h3 data-en="Teaching Assistant — C++ Programming" data-fa="دستیار آموزشی — برنامه‌نویسی ++C">Teaching Assistant — C++ Programming</h3><div class="org">Isfahan University of Technology</div><ul><li data-en="Helped students with C++ fundamentals, debugging and practical exercises." data-fa="کمک به دانشجویان در مبانی ++C، دیباگ و تمرین‌های عملی.">Helped students with C++ fundamentals, debugging and practical exercises.</li></ul></div></article>
+<div class="container">
+<div class="section-head rv"><div><span class="eyebrow">01 / EXPERIENCE</span><h2 class="section-title" data-en="Experience" data-fa="تجربه کاری">Experience</h2></div></div>
+<div class="timeline" id="timeline"><div class="fill"></div>
+<article class="entry rv"><div class="entry-meta"><span class="year" data-en="2023 — Present" data-fa="۱۴۰۲ — اکنون">2023 — Present</span></div><div class="entry-body card tilt"><h3 data-en="Backend / Full Stack Developer" data-fa="توسعه‌دهنده بک‌اند / فول‌استک">Backend / Full Stack Developer</h3><div class="org" data-en="APA — Isfahan University of Technology" data-fa="آپا — دانشگاه صنعتی اصفهان">APA — Isfahan University of Technology</div><ul><li data-en="Developed backend services using Django and Django REST Framework." data-fa="توسعه سرویس‌های بک‌اند با Django و Django REST Framework.">Developed backend services using Django and Django REST Framework.</li><li data-en="Built React frontend features and worked with SQL databases." data-fa="توسعه فیچرهای React و کار با پایگاه داده‌های SQL.">Built React frontend features and worked with SQL databases.</li><li data-en="Developed and launched web platforms for university events and startup initiatives." data-fa="توسعه و راه‌اندازی پلتفرم‌های وب برای رویدادها و استارتاپ‌های دانشگاهی.">Developed and launched web platforms for university events and startup initiatives.</li></ul></div></article>
+<article class="entry rv"><div class="entry-meta"><span class="year" data-en="2022 — Present" data-fa="۱۴۰۱ — اکنون">2022 — Present</span></div><div class="entry-body card tilt"><h3 data-en="Freelance / Personal Projects" data-fa="فریلنس / پروژه‌های شخصی">Freelance / Personal Projects</h3><div class="org" data-en="Independent" data-fa="مستقل">Independent</div><ul><li data-en="Designed and built web products, REST APIs, dashboards and personal websites." data-fa="طراحی و توسعه محصولات وب، REST API، داشبورد و سایت‌های شخصی.">Designed and built web products, REST APIs, dashboards and personal websites.</li><li data-en="Worked across frontend, backend, databases and deployment." data-fa="فعالیت در بخش‌های فرانت‌اند، بک‌اند، دیتابیس و استقرار.">Worked across frontend, backend, databases and deployment.</li></ul></div></article>
+<article class="entry rv"><div class="entry-meta"><span class="year" data-en="2021" data-fa="۱۴۰۰">2021</span></div><div class="entry-body card tilt"><h3 data-en="Teaching Assistant — C++ Programming" data-fa="دستیار آموزشی — برنامه‌نویسی ++C">Teaching Assistant — C++ Programming</h3><div class="org">Isfahan University of Technology</div><ul><li data-en="Helped students with C++ fundamentals, debugging and practical exercises." data-fa="کمک به دانشجویان در مبانی ++C، دیباگ و تمرین‌های عملی.">Helped students with C++ fundamentals, debugging and practical exercises.</li></ul></div></article>
 </div></div>
 </section>
 
 <section id="projects" class="section">
-<div class="container reveal">
-<div class="section-head"><div><span class="eyebrow">02 /</span><h2 class="section-title" data-en="Selected work" data-fa="پروژه‌های منتخب">Selected work</h2></div><p class="section-note" data-en="A few products, platforms and experiments I’ve built." data-fa="چند محصول، پلتفرم و پروژه‌ای که ساخته‌ام.">A few products, platforms and experiments I’ve built.</p></div>
+<div class="container">
+<div class="section-head rv"><div><span class="eyebrow">02 / WORK</span><h2 class="section-title" data-en="Selected work" data-fa="پروژه‌های منتخب">Selected work</h2></div><p class="section-note" data-en="A few products, platforms and experiments I’ve built." data-fa="چند محصول، پلتفرم و پروژه‌ای که ساخته‌ام.">A few products, platforms and experiments I’ve built.</p></div>
 <div class="projects">
-<article class="project"><div class="project-top"><span class="project-num">01</span><span>2026</span></div><img class="shot" src="images/salehabad.webp" alt="Salehabad Telegram bot screenshot" loading="lazy" style="object-position:50% 25%"><h3>Salehabad Bot</h3><p data-en="Telegram bots that automatically receive channel posts and forward them via API to other platforms such as Eitaa — two bots handling automated content transfer." data-fa="ربات‌های پروژه صالح‌آباد که پست‌های کانال‌های تلگرام را خودکار دریافت کرده و با API به پلتفرم‌های دیگر مثل ایتا منتقل می‌کنند؛ شامل دو ربات برای انتقال خودکار محتوا.">Telegram bots that automatically receive channel posts and forward them via API to other platforms such as Eitaa — two bots handling automated content transfer.</p><div class="tags"><span class="tag">Telegram API</span><span class="tag">Eitaa API</span><span class="tag">Automation</span></div><a class="link" href="https://t.me/salehabad_bot" target="_blank">@salehabad_bot ↗</a></article>
-<article class="project"><div class="project-top"><span class="project-num">02</span><span>2026</span></div><img class="shot" src="images/fericovpn.webp" alt="FeriCoVPN Telegram bot screenshot" loading="lazy" style="object-position:50% 40%"><h3>FeriCoVPN</h3><p data-en="Telegram VPN sales bot where users browse plans, buy subscriptions, pay online and manage their own service." data-fa="ربات تلگرامی فروش VPN که کاربران از طریق آن می‌توانند پلن‌ها را ببینند، اشتراک بخرند، پرداخت کنند و سرویس خودشان را مدیریت کنند.">Telegram VPN sales bot where users browse plans, buy subscriptions, pay online and manage their own service.</p><div class="tags"><span class="tag">Telegram Bot</span><span class="tag">Payments</span><span class="tag">Automation</span></div></article>
-<article class="project"><div class="project-top"><span class="project-num">03</span><span>2025 — NOW</span></div><img class="shot" src="images/shieldup.webp" alt="ShieldUp platform screenshot" loading="lazy" style="object-position:50% 30%"><h3>ShieldUp</h3><p data-en="Web platform developed at APA — Isfahan University of Technology." data-fa="پلتفرم وب توسعه‌یافته در مرکز آپا دانشگاه صنعتی اصفهان.">Web platform developed at APA — Isfahan University of Technology.</p><div class="tags"><span class="tag">Django</span><span class="tag">React</span><span class="tag">Docker</span></div><a class="link" href="https://shieldup.ir" target="_blank">shieldup.ir ↗</a></article>
-<article class="project"><div class="project-top"><span class="project-num">04</span><span>2025</span></div><div class="shots phones"><img class="shot" src="images/kharjino-home.webp" alt="Kharjino app — home" loading="lazy"><img class="shot" src="images/kharjino-stats.webp" alt="Kharjino app — statistics" loading="lazy"><img class="shot" src="images/kharjino-goals.webp" alt="Kharjino app — savings goals" loading="lazy"></div><h3>Kharjino</h3><p data-en="Persian daily expense tracker for Android, published on Cafe Bazaar." data-fa="اپلیکیشن ثبت هزینه روزانه فارسی برای اندروید، منتشرشده در کافه‌بازار.">Persian daily expense tracker for Android, published on Cafe Bazaar.</p><div class="tags"><span class="tag">Kotlin</span><span class="tag">Compose</span><span class="tag">Room</span></div><a class="link" href="https://cafebazaar.ir/app/ir.kharjino.app" target="_blank">Cafe Bazaar ↗</a></article>
-<article class="project"><div class="project-top"><span class="project-num">05</span><span>2024 — 2025</span></div><div class="shots"><img class="shot" src="images/alireza-resume.webp" alt="Alireza Mehraban resume website" loading="lazy" style="object-position:50% 30%"><img class="shot" src="images/sara-resume.webp" alt="Sara Moslemi resume website" loading="lazy" style="object-position:50% 30%"><img class="shot" src="images/aghasi-resume.webp" alt="Aghasi resume website" loading="lazy" style="object-position:50% 30%"></div><h3>Resume Websites</h3><p data-en="Bilingual personal resume and portfolio websites for freelance clients." data-fa="سایت‌های رزومه و پورتفولیو شخصی دوزبانه برای مشتریان فریلنس.">Bilingual personal resume and portfolio websites for freelance clients.</p><div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span></div><div class="links"><a class="link" href="https://alirezamehraban.ir" target="_blank">alirezamehraban.ir ↗</a><a class="link" href="https://sara-moslemi.resumio.ir" target="_blank">sara-moslemi.resumio.ir ↗</a><a class="link" href="https://aghasi.resumio.ir" target="_blank">aghasi.resumio.ir ↗</a></div></article>
-<article class="project"><div class="project-top"><span class="project-num">06</span><span>2024</span></div><img class="shot" src="images/daryaazma.webp" alt="Daryaazma website screenshot" loading="lazy" style="object-position:50% 0%"><h3>Daryaazma</h3><p data-en="Corporate website and analytics dashboard for water quality monitoring." data-fa="سایت شرکتی و داشبورد تحلیلی برای پایش کیفیت آب.">Corporate website and analytics dashboard for water quality monitoring.</p><div class="tags"><span class="tag">Django</span><span class="tag">React</span><span class="tag">IoT</span></div><a class="link" href="https://daryaazma.ir" target="_blank">daryaazma.ir ↗</a></article>
-<article class="project"><div class="project-top"><span class="project-num">07</span><span>2023</span></div><h3>Telegram Bot</h3><p data-en="Automated Telegram group management bot with persistent PostgreSQL storage." data-fa="ربات مدیریت خودکار گروه تلگرام با ذخیره‌سازی پایدار PostgreSQL.">Automated Telegram group management bot with persistent PostgreSQL storage.</p><div class="tags"><span class="tag">Python</span><span class="tag">Pyrogram</span><span class="tag">PostgreSQL</span></div><a class="link" href="https://github.com/hsalimi79/pyrogramTelegramBot" target="_blank">GitHub ↗</a></article>
-<article class="project"><div class="project-top"><span class="project-num">08</span><span>2020</span></div><h3>IUT MAP</h3><p data-en="Flutter Android app featuring an interactive university map and campus events." data-fa="اپ اندروید Flutter با نقشه تعاملی دانشگاه و رویدادهای دانشگاهی.">Flutter Android app featuring an interactive university map and campus events.</p><div class="tags"><span class="tag">Flutter</span><span class="tag">Android</span></div></article>
+<article class="project card tilt rv"><div class="project-top"><span class="project-num">01</span><span>2026</span></div><div class="media"><img class="shot" src="images/salehabad.webp" alt="Salehabad Telegram bot screenshot" loading="lazy" style="object-position:50% 25%"></div><div class="project-body"><h3>Salehabad Bot</h3><p data-en="Telegram bots that automatically receive channel posts and forward them via API to other platforms such as Eitaa — two bots handling automated content transfer." data-fa="ربات‌های پروژه صالح‌آباد که پست‌های کانال‌های تلگرام را خودکار دریافت کرده و با API به پلتفرم‌های دیگر مثل ایتا منتقل می‌کنند؛ شامل دو ربات برای انتقال خودکار محتوا.">Telegram bots that automatically receive channel posts and forward them via API to other platforms such as Eitaa — two bots handling automated content transfer.</p><div class="tags"><span class="tag">Telegram API</span><span class="tag">Eitaa API</span><span class="tag">Automation</span></div><div class="links"><a class="link" href="https://t.me/salehabad_bot" target="_blank" rel="noopener">@salehabad_bot ↗</a></div></div></article>
+<article class="project card tilt rv" style="--d:.08s"><div class="project-top"><span class="project-num">02</span><span>2026</span></div><div class="media"><img class="shot" src="images/fericovpn.webp" alt="FeriCoVPN Telegram bot screenshot" loading="lazy" style="object-position:50% 40%"></div><div class="project-body"><h3>FeriCoVPN</h3><p data-en="Telegram VPN sales bot where users browse plans, buy subscriptions, pay online and manage their own service." data-fa="ربات تلگرامی فروش VPN که کاربران از طریق آن می‌توانند پلن‌ها را ببینند، اشتراک بخرند، پرداخت کنند و سرویس خودشان را مدیریت کنند.">Telegram VPN sales bot where users browse plans, buy subscriptions, pay online and manage their own service.</p><div class="tags"><span class="tag">Telegram Bot</span><span class="tag">Payments</span><span class="tag">Automation</span></div></div></article>
+<article class="project card tilt rv"><div class="project-top"><span class="project-num">03</span><span>2025 — NOW</span></div><div class="media"><img class="shot" src="images/shieldup.webp" alt="ShieldUp platform screenshot" loading="lazy" style="object-position:50% 30%"></div><div class="project-body"><h3>ShieldUp</h3><p data-en="Web platform developed at APA — Isfahan University of Technology." data-fa="پلتفرم وب توسعه‌یافته در مرکز آپا دانشگاه صنعتی اصفهان.">Web platform developed at APA — Isfahan University of Technology.</p><div class="tags"><span class="tag">Django</span><span class="tag">React</span><span class="tag">Docker</span></div><div class="links"><a class="link" href="https://shieldup.ir" target="_blank" rel="noopener">shieldup.ir ↗</a></div></div></article>
+<article class="project card tilt rv" style="--d:.08s"><div class="project-top"><span class="project-num">04</span><span>2025</span></div><div class="shots phones"><div class="media"><img class="shot" src="images/kharjino-home.webp" alt="Kharjino app — home" loading="lazy"></div><div class="media"><img class="shot" src="images/kharjino-stats.webp" alt="Kharjino app — statistics" loading="lazy"></div><div class="media"><img class="shot" src="images/kharjino-goals.webp" alt="Kharjino app — savings goals" loading="lazy"></div></div><div class="project-body"><h3>Kharjino</h3><p data-en="Persian daily expense tracker for Android, published on Cafe Bazaar." data-fa="اپلیکیشن ثبت هزینه روزانه فارسی برای اندروید، منتشرشده در کافه‌بازار.">Persian daily expense tracker for Android, published on Cafe Bazaar.</p><div class="tags"><span class="tag">Kotlin</span><span class="tag">Compose</span><span class="tag">Room</span></div><div class="links"><a class="link" href="https://cafebazaar.ir/app/ir.kharjino.app" target="_blank" rel="noopener">Cafe Bazaar ↗</a></div></div></article>
+<article class="project card tilt rv"><div class="project-top"><span class="project-num">05</span><span>2024 — 2025</span></div><div class="shots"><div class="media"><img class="shot" src="images/alireza-resume.webp" alt="Alireza Mehraban resume website" loading="lazy" style="object-position:50% 30%"></div><div class="media"><img class="shot" src="images/sara-resume.webp" alt="Sara Moslemi resume website" loading="lazy" style="object-position:50% 30%"></div><div class="media"><img class="shot" src="images/aghasi-resume.webp" alt="Aghasi resume website" loading="lazy" style="object-position:50% 30%"></div></div><div class="project-body"><h3>Resume Websites</h3><p data-en="Bilingual personal resume and portfolio websites for freelance clients." data-fa="سایت‌های رزومه و پورتفولیو شخصی دوزبانه برای مشتریان فریلنس.">Bilingual personal resume and portfolio websites for freelance clients.</p><div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span></div><div class="links"><a class="link" href="https://alirezamehraban.ir" target="_blank" rel="noopener">alirezamehraban.ir ↗</a><a class="link" href="https://sara-moslemi.resumio.ir" target="_blank" rel="noopener">sara-moslemi.resumio.ir ↗</a><a class="link" href="https://aghasi.resumio.ir" target="_blank" rel="noopener">aghasi.resumio.ir ↗</a></div></div></article>
+<article class="project card tilt rv" style="--d:.08s"><div class="project-top"><span class="project-num">06</span><span>2024</span></div><div class="media"><img class="shot" src="images/daryaazma.webp" alt="Daryaazma website screenshot" loading="lazy" style="object-position:50% 0%"></div><div class="project-body"><h3>Daryaazma</h3><p data-en="Corporate website and analytics dashboard for water quality monitoring." data-fa="سایت شرکتی و داشبورد تحلیلی برای پایش کیفیت آب.">Corporate website and analytics dashboard for water quality monitoring.</p><div class="tags"><span class="tag">Django</span><span class="tag">React</span><span class="tag">IoT</span></div><div class="links"><a class="link" href="https://daryaazma.ir" target="_blank" rel="noopener">daryaazma.ir ↗</a></div></div></article>
+<article class="project card tilt rv" style="min-height:260px"><div class="project-top"><span class="project-num">07</span><span>2023</span></div><div class="project-body" style="padding-top:8px"><h3>Telegram Bot</h3><p data-en="Automated Telegram group management bot with persistent PostgreSQL storage." data-fa="ربات مدیریت خودکار گروه تلگرام با ذخیره‌سازی پایدار PostgreSQL.">Automated Telegram group management bot with persistent PostgreSQL storage.</p><div class="tags"><span class="tag">Python</span><span class="tag">Pyrogram</span><span class="tag">PostgreSQL</span></div><div class="links"><a class="link" href="https://github.com/hsalimi79/pyrogramTelegramBot" target="_blank" rel="noopener">GitHub ↗</a></div></div></article>
+<article class="project card tilt rv" style="min-height:260px;--d:.08s"><div class="project-top"><span class="project-num">08</span><span>2020</span></div><div class="project-body" style="padding-top:8px"><h3>IUT MAP</h3><p data-en="Flutter Android app featuring an interactive university map and campus events." data-fa="اپ اندروید Flutter با نقشه تعاملی دانشگاه و رویدادهای دانشگاهی.">Flutter Android app featuring an interactive university map and campus events.</p><div class="tags"><span class="tag">Flutter</span><span class="tag">Android</span></div></div></article>
 </div></div>
 </section>
 
 <section id="stack" class="section">
-<div class="container reveal">
-<div class="section-head"><div><span class="eyebrow">03 /</span><h2 class="section-title" data-en="Tech stack" data-fa="مهارت‌ها">Tech stack</h2></div><p class="section-note" data-en="The tools I use to move from idea to production." data-fa="ابزارهایی که برای رساندن ایده از مرحله توسعه تا محصول نهایی استفاده می‌کنم.">The tools I use to move from idea to production.</p></div>
-<div class="stack">
-<div class="stack-card"><span class="stack-num">01 / FRONTEND</span><h3 data-en="Interfaces" data-fa="رابط کاربری">Interfaces</h3><div class="chips"><span class="chip">React</span><span class="chip">JavaScript</span><span class="chip">HTML/CSS</span><span class="chip">MUI</span><span class="chip">Flutter</span></div></div>
-<div class="stack-card"><span class="stack-num">02 / BACKEND</span><h3 data-en="Systems & APIs" data-fa="سیستم و API">Systems & APIs</h3><div class="chips"><span class="chip">Python</span><span class="chip">Django</span><span class="chip">DRF</span><span class="chip">Flask</span><span class="chip">REST</span><span class="chip">Celery</span><span class="chip">Redis</span><span class="chip">JWT</span></div></div>
-<div class="stack-card"><span class="stack-num">03 / INFRASTRUCTURE</span><h3 data-en="Ship & operate" data-fa="استقرار و زیرساخت">Ship & operate</h3><div class="chips"><span class="chip">Docker</span><span class="chip">Linux</span><span class="chip">Nginx</span><span class="chip">Gunicorn</span><span class="chip">Git</span><span class="chip">PostgreSQL</span><span class="chip">Postman</span><span class="chip">Telegram Bot API</span></div></div>
+<div class="container">
+<div class="section-head rv"><div><span class="eyebrow">03 / STACK</span><h2 class="section-title" data-en="Tech stack" data-fa="مهارت‌ها">Tech stack</h2></div><p class="section-note" data-en="The tools I use to move from idea to production." data-fa="ابزارهایی که برای رساندن ایده از مرحله توسعه تا محصول نهایی استفاده می‌کنم.">The tools I use to move from idea to production.</p></div>
+<div class="stack-wrap">
+  <div class="sphere rv" id="sphere" aria-hidden="true"></div>
+  <div class="stack">
+    <div class="stack-card card tilt rv"><span class="stack-num">01 / FRONTEND</span><h3 data-en="Interfaces" data-fa="رابط کاربری">Interfaces</h3><div class="chips"><span class="chip">React</span><span class="chip">JavaScript</span><span class="chip">HTML/CSS</span><span class="chip">MUI</span><span class="chip">Flutter</span></div></div>
+    <div class="stack-card card tilt rv" style="--d:.08s"><span class="stack-num">02 / BACKEND</span><h3 data-en="Systems & APIs" data-fa="سیستم و API">Systems & APIs</h3><div class="chips"><span class="chip">Python</span><span class="chip">Django</span><span class="chip">DRF</span><span class="chip">Flask</span><span class="chip">REST</span><span class="chip">Celery</span><span class="chip">Redis</span><span class="chip">JWT</span></div></div>
+    <div class="stack-card card tilt rv" style="--d:.16s"><span class="stack-num">03 / INFRASTRUCTURE</span><h3 data-en="Ship & operate" data-fa="استقرار و زیرساخت">Ship & operate</h3><div class="chips"><span class="chip">Docker</span><span class="chip">Linux</span><span class="chip">Nginx</span><span class="chip">Gunicorn</span><span class="chip">Git</span><span class="chip">PostgreSQL</span><span class="chip">Postman</span><span class="chip">Telegram Bot API</span></div></div>
+  </div>
 </div>
 </div>
 </section>
 
 <section id="contact" class="section">
-<div class="container reveal contact">
-<div><span class="eyebrow">04 / CONTACT</span><h2 data-en="Let’s build<br><span class='gradient'>something useful.</span>" data-fa="بیایید یک<br><span class='gradient'>چیز کاربردی بسازیم.</span>">Let’s build<br><span class="gradient">something useful.</span></h2><p data-en="Have a product idea, a web platform to build, or a problem worth solving? Send me a message." data-fa="ایده محصول، پروژه وب یا مسئله‌ای برای حل کردن دارید؟ برایم پیام بفرستید.">Have a product idea, a web platform to build, or a problem worth solving? Send me a message.</p></div>
-<div class="contact-links"><a href="mailto:hossein.salimi799@gmail.com"><span>Email</span><b>↗</b></a><a href="https://github.com/hsalimi79" target="_blank"><span>GitHub / hsalimi79</span><b>↗</b></a><a href="https://linkedin.com/in/hossein-salimi79" target="_blank"><span>LinkedIn</span><b>↗</b></a><a href="tel:+989911881834"><span dir="ltr" style="unicode-bidi:isolate">0991 188 1834</span><b>↗</b></a></div>
+<div class="container contact">
+<div class="rv"><span class="eyebrow">04 / CONTACT</span><h2 data-en="Let’s build<br><span class='gradient'>something useful.</span>" data-fa="بیایید یک<br><span class='gradient'>چیز کاربردی بسازیم.</span>">Let’s build<br><span class="gradient">something useful.</span></h2><p data-en="Have a product idea, a web platform to build, or a problem worth solving? Send me a message." data-fa="ایده محصول، پروژه وب یا مسئله‌ای برای حل کردن دارید؟ برایم پیام بفرستید.">Have a product idea, a web platform to build, or a problem worth solving? Send me a message.</p></div>
+<div class="contact-links rv" style="--d:.1s"><a href="mailto:hossein.salimi799@gmail.com"><span>Email</span><b>↗</b></a><a href="https://github.com/hsalimi79" target="_blank" rel="noopener"><span>GitHub / hsalimi79</span><b>↗</b></a><a href="https://linkedin.com/in/hossein-salimi79" target="_blank" rel="noopener"><span>LinkedIn</span><b>↗</b></a><a href="tel:+989911881834"><span dir="ltr" style="unicode-bidi:isolate">0991 188 1834</span><b>↗</b></a></div>
 </div>
 </section>
 </main>
@@ -301,44 +357,219 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-2;bac
 
 <script>
 const $=s=>document.querySelector(s), $$=s=>document.querySelectorAll(s);
+const reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+const fine=matchMedia('(pointer:fine)').matches;
 let fa=false;
+try{fa=localStorage.getItem('portfolio-lang')==='fa'}catch(e){}
 function applyLang(){
   document.body.classList.toggle('fa',fa);
   document.documentElement.lang=fa?'fa':'en';
   document.documentElement.dir=fa?'rtl':'ltr';
   $('#lang').textContent=fa?'EN':'FA';
-  $$('[data-en]').forEach(el=>{
-    const v=fa?el.dataset.fa:el.dataset.en;
-    if(v!==undefined) el.innerHTML=v;
-  });
-  localStorage.setItem('portfolio-lang',fa?'fa':'en');
+  $$('[data-en]').forEach(el=>{const v=fa?el.dataset.fa:el.dataset.en;if(v!==undefined)el.innerHTML=v});
+  try{localStorage.setItem('portfolio-lang',fa?'fa':'en')}catch(e){}
 }
 $('#lang').onclick=()=>{fa=!fa;applyLang()};
-if(localStorage.getItem('portfolio-lang')==='fa')fa=true;
 applyLang();
 
-const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('show')}),{threshold:.12});
-$$('.reveal').forEach(x=>obs.observe(x));
-window.addEventListener('scroll',()=>$('#topbar').classList.toggle('scrolled',scrollY>20));
+/* reveal + counters */
+function countUp(el){
+  const to=+el.dataset.count,suf=el.dataset.suffix||'';
+  if(reduce){el.textContent=to+suf;return}
+  const t0=performance.now();
+  (function f(t){const k=Math.min((t-t0)/1100,1),e=1-Math.pow(1-k,4);el.textContent=Math.round(to*e)+suf;if(k<1)requestAnimationFrame(f)})(t0);
+}
+const obs=new IntersectionObserver(es=>es.forEach(e=>{
+  if(!e.isIntersecting)return;
+  e.target.classList.add('show');obs.unobserve(e.target);
+  const c=e.target.querySelector('[data-count]');if(c)countUp(c);
+}),{threshold:.12,rootMargin:'0px 0px -40px 0px'});
+$$('.rv').forEach(x=>obs.observe(x));
 
-const c=$('#bg'),ctx=c.getContext('2d');let W,H,pts=[];
-function resize(){W=c.width=innerWidth*devicePixelRatio;H=c.height=innerHeight*devicePixelRatio;c.style.width=innerWidth+'px';c.style.height=innerHeight+'px';pts=Array.from({length:45},()=>({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.18*devicePixelRatio,vy:(Math.random()-.5)*.18*devicePixelRatio,r:(Math.random()*1.4+.4)*devicePixelRatio}))}
-resize();addEventListener('resize',resize);
-function draw(){ctx.clearRect(0,0,W,H);for(const p of pts){p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>W)p.vx*=-1;if(p.y<0||p.y>H)p.vy*=-1;ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,7);ctx.fillStyle='rgba(155,124,255,.35)';ctx.fill()}requestAnimationFrame(draw)}draw();
+/* scroll: progress bar, topbar, timeline fill, active nav */
+const tl=$('#timeline');
+function onScroll(){
+  const max=document.documentElement.scrollHeight-innerHeight;
+  $('#progress').style.transform=`scaleX(${max>0?scrollY/max:0})`;
+  $('#topbar').classList.toggle('scrolled',scrollY>20);
+  const r=tl.getBoundingClientRect();
+  tl.style.setProperty('--p',Math.max(0,Math.min(1,(innerHeight*.6-r.top)/r.height)));
+}
+addEventListener('scroll',onScroll,{passive:true});onScroll();
+const links=[...$$('.navlinks a')];
+const secObs=new IntersectionObserver(es=>es.forEach(e=>{
+  if(e.isIntersecting)links.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+e.target.id));
+}),{rootMargin:'-45% 0px -50% 0px'});
+$$('main section[id]').forEach(s=>secObs.observe(s));
 
-// Premium pointer light + subtle 3D card response
-const glow=document.getElementById('cursorGlow');
-if(matchMedia('(pointer:fine)').matches){
-  addEventListener('pointermove',e=>{
-    glow.style.left=e.clientX+'px'; glow.style.top=e.clientY+'px';
-  });
-  document.querySelectorAll('.project,.stack-card,.stat').forEach(card=>{
+/* pointer effects */
+const glow=$('#cursorGlow');
+if(fine&&!reduce){
+  addEventListener('pointermove',e=>{glow.style.left=e.clientX+'px';glow.style.top=e.clientY+'px'},{passive:true});
+  // 3D tilt + spotlight
+  $$('.tilt').forEach(card=>{
+    const big=card.classList.contains('project')||card.classList.contains('about-big');
+    const amp=big?5:8;
     card.addEventListener('pointermove',e=>{
-      const r=card.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;
-      card.style.transform=`perspective(900px) rotateX(${y*-2.2}deg) rotateY(${x*2.2}deg) translateY(-7px)`;
+      const r=card.getBoundingClientRect(),x=(e.clientX-r.left)/r.width,y=(e.clientY-r.top)/r.height;
+      card.classList.add('tilting');
+      card.style.setProperty('--ry',((x-.5)*amp).toFixed(2)+'deg');
+      card.style.setProperty('--rx',((.5-y)*amp).toFixed(2)+'deg');
+      card.style.setProperty('--mx',(x*100)+'%');card.style.setProperty('--my',(y*100)+'%');
     });
-    card.addEventListener('pointerleave',()=>card.style.transform='');
+    card.addEventListener('pointerleave',()=>{card.classList.remove('tilting');card.style.setProperty('--rx','0deg');card.style.setProperty('--ry','0deg')});
   });
+  // magnetic buttons
+  $$('.magnetic').forEach(b=>{
+    b.addEventListener('pointermove',e=>{const r=b.getBoundingClientRect();b.style.transform=`translate(${(e.clientX-r.left-r.width/2)*.22}px,${(e.clientY-r.top-r.height/2)*.35}px)`});
+    b.addEventListener('pointerleave',()=>b.style.transform='');
+  });
+}
+
+/* hero floating glass: mouse parallax in 3D */
+const stage=$('#stage');
+if(stage&&fine&&!reduce){
+  const fls=[...stage.querySelectorAll('.fl')];
+  let tx=0,ty=0,cx=0,cy=0;
+  addEventListener('pointermove',e=>{tx=e.clientX/innerWidth-.5;ty=e.clientY/innerHeight-.5},{passive:true});
+  (function loop(){
+    cx+=(tx-cx)*.07;cy+=(ty-cy)*.07;
+    fls.forEach(f=>{const d=+f.dataset.depth;f.style.transform=`translate3d(${cx*d*1.4}px,${cy*d*1.1}px,${d}px) rotateY(${cx*14}deg) rotateX(${-cy*14}deg)`});
+    requestAnimationFrame(loop);
+  })();
+}
+
+/* 3D skill sphere */
+(function(){
+  const el=$('#sphere');if(!el)return;
+  const words=['Python','Django','React','Docker','PostgreSQL','Linux','REST','Celery','Redis','Nginx','Flutter','Kotlin','Compose','JWT','DRF','Flask','Git','JavaScript','Telegram API','Gunicorn','MUI','HTML/CSS','Postman','Room','CI/CD','Automation'];
+  const n=words.length,pts=[];
+  const nodes=words.map((w,i)=>{
+    const s=document.createElement('span');s.textContent=w;el.appendChild(s);
+    const phi=Math.acos(1-2*(i+.5)/n),th=Math.PI*(1+Math.sqrt(5))*(i+.5);
+    pts.push([Math.cos(th)*Math.sin(phi),Math.sin(th)*Math.sin(phi),Math.cos(phi)]);return s;
+  });
+  let ax=.0,ay=0,vx=.0022,vy=.0035,drag=false,lx=0,ly=0,R=200,hover=false,vis=true;
+  const size=()=>R=el.clientWidth*.4;size();addEventListener('resize',size);
+  el.addEventListener('pointerdown',e=>{drag=true;lx=e.clientX;ly=e.clientY;el.setPointerCapture(e.pointerId)});
+  el.addEventListener('pointermove',e=>{if(!drag)return;vy=(e.clientX-lx)*.0006*(document.dir==='rtl'?1:1);vx=(e.clientY-ly)*.0006;ay+=(e.clientX-lx)*.006;ax+=(e.clientY-ly)*.006;lx=e.clientX;ly=e.clientY});
+  el.addEventListener('pointerup',()=>drag=false);el.addEventListener('pointercancel',()=>drag=false);
+  el.addEventListener('pointerenter',()=>hover=true);el.addEventListener('pointerleave',()=>hover=false);
+  new IntersectionObserver(es=>vis=es[0].isIntersecting).observe(el);
+  function render(){
+    const sx=Math.sin(ax),cxn=Math.cos(ax),sy=Math.sin(ay),cy=Math.cos(ay);
+    pts.forEach((p,i)=>{
+      let x=p[0]*cy+p[2]*sy,z=-p[0]*sy+p[2]*cy,y=p[1]*cxn-z*sx;z=p[1]*sx+z*cxn;
+      const sc=.62+.5*(z+1)/2;
+      nodes[i].style.transform=`translate(-50%,-50%) translate3d(${x*R}px,${y*R}px,0) scale(${sc})`;
+      nodes[i].style.opacity=(.22+.78*(z+1)/2).toFixed(2);
+      nodes[i].style.zIndex=Math.round((z+1)*10);
+      nodes[i].style.color=z>.35?'#fff':'#9fa0b4';
+    });
+  }
+  render();
+  if(reduce)return;
+  (function loop(){
+    if(vis){if(!drag){ay+=hover?vy*.25:.0035;ax+=hover?vx*.25:.0012;vx*=.97;vy*=.97}render()}
+    requestAnimationFrame(loop);
+  })();
+})();
+</script>
+
+<script type="module">
+import * as THREE from 'three';
+import {RoomEnvironment} from 'three/addons/environments/RoomEnvironment.js';
+
+const canvas=document.getElementById('bg');
+const reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+const small=()=>innerWidth<1000;
+
+let renderer;
+try{renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:true,powerPreference:'high-performance'})}
+catch(e){renderer=null}
+
+if(renderer){
+  renderer.setPixelRatio(Math.min(devicePixelRatio,2));
+  renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.15;
+  const scene=new THREE.Scene();
+  const pm=new THREE.PMREMGenerator(renderer);
+  scene.environment=pm.fromScene(new RoomEnvironment(),.04).texture;
+  scene.environmentIntensity=.55;
+  const camera=new THREE.PerspectiveCamera(42,1,.1,100);camera.position.z=7.5;
+
+  // lights
+  const L=(c,i,x,y,z)=>{const l=new THREE.PointLight(c,i,0,2);l.position.set(x,y,z);scene.add(l);return l};
+  const l1=L(0xa98cff,90,4,3,4),l2=L(0x62e7d0,70,-4,-2,3),l3=L(0xbdf45a,45,0,4,-3);
+
+  const hero=new THREE.Group();scene.add(hero);
+  const knot=new THREE.Mesh(
+    new THREE.TorusKnotGeometry(1,.3,320,48,2,3),
+    new THREE.MeshPhysicalMaterial({color:0x14102a,metalness:.9,roughness:.18,clearcoat:1,clearcoatRoughness:.08,iridescence:1,iridescenceIOR:1.8,iridescenceThicknessRange:[200,700]})
+  );
+  hero.add(knot);
+  const wire=new THREE.Mesh(new THREE.IcosahedronGeometry(2.05,2),new THREE.MeshBasicMaterial({color:0xa98cff,wireframe:true,transparent:true,opacity:.1}));
+  hero.add(wire);
+  const ring1=new THREE.Mesh(new THREE.TorusGeometry(2.55,.008,8,200),new THREE.MeshBasicMaterial({color:0x62e7d0,transparent:true,opacity:.55}));
+  const ring2=ring1.clone();ring2.scale.setScalar(1.18);ring2.material=new THREE.MeshBasicMaterial({color:0xbdf45a,transparent:true,opacity:.35});
+  ring1.rotation.x=1.2;ring2.rotation.set(.4,.9,0);hero.add(ring1,ring2);
+
+  // particle field
+  const N=small()?700:1800,pos=new Float32Array(N*3),col=new Float32Array(N*3);
+  const pal=[new THREE.Color(0xa98cff),new THREE.Color(0x62e7d0),new THREE.Color(0xbdf45a),new THREE.Color(0xffffff)];
+  for(let i=0;i<N;i++){
+    const r=4+Math.random()*16,t=Math.random()*Math.PI*2,p=Math.acos(2*Math.random()-1);
+    pos[i*3]=r*Math.sin(p)*Math.cos(t);pos[i*3+1]=(Math.random()-.5)*30;pos[i*3+2]=r*Math.cos(p)-4;
+    const c=pal[(Math.random()*pal.length)|0];col.set([c.r,c.g,c.b],i*3);
+  }
+  const pg=new THREE.BufferGeometry();pg.setAttribute('position',new THREE.BufferAttribute(pos,3));pg.setAttribute('color',new THREE.BufferAttribute(col,3));
+  const dust=new THREE.Points(pg,new THREE.PointsMaterial({size:.035,vertexColors:true,transparent:true,opacity:.75,blending:THREE.AdditiveBlending,depthWrite:false,sizeAttenuation:true}));
+  scene.add(dust);
+
+  let W=0,H=0;
+  function resize(){
+    W=innerWidth;H=innerHeight;renderer.setSize(W,H,false);
+    camera.aspect=W/H;camera.updateProjectionMatrix();
+  }
+  resize();addEventListener('resize',resize);
+
+  let mx=0,my=0,smx=0,smy=0,sp=0,scrollT=0;
+  addEventListener('pointermove',e=>{mx=e.clientX/W-.5;my=e.clientY/H-.5},{passive:true});
+  addEventListener('scroll',()=>{scrollT=scrollY},{passive:true});
+  let running=true;document.addEventListener('visibilitychange',()=>{running=!document.hidden;if(running)tick()});
+
+  const clock=new THREE.Clock();
+  function frame(){
+    const t=clock.getElapsedTime();
+    smx+=(mx-smx)*.05;smy+=(my-smy)*.05;
+    sp+=(scrollT-sp)*.08;
+    const p=Math.min(sp/H,1.6);                       // 0 at top, ~1 after hero
+    const visH=2*Math.tan(camera.fov*Math.PI/360)*camera.position.z,visW=visH*camera.aspect;
+    const baseX=small()?0:visW*.23;
+    const k=Math.min(p,1);
+    hero.position.x=baseX*(1-k*2.1);                  // swings to the opposite side as you scroll
+    hero.position.y=(small()?1.7:0)-p*1.6+Math.sin(t*.8)*.12;
+    hero.position.z=-k*3.2;
+    hero.scale.setScalar((small()?.62:1)*(1-.28*k));
+    hero.rotation.y=t*.18+smx*1.1+p*2.2;
+    hero.rotation.x=smy*.7+p*.8+Math.sin(t*.4)*.08;
+    knot.rotation.z=t*.12;
+    wire.rotation.y=-t*.1;wire.rotation.x=t*.07;
+    ring1.rotation.z=t*.25;ring2.rotation.z=-t*.18;
+    dust.rotation.y=t*.012+smx*.15;dust.position.y=sp*.0035;
+    l1.position.x=4*Math.cos(t*.5);l1.position.z=3+2*Math.sin(t*.5);
+    l2.position.y=-2+1.5*Math.sin(t*.6);
+    canvas.style.opacity=small()?String(.55-.3*k):String(1-.55*k);
+    renderer.render(scene,camera);
+  }
+  function tick(){if(!running)return;frame();requestAnimationFrame(tick)}
+  if(reduce){frame()}else{tick()}
+  if(reduce)addEventListener('resize',frame);
+}else{
+  // graceful fallback: simple 2D particle drift
+  const ctx=canvas.getContext('2d');let W,H,pts=[];
+  const rs=()=>{W=canvas.width=innerWidth;H=canvas.height=innerHeight;pts=Array.from({length:60},()=>({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.3,vy:(Math.random()-.5)*.3}))};
+  rs();addEventListener('resize',rs);
+  (function d(){ctx.clearRect(0,0,W,H);ctx.fillStyle='rgba(169,140,255,.4)';for(const p of pts){p.x=(p.x+p.vx+W)%W;p.y=(p.y+p.vy+H)%H;ctx.fillRect(p.x,p.y,1.6,1.6)}requestAnimationFrame(d)})();
 }
 </script>
 </body>
