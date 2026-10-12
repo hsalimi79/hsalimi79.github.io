@@ -67,7 +67,7 @@ button{font:inherit;color:inherit}
 .kicker i{width:7px;height:7px;border-radius:50%;background:var(--accent2);box-shadow:0 0 0 0 var(--accent2);animation:ping 2s infinite}
 @keyframes ping{70%{box-shadow:0 0 0 9px rgba(189,244,90,0)}100%{box-shadow:0 0 0 0 rgba(189,244,90,0)}}
 .hero h1{font-family:var(--display);font-size:clamp(60px,9.4vw,138px);line-height:.88;letter-spacing:-.07em;font-weight:700}
-.fa .hero h1{letter-spacing:-.04em;line-height:1.08}
+.fa .hero h1{letter-spacing:-.04em;line-height:1.08;direction:ltr;text-align:right}
 .gradient{background:linear-gradient(100deg,#fff 5%,var(--accent) 45%,var(--cyan) 75%,var(--accent2));background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shimmer 7s ease-in-out infinite alternate}
 @keyframes shimmer{to{background-position:100% 0}}
 .hero-copy{max-width:600px;color:var(--muted);font-size:18.5px;line-height:1.85;margin-top:30px}
@@ -91,7 +91,7 @@ button{font:inherit;color:inherit}
 .fl-2{top:30%;inset-inline-end:-2%}
 .fl-3{bottom:26%;inset-inline-start:-6%}
 .fl-4{bottom:6%;inset-inline-end:6%}
-.fl-code{top:56%;inset-inline-end:-4%;display:block;padding:14px 18px;line-height:1.7;color:#aab}
+.fl-code{direction:ltr;text-align:left;top:56%;inset-inline-end:-4%;display:block;padding:14px 18px;line-height:1.7;color:#aab}
 .fl-code span{color:var(--accent)}.fl-code em{color:var(--accent2);font-style:normal}
 .bob{animation:bob 6s ease-in-out infinite}
 .bob.d2{animation-delay:-2s}.bob.d3{animation-delay:-4s}
@@ -544,7 +544,7 @@ if(renderer){
     sp+=(scrollT-sp)*.08;
     const p=Math.min(sp/H,1.6);                       // 0 at top, ~1 after hero
     const visH=2*Math.tan(camera.fov*Math.PI/360)*camera.position.z,visW=visH*camera.aspect;
-    const baseX=small()?0:visW*.23;
+    const baseX=small()?0:visW*.23*(document.dir==='rtl'?-1:1);
     const k=Math.min(p,1);
     hero.position.x=baseX*(1-k*2.1);                  // swings to the opposite side as you scroll
     hero.position.y=(small()?1.7:0)-p*1.6+Math.sin(t*.8)*.12;
