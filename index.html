@@ -91,12 +91,13 @@ button{font:inherit;color:inherit}
 .screen .bar i:nth-child(1){background:#ff6b6b}.screen .bar i:nth-child(2){background:#ffd166}.screen .bar i:nth-child(3){background:var(--accent2)}
 .screen .bar span{margin-inline-start:8px}
 .screen img{display:block;width:100%;height:calc(100% - 30px);object-fit:cover}
-.sc-1{width:74%;aspect-ratio:16/10.4;top:2%;inset-inline-start:0;transform:translateZ(0)}
-.sc-2{width:68%;aspect-ratio:16/10.4;top:34%;inset-inline-end:0;transform:translateZ(110px)}
-.sc-3{width:30%;aspect-ratio:9/17;bottom:0;inset-inline-start:8%;transform:translateZ(220px)}
-.sc-1{animation:bob 7s ease-in-out infinite}.sc-2{animation:bob 7s ease-in-out -2.5s infinite}.sc-3{animation:bob 7s ease-in-out -5s infinite}
 @keyframes bob{50%{translate:0 -12px}}
 [dir=rtl] .deck{--ry:18deg}
+.term{inset-inline:0;top:12%;transform:translateZ(60px);background:rgba(12,12,18,.62);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);animation:bob 7s ease-in-out infinite;direction:ltr;text-align:left}
+.term pre{font-family:var(--mono);font-size:13.5px;line-height:1.85;color:#c9cad6;padding:20px 22px 24px;min-height:330px;white-space:pre-wrap;word-break:break-word}
+.term .p{color:var(--accent2)}.term .ok{color:var(--cyan)}.term .dim{color:#6c6e7b}.term .hl{color:var(--accent)}
+.term .cur{display:inline-block;width:8px;height:15px;background:var(--accent2);vertical-align:-2px;margin-left:2px;animation:blink 1s steps(2) infinite}
+@keyframes blink{50%{opacity:0}}
 
 /* marquee */
 .marquee{border-block:1px solid var(--line);overflow:hidden;white-space:nowrap;color:#6c6e7b;font-family:var(--mono);font-size:13px;padding:18px 0;background:rgba(5,5,7,.6);backdrop-filter:blur(8px);direction:ltr}
@@ -284,9 +285,7 @@ button{font:inherit;color:inherit}
   </div>
   <div class="stage" id="stage" aria-hidden="true">
     <div class="deck" id="deck">
-      <div class="screen sc-1"><div class="bar"><i></i><i></i><i></i><span>shieldup.ir</span></div><img src="images/shieldup.webp" alt="" style="object-position:50% 30%"></div>
-      <div class="screen sc-2"><div class="bar"><i></i><i></i><i></i><span>salehabad_bot</span></div><img src="images/salehabad.webp" alt="" style="object-position:50% 25%"></div>
-      <div class="screen sc-3"><div class="bar"><i></i><i></i><i></i><span>kharjino</span></div><img src="images/kharjino-home.webp" alt="" style="object-position:top"></div>
+      <div class="screen term"><div class="bar"><i></i><i></i><i></i><span>hossein@dev: ~/projects</span></div><pre id="termOut" aria-hidden="true"></pre></div>
     </div>
   </div>
   <div class="scroll-cue"><i></i><span data-en="SCROLL" data-fa="اسکرول">SCROLL</span></div>
@@ -440,6 +439,42 @@ if(deck&&fine&&!reduce){
     requestAnimationFrame(loop);
   })();
 }
+
+/* live terminal */
+(function(){
+  const out=$('#termOut');if(!out)return;
+  const script=[
+    ['cmd','docker compose up -d'],
+    ['out','<span class="ok">✔</span> postgres      <span class="dim">started</span>'],
+    ['out','<span class="ok">✔</span> django-api    <span class="dim">started</span>'],
+    ['out','<span class="ok">✔</span> react-web     <span class="dim">started</span>'],
+    ['cmd','python manage.py test'],
+    ['out','<span class="dim">Found all tests…</span>'],
+    ['out','<span class="ok">OK</span> — all checks passed'],
+    ['cmd','git push origin main'],
+    ['out','<span class="hl">→</span> deployed <span class="ok">✔</span>'],
+  ];
+  const prompt='<span class="p">❯</span> ';
+  if(reduce){out.innerHTML=script.map(l=>l[0]==='cmd'?prompt+l[1]:l[1]).join('\n');return}
+  let vis=true;new IntersectionObserver(e=>vis=e[0].isIntersecting).observe(out);
+  const sleep=ms=>new Promise(r=>setTimeout(r,ms));
+  const esc=t=>t.replace(/&/g,'&amp;').replace(/</g,'&lt;');
+  async function run(){
+    for(;;){
+      let html='';
+      for(const [k,t] of script){
+        while(!vis)await sleep(400);
+        if(k==='cmd'){
+          for(let i=1;i<=t.length;i++){out.innerHTML=html+prompt+esc(t.slice(0,i))+'<span class="cur"></span>';await sleep(38+Math.random()*50)}
+          html+=prompt+esc(t)+'\n';out.innerHTML=html+'<span class="cur"></span>';await sleep(420);
+        }else{html+=t+'\n';out.innerHTML=html+'<span class="cur"></span>';await sleep(280)}
+      }
+      out.innerHTML=html+prompt+'<span class="cur"></span>';
+      await sleep(3600);
+    }
+  }
+  run();
+})();
 
 /* 3D skill sphere */
 (function(){
