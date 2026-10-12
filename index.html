@@ -546,7 +546,7 @@ if(renderer){
     const visH=2*Math.tan(camera.fov*Math.PI/360)*camera.position.z,visW=visH*camera.aspect;
     const baseX=small()?0:visW*.23*(document.dir==='rtl'?-1:1);
     const k=Math.min(p,1);
-    hero.position.x=document.dir==='rtl'&&!small()?baseX*(1+k*.5):baseX*(1-k*2.1);                  // swings to the opposite side as you scroll
+    hero.position.x=baseX*(1-k*2.1);                  // swings to the opposite side as you scroll
     hero.position.y=(small()?1.7:0)-p*1.6+Math.sin(t*.8)*.12;
     hero.position.z=-k*3.2;
     hero.scale.setScalar((small()?.62:1)*(1-.28*k));
