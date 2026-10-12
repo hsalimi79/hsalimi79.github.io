@@ -452,7 +452,7 @@ if(stage&&fine&&!reduce){
   let ax=.0,ay=0,vx=.0022,vy=.0035,drag=false,lx=0,ly=0,R=200,hover=false,vis=true;
   const size=()=>R=el.clientWidth*.4;size();addEventListener('resize',size);
   el.addEventListener('pointerdown',e=>{drag=true;lx=e.clientX;ly=e.clientY;el.setPointerCapture(e.pointerId)});
-  el.addEventListener('pointermove',e=>{if(!drag)return;vy=(e.clientX-lx)*.0006*(document.dir==='rtl'?1:1);vx=(e.clientY-ly)*.0006;ay+=(e.clientX-lx)*.006;ax+=(e.clientY-ly)*.006;lx=e.clientX;ly=e.clientY});
+  el.addEventListener('pointermove',e=>{if(!drag)return;vy=(e.clientX-lx)*.0006*(document.dir==='rtl'?1:1);vx=-(e.clientY-ly)*.0006;ay+=(e.clientX-lx)*.006;ax-=(e.clientY-ly)*.006;lx=e.clientX;ly=e.clientY});
   el.addEventListener('pointerup',()=>drag=false);el.addEventListener('pointercancel',()=>drag=false);
   el.addEventListener('pointerenter',()=>hover=true);el.addEventListener('pointerleave',()=>hover=false);
   new IntersectionObserver(es=>vis=es[0].isIntersecting).observe(el);
