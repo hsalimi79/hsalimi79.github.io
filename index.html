@@ -478,7 +478,6 @@ if(stage&&fine&&!reduce){
 
 <script type="module">
 import * as THREE from 'three';
-import {RoomEnvironment} from 'three/addons/environments/RoomEnvironment.js';
 
 const canvas=document.getElementById('bg');
 const reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
@@ -490,28 +489,8 @@ catch(e){renderer=null}
 
 if(renderer){
   renderer.setPixelRatio(Math.min(devicePixelRatio,2));
-  renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.15;
   const scene=new THREE.Scene();
-  const pm=new THREE.PMREMGenerator(renderer);
-  scene.environment=pm.fromScene(new RoomEnvironment(),.04).texture;
-  scene.environmentIntensity=.55;
   const camera=new THREE.PerspectiveCamera(42,1,.1,100);camera.position.z=7.5;
-
-  // lights
-  const L=(c,i,x,y,z)=>{const l=new THREE.PointLight(c,i,0,2);l.position.set(x,y,z);scene.add(l);return l};
-  const l1=L(0xa98cff,90,4,3,4),l2=L(0x62e7d0,70,-4,-2,3),l3=L(0xbdf45a,45,0,4,-3);
-
-  const hero=new THREE.Group();scene.add(hero);
-  const knot=new THREE.Mesh(
-    new THREE.TorusKnotGeometry(1,.3,320,48,2,3),
-    new THREE.MeshPhysicalMaterial({color:0x14102a,metalness:.9,roughness:.18,clearcoat:1,clearcoatRoughness:.08,iridescence:1,iridescenceIOR:1.8,iridescenceThicknessRange:[200,700],transparent:true})
-  );
-  hero.add(knot);
-  const wire=new THREE.Mesh(new THREE.IcosahedronGeometry(2.05,2),new THREE.MeshBasicMaterial({color:0xa98cff,wireframe:true,transparent:true,opacity:.1}));
-  hero.add(wire);
-  const ring1=new THREE.Mesh(new THREE.TorusGeometry(2.55,.008,8,200),new THREE.MeshBasicMaterial({color:0x62e7d0,transparent:true,opacity:.55}));
-  const ring2=ring1.clone();ring2.scale.setScalar(1.18);ring2.material=new THREE.MeshBasicMaterial({color:0xbdf45a,transparent:true,opacity:.35});
-  ring1.rotation.x=1.2;ring2.rotation.set(.4,.9,0);hero.add(ring1,ring2);
 
   // particle field
   const N=small()?700:1800,pos=new Float32Array(N*3),col=new Float32Array(N*3);
@@ -542,25 +521,7 @@ if(renderer){
     const t=clock.getElapsedTime();
     smx+=(mx-smx)*.05;smy+=(my-smy)*.05;
     sp+=(scrollT-sp)*.08;
-    const p=Math.min(sp/H,1.6);                       // 0 at top, ~1 after hero
-    const visH=2*Math.tan(camera.fov*Math.PI/360)*camera.position.z,visW=visH*camera.aspect;
-    const baseX=small()?0:visW*.23*(document.dir==='rtl'?-1:1);
-    const k=Math.min(p,1);
-    hero.position.x=baseX*(1-k*2.1);                  // swings to the opposite side as you scroll
-    hero.position.y=(small()?1.7:0)-p*1.6+Math.sin(t*.8)*.12;
-    hero.position.z=-k*3.2;
-    hero.scale.setScalar((small()?.62:1)*(1-.28*k));
-    hero.rotation.y=t*.18+smx*1.1+p*2.2;
-    hero.rotation.x=smy*.7+p*.8+Math.sin(t*.4)*.08;
-    knot.rotation.z=t*.12;
-    wire.rotation.y=-t*.1;wire.rotation.x=t*.07;
-    ring1.rotation.z=t*.25;ring2.rotation.z=-t*.18;
     dust.rotation.y=t*.012+smx*.15;dust.position.y=sp*.0035;
-    l1.position.x=4*Math.cos(t*.5);l1.position.z=3+2*Math.sin(t*.5);
-    l2.position.y=-2+1.5*Math.sin(t*.6);
-    const f=Math.max(0,1-k*1.15),f2=f*f*(3-2*f);       // knot fades out smoothly while it drifts away
-    knot.material.opacity=f2;wire.material.opacity=.1*f2;ring1.material.opacity=.55*f2;ring2.material.opacity=.35*f2;
-    hero.visible=f2>.003;
     canvas.style.opacity=small()?'.6':'1';
     renderer.render(scene,camera);
   }
