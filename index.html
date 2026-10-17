@@ -16,7 +16,7 @@
 </script>
 <style>
 :root{
-  --bg:#050507;--text:#f4f4f1;--muted:#8f91a0;--line:rgba(255,255,255,.085);
+  --bg:#050507;--text:#fafafa;--muted:#d0d2de;--line:rgba(255,255,255,.085);
   --accent:#a98cff;--accent2:#bdf45a;--cyan:#62e7d0;--max:1240px;
   --glass:rgba(255,255,255,.035);--glass-b:rgba(255,255,255,.1);
   --display:"Space Grotesk",Vazirmatn,sans-serif;--mono:"JetBrains Mono",ui-monospace,monospace;
@@ -24,7 +24,7 @@
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;scroll-padding-top:90px}
-body{background:var(--bg);color:var(--text);font-family:Inter,Vazirmatn,sans-serif;line-height:1.7;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+body{background:var(--bg);color:var(--text);font-family:Inter,Vazirmatn,sans-serif;font-weight:500;line-height:1.7;overflow-x:hidden;-webkit-font-smoothing:antialiased}
 body.fa{font-family:Vazirmatn,Inter,sans-serif}
 a{color:inherit;text-decoration:none}
 button{font:inherit;color:inherit}
@@ -131,7 +131,7 @@ button{font:inherit;color:inherit}
 .about-big em{color:var(--accent);font-style:normal}
 .stat{padding:26px;min-height:170px;display:flex;flex-direction:column;justify-content:space-between}
 .stat strong{font-family:var(--display);font-size:clamp(44px,5vw,64px);letter-spacing:-.06em;line-height:1;transform:translateZ(30px)}
-.stat span{color:var(--muted);font-size:12.5px}
+.stat span{color:var(--muted);font-size:13.5px;font-weight:600}
 .stat:nth-child(2) strong{color:var(--accent)}.stat:nth-child(3) strong{color:var(--cyan)}.stat:nth-child(4) strong{color:var(--accent2)}
 
 /* timeline */
@@ -143,39 +143,130 @@ button{font:inherit;color:inherit}
 [dir=rtl] .entry:before{transform:translateX(0)}
 .year{color:var(--muted);font-size:12px;font-family:var(--mono)}
 .entry-body{padding:30px 34px;margin-top:-14px}
-.entry h3{font-family:var(--display);font-size:27px;letter-spacing:-.035em;margin-bottom:6px;line-height:1.25}
-.org{color:var(--accent2);font-size:12.5px;margin-bottom:16px;font-family:var(--mono)}
-.entry ul{padding-inline-start:18px;color:var(--muted);font-size:14px;max-width:720px}
-.entry li{margin:6px 0}
-.entry li::marker{color:var(--accent)}
+.entry h3{font-family:var(--display);font-size:27px;font-weight:700;color:#fff;letter-spacing:-.035em;margin-bottom:10px;line-height:1.4}
+.org{color:var(--accent2);font-size:13px;font-weight:600;margin-bottom:18px;font-family:var(--mono)}
+.fa .org{font-family:Vazirmatn,Inter,sans-serif}
+.entry ul{padding-inline-start:20px;color:#f0f1f8;font-size:15px;font-weight:600;line-height:1.95;max-width:720px}
+.entry li{margin:10px 0;padding-inline-start:3px}
+.entry li::marker{color:#c6b1ff}
 .link{color:#e8e8ee;border-bottom:1px dashed #666;transition:color .2s,border-color .2s;width:fit-content}
 .link:hover{color:var(--accent2);border-color:var(--accent2)}
 
-/* projects bento */
-.projects{display:grid;grid-template-columns:repeat(12,1fr);gap:16px}
-.project{padding:22px 22px 28px;display:flex;flex-direction:column;grid-column:span 6;min-height:340px}
-.project.featured{grid-column:span 12;display:grid;grid-template-columns:1.25fr 1fr;column-gap:28px;align-items:center;min-height:0}
-.project.featured .project-top{grid-column:1/-1}
-.project.featured .shot{height:340px}
-.project.featured .project-body{padding:8px 8px 0}
-.project:nth-child(2){grid-column:span 7}.project:nth-child(3){grid-column:span 5}
-.project:nth-child(4){grid-column:span 5}.project:nth-child(5){grid-column:span 7}
-.project:nth-child(6){grid-column:span 7}.project:nth-child(7){grid-column:span 5}
-.project-top{display:flex;justify-content:space-between;color:var(--muted);font-family:var(--mono);font-size:11px;padding:2px 6px 14px}
-.project-num{color:var(--accent)}
-.media{border-radius:16px;overflow:hidden;border:1px solid var(--line);background:#0b0b10;transform:translateZ(36px);box-shadow:0 24px 50px rgba(0,0,0,.45)}
-.shot{display:block;width:100%;height:260px;object-fit:cover;transition:transform .8s var(--ease)}
-.project:hover .shot{transform:scale(1.05)}
-.shots{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;transform:translateZ(36px)}
-.shots .media{transform:none}
-.shots .shot{height:260px}
-.shots.phones .shot{height:340px;object-position:top}
-.project-body{padding:24px 8px 0;display:flex;flex-direction:column;flex:1;transform:translateZ(18px)}
-.project h3{font-family:var(--display);font-size:clamp(28px,3vw,38px);letter-spacing:-.05em;line-height:1.1;margin-bottom:10px}
-.project p{color:var(--muted);font-size:14px;line-height:1.8;max-width:560px}
-.tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:20px}
-.tag{border:1px solid var(--line);background:rgba(255,255,255,.02);padding:5px 11px;border-radius:99px;color:#bcbcc6;font-family:var(--mono);font-size:10.5px}
-.links{display:flex;flex-direction:column;gap:6px;margin-top:auto;padding-top:22px}
+/* selected work: stable typography, uncropped media and a full-size gallery */
+#projects .section-head{margin-bottom:32px}
+#projects .section-note{color:#d2d2df;font-weight:500;line-height:1.9}
+.work-toolbar{display:flex;align-items:center;justify-content:space-between;gap:20px;margin-bottom:28px;padding-bottom:24px;border-bottom:1px solid var(--line)}
+.work-filters{display:flex;flex-wrap:wrap;gap:8px}
+.work-filter{border:1px solid transparent;background:transparent;border-radius:99px;padding:10px 17px;min-height:44px;font-size:13px;font-weight:600;color:#dddde8;cursor:pointer;transition:background .2s,color .2s,border-color .2s}
+.work-filter:hover{color:#fff;background:var(--glass)}
+.work-filter[aria-pressed=true]{background:var(--accent2);border-color:var(--accent2);color:#11170a;font-weight:700}
+.work-count{font-family:var(--mono);font-size:11px;color:#c2c2d2;white-space:nowrap}
+.work-count b{color:var(--text);font-weight:500}
+.projects{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
+.project{--project-accent:var(--accent);min-width:0;overflow:hidden;display:flex;flex-direction:column;border:1px solid #272730;border-radius:24px;background:#101015;transition:border-color .25s,box-shadow .25s}
+.project:hover{border-color:color-mix(in srgb,var(--project-accent) 45%,#272730);box-shadow:0 16px 60px #0003}
+.projects .project[hidden]{display:none}
+.project.featured{grid-column:1/-1;display:grid;grid-template-columns:1.2fr 1fr;--project-accent:var(--cyan)}
+.project-visual{position:relative;display:grid;place-items:center;grid-template:minmax(0,1fr)/minmax(0,1fr);min-width:0;aspect-ratio:16/10;padding:38px 28px 28px;background:radial-gradient(ellipse at 50% 85%,color-mix(in srgb,var(--project-accent) 12%,transparent),transparent 70%),#15151d;border-bottom:1px solid var(--line);overflow:hidden}
+.featured .project-visual{aspect-ratio:auto;min-height:390px;border-bottom:0;border-inline-end:1px solid var(--line);padding:36px 26px}
+.project-visual>.media-button{height:100%;min-height:0}
+.project-visual>.media-button>.browser-frame{height:100%;display:grid;grid-template-rows:27px minmax(0,1fr)}
+.project-visual>.media-button .shot{height:100%;object-fit:contain}
+.visual-label{position:absolute;top:15px;inset-inline-start:20px;font:500 10px var(--mono);letter-spacing:.09em;color:#d2d2e1;display:flex;align-items:center;gap:7px;z-index:1}
+.visual-label:before{content:"";width:5px;height:5px;border-radius:50%;background:var(--project-accent)}
+.media-button{display:block;position:relative;width:100%;border:0;background:none;text-align:inherit;cursor:zoom-in;color:inherit}
+.browser-frame{overflow:hidden;border:1px solid #ffffff24;border-radius:10px;background:#090b10;box-shadow:0 18px 45px #0005;direction:ltr}
+.browser-chrome{height:27px;display:flex;align-items:center;gap:4px;padding:0 10px;background:#202029;border-bottom:1px solid #ffffff0c}
+.browser-chrome i{width:5px;height:5px;border-radius:50%;background:#6e6e7a}
+.browser-chrome span{font:9px var(--mono);color:#b6b6c6;margin-inline:auto}
+.shot{display:block;width:100%;height:auto;object-fit:contain}
+.zoom-hint{position:absolute;bottom:12px;inset-inline-end:12px;display:flex;gap:6px;align-items:center;border:1px solid #ffffff2e;background:#0b0b13e8;backdrop-filter:blur(10px);border-radius:8px;padding:6px 9px;color:#eeeef4;font-size:10px;box-shadow:0 4px 14px #0004}
+.work-icon{width:18px;height:18px;flex-shrink:0;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.project-body{padding:28px 30px 30px;display:flex;flex-direction:column;flex:1;min-width:0}
+.featured .project-body{padding:36px}
+.project-top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:17px;font:500 11px var(--mono);letter-spacing:.04em;color:#c5c5d5}
+.project-type{color:var(--project-accent);font:600 12px Inter,Vazirmatn,sans-serif;letter-spacing:0;display:flex;gap:7px;align-items:center}
+.project-num{opacity:.6;font:10px var(--mono)}
+.project h3{font-family:var(--display);font-size:clamp(25px,2.6vw,34px);font-weight:700;color:#fff;letter-spacing:-.04em;line-height:1.2;margin-bottom:14px;text-wrap:balance}
+.fa .project h3{font-family:Vazirmatn,sans-serif;letter-spacing:-.025em;line-height:1.55;font-weight:800}
+.project p{color:#ededf5;font-size:15px;font-weight:500;line-height:1.85;max-width:60ch}
+.fa .project p{line-height:2.05}
+.project-features{display:flex;flex-wrap:wrap;gap:6px 16px;margin-top:20px;color:#f4f4fa;font-size:12px;font-weight:600;list-style:none}
+.project-features li:before{content:"✓";color:var(--project-accent);margin-inline-end:6px}
+.tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:22px;direction:ltr;justify-content:flex-start}
+[dir=rtl] .tags{justify-content:flex-end}
+.tag{border:1px solid #ffffff26;background:#ffffff09;padding:5px 10px;border-radius:6px;color:#e0e0ed;font:500 11px/1.5 var(--mono)}
+.project .links{display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px;margin-top:auto;padding-top:24px;font-size:13px}
+.project .link{display:inline-flex;gap:8px;align-items:center;border:0;color:#fff;font-weight:600;min-height:34px}
+.project .link:hover{color:var(--project-accent)}
+.project .link .work-icon{width:15px;height:15px}
+.text-action{border:0;background:transparent;padding:0;cursor:pointer;font-size:13px;min-height:34px;color:var(--project-accent);display:inline-flex;align-items:center;gap:7px}
+.phones-preview{display:flex;align-items:center;justify-content:center;gap:16px;width:100%;padding-top:12px;direction:ltr}
+.phone-preview{width:25%;max-width:132px;padding:4px;border:1px solid #ffffff2e;border-radius:17px;background:#080a0d;box-shadow:0 16px 28px #0004;overflow:hidden}
+.phone-preview:nth-child(2){width:29%;transform:translateY(-8px)}
+.phone-preview img{border-radius:12px}
+.portfolio-preview{display:flex;align-items:center;gap:12px;direction:ltr;width:100%;padding-top:14px}
+.portfolio-preview .media-button{width:32%;transition:translate .25s}
+.portfolio-preview .media-button:nth-child(2){translate:0 -14px}
+.portfolio-preview .browser-chrome{height:20px;padding:0 6px}
+.portfolio-preview .browser-chrome i{width:4px;height:4px}
+.portfolio-preview .shot{aspect-ratio:3/2;object-fit:contain}
+.portfolio-preview .zoom-hint{bottom:6px;inset-inline-end:6px;padding:4px}
+.pipeline{width:100%;position:relative;direction:ltr;padding:36px 0 14px}
+.pipeline-track{display:flex;align-items:center;justify-content:center;gap:10px}
+.pipeline-node{display:flex;flex-direction:column;align-items:center;gap:12px;min-width:0;flex:1}
+.pipeline-symbol{display:grid;place-items:center;width:68px;height:68px;border:1px solid #ffffff29;border-radius:20px;background:#1e202c;box-shadow:0 12px 26px #0003;color:#73c9fc}
+.pipeline-symbol .work-icon{width:30px;height:30px}
+.pipeline-node:last-child .pipeline-symbol{color:#ffbd76}
+.pipeline-node.api .pipeline-symbol{color:var(--cyan);border-color:#62e7d04d;background:#17302f}
+.pipeline-node span{color:#d1d1e2;font:11px var(--mono)}
+.pipeline-line{height:1px;flex:.5;background:linear-gradient(90deg,#73c9fc66,#62e7d099);position:relative;margin-top:-28px}
+.pipeline-line:after{content:"";position:absolute;right:0;top:-3px;width:6px;height:6px;border-top:1px solid var(--cyan);border-right:1px solid var(--cyan);rotate:45deg}
+.workflow-note{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:35px;font-size:11px;color:#a9b9bb;text-align:center}
+.workflow-note:before{content:"";width:5px;height:5px;border-radius:50%;background:var(--cyan);box-shadow:0 0 10px #62e7d066}
+.bot-preview{width:100%;max-width:340px;border:1px solid #ffffff1c;background:#121923;border-radius:16px;box-shadow:0 20px 40px #0004;overflow:hidden;direction:ltr;margin-top:8px}
+.bot-bar{padding:12px 16px;display:flex;align-items:center;gap:10px;background:#1b2533;font:12px var(--display);color:#edf2fa}
+.bot-avatar{width:29px;height:29px;background:#53b0e126;border-radius:50%;display:grid;place-items:center;color:#80d3ff}
+.bot-bar small{display:block;font:9px var(--mono);color:#a3afc1;margin-top:3px}
+.bot-message{margin:16px;padding:14px;border-radius:3px 12px 12px 12px;background:#253145;font-size:12px;color:#dfe7f5;line-height:1.8}
+.bot-options{display:grid;grid-template-columns:1fr 1fr;gap:5px;margin-top:10px}
+.bot-options span{background:#35455e;border:1px solid #ffffff0c;padding:7px 4px;text-align:center;font-size:10px;border-radius:5px}
+.bot-options span:last-child{grid-column:1/-1;color:#9be7ce;background:#284f48}
+.compact-project .project-body{padding:28px 30px}
+.compact-project h3{font-size:26px}
+.compact-project .project-top{margin-bottom:20px}
+.archive-symbol{display:grid;place-items:center;width:38px;height:38px;border:1px solid #ffffff18;border-radius:11px;background:#ffffff06;color:var(--project-accent)}
+.work-empty{color:var(--muted);padding:30px 0}
+.project-lightbox{position:fixed;inset:0;width:min(1280px,calc(100% - 48px));max-width:none;max-height:calc(100dvh - 48px);margin:auto;padding:0;overflow:auto;border:1px solid #ffffff2b;border-radius:18px;background:#101015;color:var(--text);box-shadow:0 30px 100px #0009}
+.project-lightbox::backdrop{background:#030307df;backdrop-filter:blur(12px)}
+body:has(.project-lightbox[open]){overflow:hidden}
+.lightbox-head{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px 22px;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:1;background:#101015f5}
+.lightbox-title{font-family:var(--display);font-size:16px}
+.lightbox-close{display:grid;place-items:center;width:40px;height:40px;border-radius:50%;border:1px solid #ffffff24;background:#ffffff08;font-size:25px;cursor:pointer;flex-shrink:0}
+.lightbox-image-wrap{display:flex;justify-content:center;align-items:center;min-height:200px;padding:24px;background:#080a0f}
+.lightbox-image{display:block;max-width:100%;width:auto;height:auto;max-height:72dvh;object-fit:contain;border-radius:6px}
+.lightbox-footer{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 22px;color:#b8b8c9;font-size:12px}
+.lightbox-nav{display:flex;align-items:center;gap:12px;direction:ltr}
+.lightbox-nav button{width:40px;height:40px;border:1px solid #ffffff24;background:#ffffff08;border-radius:9px;cursor:pointer}
+.lightbox-nav button:disabled{opacity:.3;cursor:default}
+.lightbox-original{display:inline-flex;align-items:center;gap:7px;color:var(--cyan);min-height:40px}
+@media(min-width:1600px){.project-visual{padding:32px}}
+@media(max-width:760px){
+  .projects{gap:20px;grid-template-columns:1fr}
+  .project.featured{grid-template-columns:1fr;grid-column:auto}
+  .featured .project-visual{min-height:0;aspect-ratio:16/10;border-inline-end:0;border-bottom:1px solid var(--line);padding:38px 22px 24px}
+  .project-body,.featured .project-body{padding:24px}
+  .project h3{font-size:28px}
+  .project-visual{padding:32px 24px 24px}
+  .work-toolbar{align-items:flex-start;gap:14px;flex-direction:column}
+  .work-filter{padding:9px 14px;font-size:12px}
+  .work-count{align-self:flex-end;margin-top:-2px}
+  .phones-preview{gap:14px}
+  .project-lightbox{width:calc(100% - 20px);max-height:calc(100dvh - 24px);border-radius:14px}
+  .lightbox-head{padding:12px 14px}.lightbox-image-wrap{padding:12px}.lightbox-footer{padding:10px 14px}
+  .lightbox-title{font-size:14px}.lightbox-image{max-height:65dvh}
+}
+@media(max-width:380px){.project-body,.featured .project-body{padding:22px 20px}.work-filters{gap:3px}.work-filter{padding:9px 11px}.pipeline-symbol{width:55px;height:55px}.pipeline-track{gap:6px}.phone-preview{border-radius:12px}.phone-preview img{border-radius:8px}}
 
 /* stack: orbit sphere + cards */
 .stack-wrap{display:grid;grid-template-columns:1fr 1.05fr;gap:40px;align-items:center}
@@ -188,7 +279,7 @@ button{font:inherit;color:inherit}
 .stack-num{font-family:var(--mono);color:var(--accent);font-size:11px;letter-spacing:.08em}
 .stack-card h3{margin:10px 0 16px;font-family:var(--display);font-size:22px;letter-spacing:-.03em}
 .chips{display:flex;flex-wrap:wrap;gap:7px}
-.chip{font-size:12px;color:#b4b4bf;background:rgba(255,255,255,.035);border:1px solid var(--line);padding:6px 11px;border-radius:9px;transition:.25s}
+.chip{font-size:12px;font-weight:600;color:#e3e4ef;background:rgba(255,255,255,.05);border:1px solid #ffffff22;padding:6px 11px;border-radius:9px;transition:.25s}
 .chip:hover{background:rgba(169,140,255,.12);color:#fff;border-color:rgba(169,140,255,.5);transform:translateY(-2px)}
 
 /* contact */
@@ -202,19 +293,16 @@ button{font:inherit;color:inherit}
 .contact-links a:hover{border-color:rgba(169,140,255,.55);background:rgba(169,140,255,.08);transform:translateX(8px)}
 [dir=rtl] .contact-links a:hover{transform:translateX(-8px)}
 .contact-links a:hover b{background:var(--accent2);color:#08080b;transform:rotate(45deg)}
-.footer{padding:36px 0 50px;display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;color:#666877;font-size:12px;border-top:1px solid var(--line)}
-.footer b{color:#aaa}
+.footer{padding:36px 0 50px;display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;color:#bcbfce;font-size:12px;border-top:1px solid var(--line)}
+.footer b{color:#f0f0f7}
 
 /* responsive */
 @media(max-width:1000px){
-  .hero{grid-template-columns:1fr;padding-top:120px;gap:20px}
+  .hero{grid-template-columns:minmax(0,1fr);padding-top:120px;gap:20px}
   .stage{height:420px;margin-top:30px}
   .hero-copy{background:radial-gradient(closest-side,rgba(5,5,7,.55),transparent);}
   .scroll-cue{display:none}
   .about-grid{grid-template-columns:1fr 1fr}.about-big{grid-column:span 2;padding:32px 28px}
-  .projects{grid-template-columns:1fr}
-  .project,.project:nth-child(n){grid-column:auto}
-  .project.featured{display:flex;align-items:stretch}.project.featured .shot{height:auto}
   .stack-wrap{grid-template-columns:1fr}
   .contact{grid-template-columns:1fr;gap:36px;min-height:auto}
   .section{padding:96px 0}
@@ -231,11 +319,10 @@ button{font:inherit;color:inherit}
 }
 @media(max-width:560px){
   .container{width:calc(100% - 32px)}
+  .stage,.sphere{overflow:clip}
   .hero h1{font-size:clamp(54px,17vw,76px)}
   .hero-copy{font-size:16px}
   .section-head{display:block}.section-note{margin-top:16px}
-  .shot,.shots .shot{height:200px}.shots.phones .shot{height:250px}
-  .shots{gap:6px}
   .about-big{font-size:24px}
   .stat{min-height:140px;padding:20px}
   .navlinks a{padding:11px 9px;font-size:11.5px}
@@ -321,21 +408,90 @@ button{font:inherit;color:inherit}
 </div></div>
 </section>
 
-<section id="projects" class="section">
+<section id="projects" class="section" aria-labelledby="work-title">
+<svg xmlns="http://www.w3.org/2000/svg" width="0" height="0" aria-hidden="true" style="position:absolute;overflow:hidden"><defs>
+<symbol id="wi-arrow" viewBox="0 0 24 24"><path d="M7 17 17 7M7 7h10v10"/></symbol>
+<symbol id="wi-expand" viewBox="0 0 24 24"><path d="M8 3H3v5m13-5h5v5M3 16v5h5m13-5v5h-5M8 8l-5-5m13 5 5-5M8 16l-5 5m13-5 5 5"/></symbol>
+<symbol id="wi-send" viewBox="0 0 24 24"><path d="m21 3-7 18-4-7-7-4L21 3ZM10 14l5-5"/></symbol>
+<symbol id="wi-code" viewBox="0 0 24 24"><path d="m8 7-5 5 5 5m8-10 5 5-5 5m-3-14-2 18"/></symbol>
+<symbol id="wi-message" viewBox="0 0 24 24"><path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5H4l-2 2V11.5a9.5 9.5 0 0 1 19 0ZM7 9h10M7 13h7"/></symbol>
+<symbol id="wi-map" viewBox="0 0 24 24"><path d="m3 6 6-3 6 3 6-3v15l-6 3-6-3-6 3V6Zm6-3v15m6-12v15"/></symbol>
+</defs></svg>
 <div class="container">
-<div class="section-head rv"><div><span class="eyebrow">02 / WORK</span><h2 class="section-title" data-en="Selected work" data-fa="پروژه‌های منتخب">Selected work</h2></div><p class="section-note" data-en="A few products, platforms and experiments I’ve built." data-fa="چند محصول، پلتفرم و پروژه‌ای که ساخته‌ام.">A few products, platforms and experiments I’ve built.</p></div>
-<div class="projects">
-<article class="project featured card tilt rv"><div class="project-top"><span class="project-num">01</span><span>2026</span></div><div class="media"><img class="shot" src="images/kheyrie-dashboard.webp" alt="Volunteer group manager desktop app — dashboard" loading="lazy" style="object-position:50% 20%"></div><div class="project-body"><h3>Volunteer Group Manager</h3><p data-en="Offline Windows desktop app for managing a volunteer group’s projects, members and service hours — with automatic point scoring, filtered reports (Excel &amp; PDF export) and daily automatic backups." data-fa="اپ دسکتاپ ویندوز (آفلاین) برای مدیریت پروژه‌ها، افراد و ساعت‌های همکاری یک گروه جهادی؛ با محاسبه‌ی خودکار امتیاز، گزارش با فیلتر (خروجی اکسل و PDF) و بکاپ روزانه‌ی خودکار.">Offline Windows desktop app for managing a volunteer group’s projects, members and service hours — with automatic point scoring, filtered reports (Excel &amp; PDF export) and daily automatic backups.</p><div class="tags"><span class="tag">Desktop App</span><span class="tag">Windows</span><span class="tag">Offline</span></div></div></article>
-<article class="project card tilt rv"><div class="project-top"><span class="project-num">02</span><span>2026</span></div><div class="media"><img class="shot" src="images/salehabad.webp" alt="Salehabad Telegram bot screenshot" loading="lazy" style="object-position:50% 25%"></div><div class="project-body"><h3>Salehabad Bot</h3><p data-en="Telegram bots that automatically receive channel posts and forward them via API to other platforms such as Eitaa — two bots handling automated content transfer." data-fa="ربات‌های پروژه صالح‌آباد که پست‌های کانال‌های تلگرام را خودکار دریافت کرده و با API به پلتفرم‌های دیگر مثل ایتا منتقل می‌کنند؛ شامل دو ربات برای انتقال خودکار محتوا.">Telegram bots that automatically receive channel posts and forward them via API to other platforms such as Eitaa — two bots handling automated content transfer.</p><div class="tags"><span class="tag">Telegram API</span><span class="tag">Eitaa API</span><span class="tag">Automation</span></div><div class="links"><a class="link" href="https://t.me/salehabad_bot" target="_blank" rel="noopener">@salehabad_bot ↗</a></div></div></article>
-<article class="project card tilt rv" style="--d:.08s"><div class="project-top"><span class="project-num">03</span><span>2026</span></div><div class="media"><img class="shot" src="images/fericovpn.webp" alt="FeriCoVPN Telegram bot screenshot" loading="lazy" style="object-position:50% 40%"></div><div class="project-body"><h3>FeriCoVPN</h3><p data-en="Telegram VPN sales bot where users browse plans, buy subscriptions, pay online and manage their own service." data-fa="ربات تلگرامی فروش VPN که کاربران از طریق آن می‌توانند پلن‌ها را ببینند، اشتراک بخرند، پرداخت کنند و سرویس خودشان را مدیریت کنند.">Telegram VPN sales bot where users browse plans, buy subscriptions, pay online and manage their own service.</p><div class="tags"><span class="tag">Telegram Bot</span><span class="tag">Payments</span><span class="tag">Automation</span></div></div></article>
-<article class="project card tilt rv"><div class="project-top"><span class="project-num">04</span><span>2025 — NOW</span></div><div class="media"><img class="shot" src="images/shieldup.webp" alt="ShieldUp platform screenshot" loading="lazy" style="object-position:50% 30%"></div><div class="project-body"><h3>ShieldUp</h3><p data-en="Web platform developed at APA — Isfahan University of Technology." data-fa="پلتفرم وب توسعه‌یافته در مرکز آپا دانشگاه صنعتی اصفهان.">Web platform developed at APA — Isfahan University of Technology.</p><div class="tags"><span class="tag">Django</span><span class="tag">React</span><span class="tag">Docker</span></div><div class="links"><a class="link" href="https://shieldup.ir" target="_blank" rel="noopener">shieldup.ir ↗</a></div></div></article>
-<article class="project card tilt rv" style="--d:.08s"><div class="project-top"><span class="project-num">05</span><span>2025</span></div><div class="shots phones"><div class="media"><img class="shot" src="images/kharjino-home.webp" alt="Kharjino app — home" loading="lazy"></div><div class="media"><img class="shot" src="images/kharjino-stats.webp" alt="Kharjino app — statistics" loading="lazy"></div><div class="media"><img class="shot" src="images/kharjino-goals.webp" alt="Kharjino app — savings goals" loading="lazy"></div></div><div class="project-body"><h3>Kharjino</h3><p data-en="Persian daily expense tracker for Android, published on Cafe Bazaar." data-fa="اپلیکیشن ثبت هزینه روزانه فارسی برای اندروید، منتشرشده در کافه‌بازار.">Persian daily expense tracker for Android, published on Cafe Bazaar.</p><div class="tags"><span class="tag">Kotlin</span><span class="tag">Compose</span><span class="tag">Room</span></div><div class="links"><a class="link" href="https://cafebazaar.ir/app/ir.kharjino.app" target="_blank" rel="noopener">Cafe Bazaar ↗</a></div></div></article>
-<article class="project card tilt rv"><div class="project-top"><span class="project-num">06</span><span>2024 — 2025</span></div><div class="shots"><div class="media"><img class="shot" src="images/alireza-resume.webp" alt="Alireza Mehraban resume website" loading="lazy" style="object-position:50% 30%"></div><div class="media"><img class="shot" src="images/sara-resume.webp" alt="Sara Moslemi resume website" loading="lazy" style="object-position:50% 30%"></div><div class="media"><img class="shot" src="images/aghasi-resume.webp" alt="Aghasi resume website" loading="lazy" style="object-position:50% 30%"></div></div><div class="project-body"><h3>Resume Websites</h3><p data-en="Bilingual personal resume and portfolio websites for freelance clients." data-fa="سایت‌های رزومه و پورتفولیو شخصی دوزبانه برای مشتریان فریلنس.">Bilingual personal resume and portfolio websites for freelance clients.</p><div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span></div><div class="links"><a class="link" href="https://alirezamehraban.ir" target="_blank" rel="noopener">alirezamehraban.ir ↗</a><a class="link" href="https://sara-moslemi.resumio.ir" target="_blank" rel="noopener">sara-moslemi.resumio.ir ↗</a><a class="link" href="https://aghasi.resumio.ir" target="_blank" rel="noopener">aghasi.resumio.ir ↗</a></div></div></article>
-<article class="project card tilt rv" style="--d:.08s"><div class="project-top"><span class="project-num">07</span><span>2024</span></div><div class="media"><img class="shot" src="images/daryaazma.webp" alt="Daryaazma website screenshot" loading="lazy" style="object-position:50% 0%"></div><div class="project-body"><h3>Daryaazma</h3><p data-en="Corporate website and analytics dashboard for water quality monitoring." data-fa="سایت شرکتی و داشبورد تحلیلی برای پایش کیفیت آب.">Corporate website and analytics dashboard for water quality monitoring.</p><div class="tags"><span class="tag">Django</span><span class="tag">React</span><span class="tag">IoT</span></div><div class="links"><a class="link" href="https://daryaazma.ir" target="_blank" rel="noopener">daryaazma.ir ↗</a></div></div></article>
-<article class="project card tilt rv" style="min-height:260px"><div class="project-top"><span class="project-num">08</span><span>2023</span></div><div class="project-body" style="padding-top:8px"><h3>Telegram Bot</h3><p data-en="Automated Telegram group management bot with persistent PostgreSQL storage." data-fa="ربات مدیریت خودکار گروه تلگرام با ذخیره‌سازی پایدار PostgreSQL.">Automated Telegram group management bot with persistent PostgreSQL storage.</p><div class="tags"><span class="tag">Python</span><span class="tag">Pyrogram</span><span class="tag">PostgreSQL</span></div><div class="links"><a class="link" href="https://github.com/hsalimi79/pyrogramTelegramBot" target="_blank" rel="noopener">GitHub ↗</a></div></div></article>
-<article class="project card tilt rv" style="min-height:260px;--d:.08s"><div class="project-top"><span class="project-num">09</span><span>2020</span></div><div class="project-body" style="padding-top:8px"><h3>IUT MAP</h3><p data-en="Flutter Android app featuring an interactive university map and campus events." data-fa="اپ اندروید Flutter با نقشه تعاملی دانشگاه و رویدادهای دانشگاهی.">Flutter Android app featuring an interactive university map and campus events.</p><div class="tags"><span class="tag">Flutter</span><span class="tag">Android</span></div></div></article>
+<div class="section-head rv"><div><span class="eyebrow">02 / SELECTED WORK</span><h2 id="work-title" class="section-title" data-en="Selected work" data-fa="پروژه‌های منتخب">Selected work</h2></div><p class="section-note" data-en="From everyday tools to connected platforms. A closer look at what I build." data-fa="از ابزارهای روزمره تا پلتفرم‌های یکپارچه؛ نگاهی نزدیک‌تر به محصولاتی که ساخته‌ام.">From everyday tools to connected platforms. A closer look at what I build.</p></div>
+<div class="work-toolbar"><div class="work-filters" role="group" aria-label="Filter projects"><button type="button" class="work-filter" data-filter="all" aria-pressed="true" aria-controls="project-grid" data-en="All work" data-fa="همه پروژه‌ها">All work</button><button type="button" class="work-filter" data-filter="web" aria-pressed="false" aria-controls="project-grid" data-en="Web" data-fa="وب">Web</button><button type="button" class="work-filter" data-filter="apps" aria-pressed="false" aria-controls="project-grid" data-en="Apps" data-fa="اپلیکیشن">Apps</button><button type="button" class="work-filter" data-filter="bots" aria-pressed="false" aria-controls="project-grid" data-en="Bots & automation" data-fa="ربات و اتوماسیون">Bots & automation</button></div><span class="work-count" role="status" aria-live="polite"><b id="work-count">09</b> / <span data-en="PROJECTS" data-fa="پروژه">PROJECTS</span></span></div>
+<div class="projects" id="project-grid">
+<article class="project featured rv" data-category="apps" style="--project-accent:var(--cyan)">
+<div class="project-visual"><span class="visual-label">DESKTOP / DASHBOARD</span><button class="media-button" type="button" data-gallery="volunteer" data-image="images/kheyrie-dashboard.webp" data-caption="Volunteer Group Manager — dashboard" aria-label="View Volunteer Group Manager — dashboard"><div class="browser-frame"><div class="browser-chrome"><i></i><i></i><i></i><span>Windows · Offline</span></div><img class="shot" src="images/kheyrie-dashboard.webp" alt="Volunteer Group Manager — dashboard" loading="lazy" decoding="async"></div><span class="zoom-hint"><svg class="work-icon" aria-hidden="true"><use href="#wi-expand"></use></svg><span data-en="View" data-fa="نمایش">View</span></span></button></div>
+<div class="project-body"><div class="project-top"><span class="project-type"><span class="project-num">01 /</span><span data-en="Desktop application" data-fa="نرم‌افزار دسکتاپ">Desktop application</span></span><span dir="ltr">2026</span></div>
+<h3 data-en="Volunteer Group Manager" data-fa="مدیریت گروه جهادی">Volunteer Group Manager</h3><p data-en="An offline Windows workspace for volunteer projects, members and service hours. Automatic scoring, filtered reports and daily backups keep everything organized." data-fa="نرم‌افزار آفلاین ویندوز برای مدیریت پروژه‌ها، اعضا و ساعت‌های همکاری گروه جهادی؛ با امتیازدهی خودکار، گزارش‌های فیلترشده و پشتیبان‌گیری روزانه.">An offline Windows workspace for volunteer projects, members and service hours. Automatic scoring, filtered reports and daily backups keep everything organized.</p>
+<ul class="project-features"><li data-en="Automatic scoring" data-fa="امتیازدهی خودکار">Automatic scoring</li><li data-en="Excel &amp; PDF reports" data-fa="گزارش اکسل و PDF">Excel &amp; PDF reports</li><li data-en="Daily backups" data-fa="بکاپ روزانه">Daily backups</li></ul>
+<div class="tags"><span class="tag">Windows</span><span class="tag">Offline</span><span class="tag">Excel &amp; PDF</span></div>
+</div></article>
+<article class="project rv" data-category="bots" style="--project-accent:#73c9fc">
+<div class="project-visual"><span class="visual-label">WORKFLOW / PREVIEW</span><div class="pipeline" aria-label="Telegram to API to Eitaa workflow"><div class="pipeline-track"><div class="pipeline-node"><div class="pipeline-symbol"><svg class="work-icon" aria-hidden="true"><use href="#wi-send"></use></svg></div><span>Telegram</span></div><div class="pipeline-line"></div><div class="pipeline-node api"><div class="pipeline-symbol"><svg class="work-icon" aria-hidden="true"><use href="#wi-code"></use></svg></div><span>API</span></div><div class="pipeline-line"></div><div class="pipeline-node"><div class="pipeline-symbol"><svg class="work-icon" aria-hidden="true"><use href="#wi-message"></use></svg></div><span>Eitaa</span></div></div><div class="workflow-note"><span data-en="2 bots · automated content delivery" data-fa="۲ ربات · انتقال خودکار محتوا">2 bots · automated content delivery</span></div></div></div>
+<div class="project-body"><div class="project-top"><span class="project-type"><span class="project-num">02 /</span><span data-en="Content automation" data-fa="اتوماسیون محتوا">Content automation</span></span><span dir="ltr">2026</span></div>
+<h3 data-en="Salehabad Bot" data-fa="ربات صالح‌آباد">Salehabad Bot</h3><p data-en="Two connected bots receive Telegram channel posts and deliver them to platforms such as Eitaa through APIs. A hands-free workflow for publishing across channels." data-fa="دو ربات متصل برای دریافت پست‌های کانال تلگرام و انتشار خودکار در پلتفرم‌هایی مثل ایتا؛ یک جریان یکپارچه برای انتقال محتوا بین کانال‌ها.">Two connected bots receive Telegram channel posts and deliver them to platforms such as Eitaa through APIs. A hands-free workflow for publishing across channels.</p>
+
+<div class="tags"><span class="tag">Telegram API</span><span class="tag">Eitaa API</span><span class="tag">Automation</span></div>
+<div class="links"><a class="link" href="https://t.me/salehabad_bot" target="_blank" rel="noopener"><span data-en="Explore the bot" data-fa="مشاهده ربات">Explore the bot</span><svg class="work-icon" aria-hidden="true"><use href="#wi-arrow"></use></svg></a></div></div></article>
+<article class="project rv" data-category="bots" style="--project-accent:#9daeff">
+<div class="project-visual"><span class="visual-label">BOT INTERFACE / PREVIEW</span><div class="bot-preview"><div class="bot-bar"><span class="bot-avatar"><svg class="work-icon" aria-hidden="true"><use href="#wi-send"></use></svg></span><span>FeriCoVPN<small>TELEGRAM BOT</small></span></div><div class="bot-message"><span data-en="Your connection. Your control." data-fa="اتصال و مدیریت سرویس، در دست تو.">Your connection. Your control.</span><div class="bot-options"><span data-en="Browse plans" data-fa="مشاهده پلن‌ها">Browse plans</span><span data-en="My subscriptions" data-fa="اشتراک‌های من">My subscriptions</span><span data-en="Secure online payment ↗" data-fa="پرداخت آنلاین امن ↗">Secure online payment ↗</span></div></div></div></div>
+<div class="project-body"><div class="project-top"><span class="project-type"><span class="project-num">03 /</span><span data-en="Subscription platform" data-fa="فروش و مدیریت اشتراک">Subscription platform</span></span><span dir="ltr">2026</span></div>
+<h3 data-en="FeriCoVPN" data-fa="فریکو وی‌پی‌ان">FeriCoVPN</h3><p data-en="A Telegram storefront for browsing VPN plans, purchasing subscriptions and paying online, with self-service access to subscription management." data-fa="فروشگاه تلگرامی اشتراک VPN؛ از انتخاب پلن و پرداخت آنلاین تا مشاهده و مدیریت سرویس، در یک رابط ساده و در دسترس.">A Telegram storefront for browsing VPN plans, purchasing subscriptions and paying online, with self-service access to subscription management.</p>
+
+<div class="tags"><span class="tag">Telegram Bot</span><span class="tag">Payments</span><span class="tag">Automation</span></div>
+</div></article>
+<article class="project rv" data-category="web" style="--project-accent:#a3b5ff">
+<div class="project-visual"><span class="visual-label">WEB / PLATFORM</span><button class="media-button" type="button" data-gallery="shield" data-image="images/shieldup.webp" data-caption="ShieldUp web platform" aria-label="View ShieldUp web platform"><div class="browser-frame"><div class="browser-chrome"><i></i><i></i><i></i><span>shieldup.ir</span></div><img class="shot" src="images/shieldup.webp" alt="ShieldUp web platform" loading="lazy" decoding="async"></div><span class="zoom-hint"><svg class="work-icon" aria-hidden="true"><use href="#wi-expand"></use></svg><span data-en="View" data-fa="نمایش">View</span></span></button></div>
+<div class="project-body"><div class="project-top"><span class="project-type"><span class="project-num">04 /</span><span data-en="Web platform" data-fa="پلتفرم وب">Web platform</span></span><span dir="ltr">2025 — NOW</span></div>
+<h3 data-en="ShieldUp" data-fa="شیلدآپ">ShieldUp</h3><p data-en="A web platform built at APA, Isfahan University of Technology, connecting a React interface with Django services and Docker deployment." data-fa="پلتفرم وب توسعه‌یافته در مرکز آپای دانشگاه صنعتی اصفهان؛ با رابط React، سرویس‌های Django و استقرار مبتنی بر Docker.">A web platform built at APA, Isfahan University of Technology, connecting a React interface with Django services and Docker deployment.</p>
+
+<div class="tags"><span class="tag">Django</span><span class="tag">React</span><span class="tag">Docker</span></div>
+<div class="links"><a class="link" href="https://shieldup.ir" target="_blank" rel="noopener"><span data-en="Visit website" data-fa="مشاهده سایت">Visit website</span><svg class="work-icon" aria-hidden="true"><use href="#wi-arrow"></use></svg></a></div></div></article>
+<article class="project rv" data-category="apps" style="--project-accent:var(--cyan)">
+<div class="project-visual"><span class="visual-label">ANDROID / PERSONAL FINANCE</span><div class="phones-preview"><div class="phone-preview"><button class="media-button" type="button" data-gallery="kharjino" data-image="images/kharjino-stats.webp" data-caption="Kharjino — spending statistics" aria-label="View Kharjino — spending statistics"><img class="shot" src="images/kharjino-stats.webp" alt="Kharjino — spending statistics" loading="lazy" decoding="async"><span class="zoom-hint"><svg class="work-icon" aria-hidden="true"><use href="#wi-expand"></use></svg><span data-en="View" data-fa="نمایش">View</span></span></button></div><div class="phone-preview"><button class="media-button" type="button" data-gallery="kharjino" data-image="images/kharjino-home.webp" data-caption="Kharjino — home" aria-label="View Kharjino — home"><img class="shot" src="images/kharjino-home.webp" alt="Kharjino — home" loading="lazy" decoding="async"><span class="zoom-hint"><svg class="work-icon" aria-hidden="true"><use href="#wi-expand"></use></svg><span data-en="View" data-fa="نمایش">View</span></span></button></div><div class="phone-preview"><button class="media-button" type="button" data-gallery="kharjino" data-image="images/kharjino-goals.webp" data-caption="Kharjino — savings goals" aria-label="View Kharjino — savings goals"><img class="shot" src="images/kharjino-goals.webp" alt="Kharjino — savings goals" loading="lazy" decoding="async"><span class="zoom-hint"><svg class="work-icon" aria-hidden="true"><use href="#wi-expand"></use></svg><span data-en="View" data-fa="نمایش">View</span></span></button></div></div></div>
+<div class="project-body"><div class="project-top"><span class="project-type"><span class="project-num">05 /</span><span data-en="Android application" data-fa="اپلیکیشن اندروید">Android application</span></span><span dir="ltr">2025</span></div>
+<h3 data-en="Kharjino" data-fa="خرجینو">Kharjino</h3><p data-en="A Persian daily expense tracker with clear spending statistics and savings goals. Built for Android and published on Cafe Bazaar." data-fa="اپلیکیشن فارسی مدیریت هزینه‌های روزانه، همراه با آمار مخارج و هدف‌گذاری پس‌انداز؛ توسعه‌یافته برای اندروید و منتشرشده در کافه‌بازار.">A Persian daily expense tracker with clear spending statistics and savings goals. Built for Android and published on Cafe Bazaar.</p>
+
+<div class="tags"><span class="tag">Kotlin</span><span class="tag">Jetpack Compose</span><span class="tag">Room</span></div>
+<div class="links"><a class="link" href="https://cafebazaar.ir/app/ir.kharjino.app" target="_blank" rel="noopener"><span data-en="View on Cafe Bazaar" data-fa="دریافت از کافه‌بازار">View on Cafe Bazaar</span><svg class="work-icon" aria-hidden="true"><use href="#wi-arrow"></use></svg></a></div></div></article>
+<article class="project rv" data-category="web" style="--project-accent:var(--accent)">
+<div class="project-visual"><span class="visual-label">WEB / PORTFOLIO COLLECTION</span><div class="portfolio-preview"><button class="media-button" type="button" data-gallery="portfolios" data-image="images/alireza-screen@2x.webp" data-caption="Alireza Mehraban — portfolio" aria-label="View Alireza Mehraban — portfolio"><div class="browser-frame"><div class="browser-chrome"><i></i><i></i><i></i><span>Portfolio</span></div><img class="shot" src="images/alireza-screen.webp" srcset="images/alireza-screen.webp 1440w, images/alireza-screen@2x.webp 2880w" sizes="(max-width: 760px) calc(100vw - 80px), 560px" alt="Alireza Mehraban — portfolio" loading="lazy" decoding="async"></div><span class="zoom-hint"><svg class="work-icon" aria-hidden="true"><use href="#wi-expand"></use></svg><span data-en="View" data-fa="نمایش">View</span></span></button><button class="media-button" type="button" data-gallery="portfolios" data-image="images/sara-screen@2x.webp" data-caption="Sara Moslemi — portfolio" aria-label="View Sara Moslemi — portfolio"><div class="browser-frame"><div class="browser-chrome"><i></i><i></i><i></i><span>Portfolio</span></div><img class="shot" src="images/sara-screen.webp" srcset="images/sara-screen.webp 1440w, images/sara-screen@2x.webp 2880w" sizes="(max-width: 760px) calc(100vw - 80px), 560px" alt="Sara Moslemi — portfolio" loading="lazy" decoding="async"></div><span class="zoom-hint"><svg class="work-icon" aria-hidden="true"><use href="#wi-expand"></use></svg><span data-en="View" data-fa="نمایش">View</span></span></button><button class="media-button" type="button" data-gallery="portfolios" data-image="images/aghasi-screen@2x.webp" data-caption="Aghasi — portfolio" aria-label="View Aghasi — portfolio"><div class="browser-frame"><div class="browser-chrome"><i></i><i></i><i></i><span>Portfolio</span></div><img class="shot" src="images/aghasi-screen.webp" srcset="images/aghasi-screen.webp 1440w, images/aghasi-screen@2x.webp 2880w" sizes="(max-width: 760px) calc(100vw - 80px), 560px" alt="Aghasi — portfolio" loading="lazy" decoding="async"></div><span class="zoom-hint"><svg class="work-icon" aria-hidden="true"><use href="#wi-expand"></use></svg><span data-en="View" data-fa="نمایش">View</span></span></button></div></div>
+<div class="project-body"><div class="project-top"><span class="project-type"><span class="project-num">06 /</span><span data-en="Freelance collection" data-fa="مجموعه پروژه‌های فریلنس">Freelance collection</span></span><span dir="ltr">2024 — 2025</span></div>
+<h3 data-en="Personal portfolios" data-fa="وب‌سایت‌های شخصی">Personal portfolios</h3><p data-en="Bilingual resume and portfolio websites for freelance clients, with individual visual identities and responsive layouts." data-fa="طراحی و توسعه سایت‌های رزومه و پورتفولیوی دوزبانه برای مشتریان فریلنس؛ با هویت بصری اختصاصی و چیدمان واکنش‌گرا.">Bilingual resume and portfolio websites for freelance clients, with individual visual identities and responsive layouts.</p>
+
+<div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span></div>
+<div class="links"><a class="link" href="https://alirezamehraban.ir" target="_blank" rel="noopener"><span data-en="Alireza Mehraban" data-fa="علیرضا مهربان">Alireza Mehraban</span><svg class="work-icon" aria-hidden="true"><use href="#wi-arrow"></use></svg></a><a class="link" href="https://sara-moslemi.resumio.ir" target="_blank" rel="noopener"><span data-en="Sara Moslemi" data-fa="سارا مسلمی">Sara Moslemi</span><svg class="work-icon" aria-hidden="true"><use href="#wi-arrow"></use></svg></a><a class="link" href="https://aghasi.resumio.ir" target="_blank" rel="noopener"><span data-en="Aghasi" data-fa="آقاسی">Aghasi</span><svg class="work-icon" aria-hidden="true"><use href="#wi-arrow"></use></svg></a></div></div></article>
+<article class="project rv" data-category="web" style="--project-accent:#70c9eb">
+<div class="project-visual"><span class="visual-label">WEB / WATER MONITORING</span><button class="media-button" type="button" data-gallery="water" data-image="images/daryaazma-screen@2x.webp" data-caption="Daryaazma — corporate website" aria-label="View Daryaazma — corporate website"><div class="browser-frame"><div class="browser-chrome"><i></i><i></i><i></i><span>daryaazma.ir</span></div><img class="shot" src="images/daryaazma-screen.webp" srcset="images/daryaazma-screen.webp 1440w, images/daryaazma-screen@2x.webp 2880w" sizes="(max-width: 760px) calc(100vw - 80px), 560px" alt="Daryaazma — corporate website" loading="lazy" decoding="async"></div><span class="zoom-hint"><svg class="work-icon" aria-hidden="true"><use href="#wi-expand"></use></svg><span data-en="View" data-fa="نمایش">View</span></span></button></div>
+<div class="project-body"><div class="project-top"><span class="project-type"><span class="project-num">07 /</span><span data-en="Corporate website & dashboard" data-fa="سایت شرکتی و داشبورد">Corporate website & dashboard</span></span><span dir="ltr">2024</span></div>
+<h3 data-en="Daryaazma" data-fa="دریاآزما">Daryaazma</h3><p data-en="A corporate website and analytics dashboard for water quality monitoring, bringing measurement data into a web interface." data-fa="وب‌سایت شرکتی و داشبورد تحلیلی پایش کیفیت آب؛ با دسترسی به داده‌های اندازه‌گیری و اطلاعات مجموعه در بستر وب.">A corporate website and analytics dashboard for water quality monitoring, bringing measurement data into a web interface.</p>
+
+<div class="tags"><span class="tag">Django</span><span class="tag">React</span><span class="tag">IoT</span></div>
+<div class="links"><a class="link" href="https://daryaazma.ir" target="_blank" rel="noopener"><span data-en="Visit website" data-fa="مشاهده سایت">Visit website</span><svg class="work-icon" aria-hidden="true"><use href="#wi-arrow"></use></svg></a></div></div></article>
+<article class="project compact-project rv" data-category="bots" style="--project-accent:#73c9fc">
+
+<div class="project-body"><div class="project-top"><span class="project-type"><span class="archive-symbol"><svg class="work-icon" aria-hidden="true"><use href="#wi-code"></use></svg></span><span data-en="Earlier work / Automation" data-fa="پروژه‌های پیشین / اتوماسیون">Earlier work / Automation</span></span><span dir="ltr">2023</span></div>
+<h3 data-en="Telegram Group Manager" data-fa="مدیریت گروه تلگرام">Telegram Group Manager</h3><p data-en="Automated Telegram group management with Python and Pyrogram, backed by persistent PostgreSQL storage." data-fa="ربات مدیریت خودکار گروه‌های تلگرام با Python و Pyrogram، همراه با ذخیره‌سازی پایدار اطلاعات در PostgreSQL.">Automated Telegram group management with Python and Pyrogram, backed by persistent PostgreSQL storage.</p>
+
+<div class="tags"><span class="tag">Python</span><span class="tag">Pyrogram</span><span class="tag">PostgreSQL</span></div>
+<div class="links"><a class="link" href="https://github.com/hsalimi79/pyrogramTelegramBot" target="_blank" rel="noopener"><span data-en="View source on GitHub" data-fa="مشاهده کد در گیت‌هاب">View source on GitHub</span><svg class="work-icon" aria-hidden="true"><use href="#wi-arrow"></use></svg></a></div></div></article>
+<article class="project compact-project rv" data-category="apps" style="--project-accent:#d2bf85">
+
+<div class="project-body"><div class="project-top"><span class="project-type"><span class="archive-symbol"><svg class="work-icon" aria-hidden="true"><use href="#wi-map"></use></svg></span><span data-en="Earlier work / Android" data-fa="پروژه‌های پیشین / اندروید">Earlier work / Android</span></span><span dir="ltr">2020</span></div>
+<h3 data-en="IUT Map" data-fa="نقشه دانشگاه صنعتی اصفهان">IUT Map</h3><p data-en="An Android app built with Flutter, featuring an interactive university map and campus events." data-fa="اپلیکیشن اندروید با Flutter برای دسترسی به نقشه تعاملی دانشگاه و رویدادهای دانشگاهی.">An Android app built with Flutter, featuring an interactive university map and campus events.</p>
+
+<div class="tags"><span class="tag">Flutter</span><span class="tag">Android</span></div>
+</div></article>
 </div></div>
 </section>
+
+<dialog class="project-lightbox" id="project-lightbox" aria-labelledby="lightbox-title">
+<div class="lightbox-head"><h3 class="lightbox-title" id="lightbox-title"></h3><button type="button" class="lightbox-close" id="lightbox-close" aria-label="Close image preview">×</button></div>
+<div class="lightbox-image-wrap"><img class="lightbox-image" id="lightbox-image" alt=""></div>
+<div class="lightbox-footer"><a class="lightbox-original" id="lightbox-original" target="_blank" rel="noopener"><span data-en="Open original" data-fa="بازکردن تصویر اصلی">Open original</span><svg class="work-icon" aria-hidden="true"><use href="#wi-arrow"></use></svg></a><div class="lightbox-nav"><button type="button" id="lightbox-prev" aria-label="Previous image">←</button><span id="lightbox-count" aria-live="polite"></span><button type="button" id="lightbox-next" aria-label="Next image">→</button></div></div>
+</dialog>
 
 <section id="stack" class="section">
 <div class="container">
@@ -391,6 +547,48 @@ const obs=new IntersectionObserver(es=>es.forEach(e=>{
   const c=e.target.querySelector('[data-count]');if(c)countUp(c);
 }),{threshold:.12,rootMargin:'0px 0px -40px 0px'});
 $$('.rv').forEach(x=>obs.observe(x));
+
+/* project filters + keyboard-accessible screenshot gallery */
+$$('.work-filter').forEach(button=>button.addEventListener('click',()=>{
+  const filter=button.dataset.filter;
+  $$('.work-filter').forEach(b=>b.setAttribute('aria-pressed',String(b===button)));
+  let visible=0;
+  $$('.project').forEach(project=>{
+    project.hidden=filter!=='all'&&project.dataset.category!==filter;
+    if(!project.hidden){visible++;project.classList.add('show')}
+  });
+  $('#work-count').textContent=String(visible).padStart(2,'0');
+  onScroll();
+}));
+const lightbox=$('#project-lightbox');
+let galleryItems=[],galleryIndex=0;
+function renderGallery(){
+  const item=galleryItems[galleryIndex];
+  $('#lightbox-image').src=item.dataset.image;
+  $('#lightbox-image').alt=item.dataset.caption;
+  $('#lightbox-title').textContent=item.dataset.caption;
+  $('#lightbox-original').href=item.dataset.image;
+  $('#lightbox-count').textContent=`${galleryIndex+1} / ${galleryItems.length}`;
+  $('#lightbox-prev').disabled=galleryIndex===0;
+  $('#lightbox-next').disabled=galleryIndex===galleryItems.length-1;
+}
+$$('[data-gallery]').forEach(button=>button.addEventListener('click',()=>{
+  galleryItems=[...$$('[data-gallery]')].filter(item=>item.dataset.gallery===button.dataset.gallery);
+  galleryIndex=galleryItems.indexOf(button);
+  renderGallery();lightbox.showModal();
+}));
+$('#lightbox-close').addEventListener('click',()=>lightbox.close());
+$('#lightbox-prev').addEventListener('click',()=>{if(galleryIndex>0){galleryIndex--;renderGallery()}});
+$('#lightbox-next').addEventListener('click',()=>{if(galleryIndex<galleryItems.length-1){galleryIndex++;renderGallery()}});
+lightbox.addEventListener('keydown',e=>{
+  if(e.key==='ArrowLeft'){e.preventDefault();$('#lightbox-prev').click()}
+  if(e.key==='ArrowRight'){e.preventDefault();$('#lightbox-next').click()}
+});
+lightbox.addEventListener('click',e=>{
+  if(e.target!==lightbox)return;
+  const r=lightbox.getBoundingClientRect();
+  if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)lightbox.close();
+});
 
 /* scroll: progress bar, topbar, timeline fill, active nav */
 const tl=$('#timeline');
