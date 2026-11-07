@@ -1,0 +1,55 @@
+name: Deploy to server
+
+on:
+  push:
+    branches: [main]
+    paths-ignore: ["tools/**", "**/*.md", ".github/**"]
+  workflow_dispatch:
+
+concurrency:
+  group: deploy
+  cancel-in-progress: false
+
+env:
+  SERVER: 5.10.223.3
+  DEPLOY_USER: deploy
+  SITE_DIR: /var/www/hsalimi
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Sanity check
+        run: |
+          test -s index.html && test -s en/index.html && test -d images
+          grep -q "</html>" index.html && grep -q "</html>" en/index.html
+
+      - name: Set up SSH
+        env:
+          DEPLOY_SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+          DEPLOY_KNOWN_HOSTS: ${{ secrets.DEPLOY_KNOWN_HOSTS }}
+        run: |
+          install -m 700 -d ~/.ssh
+          printf '%s\n' "$DEPLOY_SSH_KEY" > ~/.ssh/id_deploy
+          chmod 600 ~/.ssh/id_deploy
+          printf '%s\n' "$DEPLOY_KNOWN_HOSTS" > ~/.ssh/known_hosts
+
+      - name: Upload new release and switch
+        run: |
+          REL="$(git rev-parse --short HEAD)-$(date -u +%Y%m%d%H%M%S)"
+          SSH="ssh -i ~/.ssh/id_deploy -o IdentitiesOnly=yes -o StrictHostKeyChecking=yes"
+          $SSH "$DEPLOY_USER@$SERVER" "mkdir -p $SITE_DIR/releases/$REL"
+          rsync -az --delete -e "$SSH" index.html en images "$DEPLOY_USER@$SERVER:$SITE_DIR/releases/$REL/"
+          $SSH "$DEPLOY_USER@$SERVER" "set -e; cd $SITE_DIR
+            ln -sfn releases/$REL current.new
+            mv -T current.new current
+            ls -1dt releases/* | tail -n +6 | xargs -r rm -rf"
+          echo "Deployed $REL"
+
+      - name: Verify
+        run: |
+          sleep 2
+          curl -fsS -o /dev/null -w "%{http_code}\n" https://hossein-salimi.resumio.ir/
+          curl -fsS https://hossein-salimi.resumio.ir/ | grep -q "</html>"
