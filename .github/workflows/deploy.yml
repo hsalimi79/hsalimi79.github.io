@@ -14,6 +14,7 @@ env:
   SERVER: 5.10.223.3
   DEPLOY_USER: deploy
   SITE_DIR: /var/www/hsalimi
+  SERVER_HOST_KEY: "5.10.223.3 ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDrqhWlnEyZ0EuaTmDANJFpabSMGzJqlZOasBK2bmPxa509GQ1zCxU8p7wTWRuZEcsdLhkpuDYaJIg6sAQnT8M73MeDZoEmRvvGiMUmxWNkW2+qj2ajyZL9rAPRtWg5gAde69cm4Uh4BYr71NhAZWFq2cYp7toqxPDDoD1marVHGH3KiRN8QQ3GWFPnVvv79sVaFEB8AjsMG97Rq2TiW23OWq7k/aoLAdFcRNmdgczFnzNFUzYBI9wCiF+nUFBNo4ITmEV+kR7zDJHMYMJAaY49kQ9teCAVGGRlI0Dp9HPNpjN2BcEy8gVYVFcVzVilemWUSSxM8zqKaDf+MRkprtieYc/4PMTmodWNDK0TIuM8c0gegwlwIf3IP7wUpY2/XwLT3CKsYmWjBYItoagiiE5upWdfxGt5r5MctZ+Ggomb7Z51yM2CWkjtsCIC036SXA5yvbJWyBWqkStQunLWblJb8+k9Bu7g4gn6jpxr5sic+kOcRF9jVkkRnIAlAdfwXtc="
 
 jobs:
   deploy:
@@ -29,12 +30,12 @@ jobs:
       - name: Set up SSH
         env:
           DEPLOY_SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
-          DEPLOY_KNOWN_HOSTS: ${{ secrets.DEPLOY_KNOWN_HOSTS }}
         run: |
           install -m 700 -d ~/.ssh
           printf '%s\n' "$DEPLOY_SSH_KEY" > ~/.ssh/id_deploy
           chmod 600 ~/.ssh/id_deploy
-          printf '%s\n' "$DEPLOY_KNOWN_HOSTS" > ~/.ssh/known_hosts
+          # Server host key (public) is pinned here so the connection can't be hijacked.
+          printf '%s\n' "$SERVER_HOST_KEY" > ~/.ssh/known_hosts
 
       - name: Upload new release and switch
         run: |
