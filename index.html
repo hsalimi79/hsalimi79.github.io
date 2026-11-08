@@ -752,9 +752,9 @@ const obs=new IntersectionObserver(es=>es.forEach(e=>{
 $$('.rv').forEach(x=>obs.observe(x));
 
 /* project filters + keyboard-accessible screenshot gallery */
-$$('.work-filter').forEach(button=>button.addEventListener('click',()=>{
-  const filter=button.dataset.filter;
-  $$('.work-filter').forEach(b=>b.setAttribute('aria-pressed',String(b===button)));
+const workFilters=['all','web','resume','apps','bots'];
+function applyFilter(filter){
+  $$('.work-filter').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.filter===filter)));
   let visible=0;
   $$('.project').forEach(project=>{
     project.hidden=filter!=='all'&&!project.dataset.category.split(' ').includes(filter);
@@ -762,7 +762,21 @@ $$('.work-filter').forEach(button=>button.addEventListener('click',()=>{
   });
   $('#work-count').textContent=String(visible).padStart(2,'0');
   onScroll();
+}
+$$('.work-filter').forEach(button=>button.addEventListener('click',()=>{
+  const filter=button.dataset.filter;
+  applyFilter(filter);
+  history.replaceState(null,'',filter==='all'?'#projects':'#projects-'+filter);
 }));
+/* deep links: #projects-resume, #projects-apps, #projects-bots, #projects-web select a filter and scroll to the work section */
+function openWorkFromHash(){
+  const m=location.hash.match(/^#projects-(\w+)$/);
+  if(!m||!workFilters.includes(m[1]))return;
+  applyFilter(m[1]);
+  $('#projects').scrollIntoView();
+}
+window.addEventListener('hashchange',openWorkFromHash);
+window.addEventListener('load',()=>{if(/^#projects-/.test(location.hash))setTimeout(openWorkFromHash,150)});
 const lightbox=$('#project-lightbox');
 let galleryItems=[],galleryIndex=0;
 function renderGallery(){
