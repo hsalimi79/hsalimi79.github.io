@@ -263,6 +263,8 @@ img{max-width:100%}
 .bazibani-preview .bazibani-cover{grid-row:1/3}
 .bazibani-preview .shot{height:auto;max-height:360px;object-fit:contain}
 .bazibani-preview .bazibani-dashboard{max-width:120px;justify-self:center}
+.bazibani-features{display:grid;gap:10px;margin-top:16px;font-size:14px;line-height:1.8}
+#project-bazibani .project-intro{color:var(--ink);font-weight:700}
 .compact-project .project-body{padding:28px 30px}
 .compact-project h3{font-size:26px}
 .compact-project .project-top{margin-bottom:20px}
@@ -387,6 +389,15 @@ html:has(.project-lightbox[open]),body:has(.project-lightbox[open]){overflow:hid
 .lightbox-original{display:inline-flex;align-items:center;gap:7px;color:var(--violet);font-weight:600;min-height:40px}
 
 /* responsive */
+@media(min-width:761px){
+  .project:not(.featured) .project-visual{aspect-ratio:16/10;flex-shrink:0;padding:42px 28px 28px}
+  .project:not(.featured) .bot-photo>.media-button{width:auto;max-width:100%}
+  .project:not(.featured) .bot-photo>.media-button .shot{width:auto;max-width:100%}
+  .project:not(.featured) .phones-preview{height:100%;min-height:0;padding-top:0}
+  .project:not(.featured) .phone-preview{width:auto;height:100%;max-width:28%;aspect-ratio:9/19.5;transform:none}
+  .project:not(.featured) .phone-preview .media-button{height:100%;min-height:0}
+  .project:not(.featured) .phone-preview .shot{height:100%;object-fit:contain}
+}
 @media(max-width:1100px){
   .services{grid-template-columns:repeat(2,minmax(0,1fr))}
   .nav-cta{display:none}
@@ -575,8 +586,8 @@ html:has(.project-lightbox[open]),body:has(.project-lightbox[open]){overflow:hid
 <button class="media-button bazibani-dashboard" type="button" data-gallery="bazibani" data-image="images/bazibani-dashboard.webp" data-caption="Bazibani admin panel — connection health dashboard" aria-label="View Bazibani connection health dashboard"><img class="shot" src="images/bazibani-dashboard.webp" alt="Bazibani admin panel — connection health dashboard" loading="lazy" decoding="async"><span class="zoom-hint"><svg class="work-icon" aria-hidden="true"><use href="#wi-expand"></use></svg><span data-en="View" data-fa="نمایش">نمایش</span></span></button>
 </div></div>
 <div class="project-body"><div class="project-top"><span class="project-type"><span class="project-num">04 /</span><span data-en="Content automation + web panel" data-fa="اتوماسیون محتوا + پنل وب">اتوماسیون محتوا + پنل وب</span></span><span dir="ltr">2026</span></div>
-<h3 data-en="Bazibani Content Publishing System" data-fa="سامانه انتشار محتوای Bazibani">سامانه انتشار محتوای Bazibani</h3><p data-en="A custom content publishing system for Bazibani: posts are shared automatically between Telegram, Bale and Rubika. A web panel tracks delivery to each destination, connection health and the relay map, with a shared page for channels, orders and accounting." data-fa="سامانه اختصاصی مجموعهٔ Bazibani برای انتشار خودکار محتوا بین تلگرام، بله و روبیکا؛ همراه با پنل تحت وب برای پیگیری وضعیت ارسال هر پست، سلامت اتصال‌ها و نقشهٔ انتقال، و یک صفحهٔ مشترک برای کانال‌ها، ثبت سفارش و حسابداری.">سامانه اختصاصی مجموعهٔ Bazibani برای انتشار خودکار محتوا بین تلگرام، بله و روبیکا؛ همراه با پنل تحت وب برای پیگیری وضعیت ارسال هر پست، سلامت اتصال‌ها و نقشهٔ انتقال، و یک صفحهٔ مشترک برای کانال‌ها، ثبت سفارش و حسابداری.</p>
-<ul class="project-features"><li data-en="One post, three messengers" data-fa="یک محتوا، سه پیام‌رسان">یک محتوا، سه پیام‌رسان</li><li data-en="Per-post delivery reports" data-fa="گزارش ارسال هر پست">گزارش ارسال هر پست</li><li data-en="Connection health &amp; relay map" data-fa="سلامت اتصال‌ها و نقشهٔ انتقال">سلامت اتصال‌ها و نقشهٔ انتقال</li><li data-en="Shared business links" data-fa="لینک مشترک کسب‌وکار">لینک مشترک کسب‌وکار</li></ul>
+<h3 data-en="Bazibani Content Publishing System" data-fa="سامانه انتشار محتوای Bazibani">سامانه انتشار محتوای Bazibani</h3><p class="project-intro" data-en="One post. Three messengers." data-fa="یک محتوا، سه پیام‌رسان.">یک محتوا، سه پیام‌رسان.</p>
+<ul class="project-features bazibani-features"><li data-en="Auto-publish to Telegram, Bale &amp; Rubika" data-fa="انتشار خودکار در تلگرام، بله و روبیکا">انتشار خودکار در تلگرام، بله و روبیکا</li><li data-en="Web panel for delivery reports &amp; connection health" data-fa="پنل وب؛ گزارش ارسال و سلامت اتصال‌ها">پنل وب؛ گزارش ارسال و سلامت اتصال‌ها</li><li data-en="Channels, orders &amp; accounting in one link" data-fa="کانال‌ها، سفارش و حسابداری در یک لینک">کانال‌ها، سفارش و حسابداری در یک لینک</li></ul>
 <div class="tags"><span class="tag">Python</span><span class="tag">FastAPI</span><span class="tag">SQLite</span><span class="tag">Jinja2</span><span class="tag">Docker</span></div>
 </div></article>
 <article class="project rv" data-category="apps">
