@@ -258,11 +258,11 @@ img{max-width:100%}
 .sr-only-btn{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .abgo-visual{display:flex;flex-direction:column;gap:12px;width:100%;min-width:0;align-self:center}
 .abgo-main .media-button{border:1px solid var(--line2);border-radius:14px;overflow:hidden;background:#0f111a;box-shadow:0 30px 60px -24px rgba(40,30,110,.5)}
-.bostani-preview{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,.8fr);align-items:center;gap:14px;width:100%;direction:ltr}
-.bostani-preview .media-button{overflow:hidden;border:1px solid var(--line2);border-radius:12px;box-shadow:var(--shadow-m)}
-.bostani-preview .bostani-cover{grid-row:1/3}
-.bostani-preview .shot{height:auto;max-height:360px;object-fit:contain}
-.bostani-preview .bostani-dashboard{max-width:120px;justify-self:center}
+.bazibani-preview{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,.8fr);align-items:center;gap:14px;width:100%;direction:ltr}
+.bazibani-preview .media-button{overflow:hidden;border:1px solid var(--line2);border-radius:12px;box-shadow:var(--shadow-m)}
+.bazibani-preview .bazibani-cover{grid-row:1/3}
+.bazibani-preview .shot{height:auto;max-height:360px;object-fit:contain}
+.bazibani-preview .bazibani-dashboard{max-width:120px;justify-self:center}
 .compact-project .project-body{padding:28px 30px}
 .compact-project h3{font-size:26px}
 .compact-project .project-top{margin-bottom:20px}
@@ -429,7 +429,7 @@ html:has(.project-lightbox[open]),body:has(.project-lightbox[open]){overflow:hid
   .project.featured,.project.featured.flip,.project.featured.wide-visual{grid-template-columns:1fr;grid-column:auto}
   .flip .project-visual{order:0;border-inline-start:0}
   .featured .project-visual{min-height:0;aspect-ratio:16/10;border-inline-end:0;border-bottom:1px solid var(--line);padding:40px 22px 24px}
-  .featured .project-visual:has(.abgo-visual),.featured .project-visual:has(.bostani-preview){aspect-ratio:auto}
+  .featured .project-visual:has(.abgo-visual),.featured .project-visual:has(.bazibani-preview){aspect-ratio:auto}
   .project-body,.featured .project-body{padding:24px}
   .project h3{font-size:27px}
   .project-visual{padding:36px 22px 24px}
@@ -568,14 +568,14 @@ html:has(.project-lightbox[open]),body:has(.project-lightbox[open]){overflow:hid
 <ul class="project-features"><li data-en="Dashboard &amp; stats" data-fa="داشبورد و آمار">Dashboard &amp; stats</li><li data-en="User approval &amp; search" data-fa="تأیید و جستجوی کاربر">User approval &amp; search</li><li data-en="Connected channels" data-fa="کانال‌های متصل">Connected channels</li><li data-en="Post status &amp; filters" data-fa="وضعیت پست و فیلتر">Post status &amp; filters</li><li data-en="CSV export" data-fa="خروجی CSV">CSV export</li></ul>
 <div class="tags"><span class="tag">Telegram API</span><span class="tag">Eitaa API</span><span class="tag">FastAPI</span><span class="tag">Admin panel</span><span class="tag">Automation</span></div>
 <div class="links"><a class="link" href="https://t.me/salehabad_bot" target="_blank" rel="noopener"><span dir="ltr">@salehabad_bot</span><svg class="work-icon" aria-hidden="true"><use href="#wi-arrow"></use></svg></a></div></div></article>
-<article id="project-bostani" class="project featured flip rv" data-category="bots web">
-<div class="project-visual"><span class="visual-label">BOSTANI / CROSSPOST &amp; ADMIN PANEL</span><div class="bostani-preview">
-<button class="media-button bostani-cover" type="button" data-gallery="bostani" data-image="../images/bostani-overview.webp" data-caption="Bostani — content publishing system overview" aria-label="View Bostani project overview"><img class="shot" src="../images/bostani-overview.webp" alt="Bostani — supplied project overview" loading="lazy" decoding="async"><span class="zoom-hint"><svg class="work-icon" aria-hidden="true"><use href="#wi-expand"></use></svg><span data-en="View" data-fa="نمایش">View</span></span></button>
-<button class="media-button" type="button" data-gallery="bostani" data-image="../images/bostani-posts.webp" data-caption="Bostani admin panel — posts and delivery status" aria-label="View Bostani posts and delivery status"><img class="shot" src="../images/bostani-posts.webp" alt="Bostani admin panel — posts and delivery status" loading="lazy" decoding="async"><span class="zoom-hint"><svg class="work-icon" aria-hidden="true"><use href="#wi-expand"></use></svg><span data-en="View" data-fa="نمایش">View</span></span></button>
-<button class="media-button bostani-dashboard" type="button" data-gallery="bostani" data-image="../images/bostani-dashboard.webp" data-caption="Bostani admin panel — connection health dashboard" aria-label="View Bostani connection health dashboard"><img class="shot" src="../images/bostani-dashboard.webp" alt="Bostani admin panel — connection health dashboard" loading="lazy" decoding="async"><span class="zoom-hint"><svg class="work-icon" aria-hidden="true"><use href="#wi-expand"></use></svg><span data-en="View" data-fa="نمایش">View</span></span></button>
+<article id="project-bazibani" class="project featured flip rv" data-category="bots web">
+<div class="project-visual"><span class="visual-label">BAZIBANI / CROSSPOST &amp; ADMIN PANEL</span><div class="bazibani-preview">
+<button class="media-button bazibani-cover" type="button" data-gallery="bazibani" data-image="../images/bazibani-overview.webp" data-caption="Bazibani — content publishing system overview" aria-label="View Bazibani project overview"><img class="shot" src="../images/bazibani-overview.webp" alt="Bazibani — supplied project overview" loading="lazy" decoding="async"><span class="zoom-hint"><svg class="work-icon" aria-hidden="true"><use href="#wi-expand"></use></svg><span data-en="View" data-fa="نمایش">View</span></span></button>
+<button class="media-button" type="button" data-gallery="bazibani" data-image="../images/bazibani-posts.webp" data-caption="Bazibani admin panel — posts and delivery status" aria-label="View Bazibani posts and delivery status"><img class="shot" src="../images/bazibani-posts.webp" alt="Bazibani admin panel — posts and delivery status" loading="lazy" decoding="async"><span class="zoom-hint"><svg class="work-icon" aria-hidden="true"><use href="#wi-expand"></use></svg><span data-en="View" data-fa="نمایش">View</span></span></button>
+<button class="media-button bazibani-dashboard" type="button" data-gallery="bazibani" data-image="../images/bazibani-dashboard.webp" data-caption="Bazibani admin panel — connection health dashboard" aria-label="View Bazibani connection health dashboard"><img class="shot" src="../images/bazibani-dashboard.webp" alt="Bazibani admin panel — connection health dashboard" loading="lazy" decoding="async"><span class="zoom-hint"><svg class="work-icon" aria-hidden="true"><use href="#wi-expand"></use></svg><span data-en="View" data-fa="نمایش">View</span></span></button>
 </div></div>
 <div class="project-body"><div class="project-top"><span class="project-type"><span class="project-num">04 /</span><span data-en="Content automation + web panel" data-fa="اتوماسیون محتوا + پنل وب">Content automation + web panel</span></span><span dir="ltr">2026</span></div>
-<h3 data-en="Bostani Content Publishing System" data-fa="سامانه انتشار محتوای بستانی">Bostani Content Publishing System</h3><p data-en="A custom content publishing system for Bostani: posts are shared automatically between Telegram, Bale and Rubika. A web panel tracks delivery to each destination, connection health and the relay map, with a shared page for channels, orders and accounting." data-fa="سامانه اختصاصی مجموعهٔ بستانی برای انتشار خودکار محتوا بین تلگرام، بله و روبیکا؛ همراه با پنل تحت وب برای پیگیری وضعیت ارسال هر پست، سلامت اتصال‌ها و نقشهٔ انتقال، و یک صفحهٔ مشترک برای کانال‌ها، ثبت سفارش و حسابداری.">A custom content publishing system for Bostani: posts are shared automatically between Telegram, Bale and Rubika. A web panel tracks delivery to each destination, connection health and the relay map, with a shared page for channels, orders and accounting.</p>
+<h3 data-en="Bazibani Content Publishing System" data-fa="سامانه انتشار محتوای Bazibani">Bazibani Content Publishing System</h3><p data-en="A custom content publishing system for Bazibani: posts are shared automatically between Telegram, Bale and Rubika. A web panel tracks delivery to each destination, connection health and the relay map, with a shared page for channels, orders and accounting." data-fa="سامانه اختصاصی مجموعهٔ Bazibani برای انتشار خودکار محتوا بین تلگرام، بله و روبیکا؛ همراه با پنل تحت وب برای پیگیری وضعیت ارسال هر پست، سلامت اتصال‌ها و نقشهٔ انتقال، و یک صفحهٔ مشترک برای کانال‌ها، ثبت سفارش و حسابداری.">A custom content publishing system for Bazibani: posts are shared automatically between Telegram, Bale and Rubika. A web panel tracks delivery to each destination, connection health and the relay map, with a shared page for channels, orders and accounting.</p>
 <ul class="project-features"><li data-en="One post, three messengers" data-fa="یک محتوا، سه پیام‌رسان">One post, three messengers</li><li data-en="Per-post delivery reports" data-fa="گزارش ارسال هر پست">Per-post delivery reports</li><li data-en="Connection health &amp; relay map" data-fa="سلامت اتصال‌ها و نقشهٔ انتقال">Connection health &amp; relay map</li><li data-en="Shared business links" data-fa="لینک مشترک کسب‌وکار">Shared business links</li></ul>
 <div class="tags"><span class="tag">Python</span><span class="tag">FastAPI</span><span class="tag">SQLite</span><span class="tag">Jinja2</span><span class="tag">Docker</span></div>
 </div></article>
@@ -781,9 +781,9 @@ const obs=new IntersectionObserver(es=>es.forEach(e=>{
 $$('.rv').forEach(x=>obs.observe(x));
 
 /* project filters + keyboard-accessible screenshot gallery */
-$$('.work-filter').forEach(button=>button.addEventListener('click',()=>{
-  const filter=button.dataset.filter;
-  $$('.work-filter').forEach(b=>b.setAttribute('aria-pressed',String(b===button)));
+const workFilters=['all','web','resume','apps','bots'];
+function applyFilter(filter){
+  $$('.work-filter').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.filter===filter)));
   let visible=0;
   $$('.project').forEach(project=>{
     project.hidden=filter!=='all'&&!project.dataset.category.split(' ').includes(filter);
@@ -791,7 +791,21 @@ $$('.work-filter').forEach(button=>button.addEventListener('click',()=>{
   });
   $('#work-count').textContent=String(visible).padStart(2,'0');
   onScroll();
+}
+$$('.work-filter').forEach(button=>button.addEventListener('click',()=>{
+  const filter=button.dataset.filter;
+  applyFilter(filter);
+  history.replaceState(null,'',filter==='all'?'#projects':'#projects-'+filter);
 }));
+/* deep links: #projects-resume, #projects-apps, #projects-bots, #projects-web select a filter and scroll to the work section */
+function openWorkFromHash(){
+  const m=location.hash.match(/^#projects-(\w+)$/);
+  if(!m||!workFilters.includes(m[1]))return;
+  applyFilter(m[1]);
+  $('#projects').scrollIntoView();
+}
+window.addEventListener('hashchange',openWorkFromHash);
+window.addEventListener('load',()=>{if(/^#projects-/.test(location.hash))setTimeout(openWorkFromHash,150)});
 const lightbox=$('#project-lightbox');
 let galleryItems=[],galleryIndex=0;
 function renderGallery(){
